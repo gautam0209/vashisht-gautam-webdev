@@ -1,0 +1,73 @@
+input.form-control,
+textarea.form-control,
+select.form-control{
+    margin-bottom: 5px;
+}
+
+
+nav.navbar.navbar-default.navbar-fixed-top,
+nav.navbar.navbar-default.navbar-fixed-bottom
+{
+    background-color: darkblue;
+    border-color: darkblue;
+    padding-right: -15px;
+}
+
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.navbar-default{
+    background-color: darkblue;
+    border-color: darkblue;
+}
+
+.navbar-default .navbar-brand {
+    color: antiquewhite;
+}
+
+.navbar-default .navbar-link {
+    color: antiquewhite;
+}
+
+.navbar.navbar-default a {
+    color: antiquewhite;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.wd-widget{
+    margin:10px;
+}
+.wd-widget > img{
+    width:100%;
+}
+
+.wd-widget-toolbar{
+    position:absolute;
+    right:20px;
+    background: white;
+    opacity: 0.7;
+    padding:5px;
+    border-bottom-left-radius:5px;
+}
+
+.wd-pad-left-0{
+    padding-left:0px;
+}
+
+.wd-pad-left-15{
+    padding-left:15px;
+}
+
+.wd-pad-l-r-15{
+    padding-left:15px;
+    padding-right:15px;
+}
