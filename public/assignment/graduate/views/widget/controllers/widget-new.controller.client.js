@@ -23,15 +23,11 @@
             model.lists = lists;
             model.mode = 'New';
 
-            model.deleteWidget = deleteWidget;
-
-            model.createWidget = createWidget;
             model.getUrl = getUrl;
 
             function init()
             {
-                model.widget = widgetService.findWidgetById(model.widgetId);
-                model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+
             }
 
             init();
@@ -45,22 +41,6 @@
                  $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/new/" + model.widgetType);
             }
 
-            function deleteWidget(widgetId)
-            {
-                widgetService.deleteWidget(widgetId);
-                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
-            }
-
-            function createWidget(widget) {
-                if(model.widgetType === 'Header')
-                    widget.widgetType = 'HEADING';
-                else
-                    widget.widgetType = model.widgetType.toUpperCase();
-                widget._id = (new Date()).getTime().toString();
-                widgetService.createWidget(model.pageId, widget);
-                console.log(widget);
-                $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
-            }
 
         }
 })();

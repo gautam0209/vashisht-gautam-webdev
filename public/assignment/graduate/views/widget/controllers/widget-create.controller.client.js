@@ -32,7 +32,7 @@
         function init()
         {
             model.widget = widgetService.findWidgetById(model.widgetId);
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+             model.widgets = widgetService.findWidgetsByPageId(model.pageId);
         }
 
         init();
