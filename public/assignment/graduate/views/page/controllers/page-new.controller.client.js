@@ -19,11 +19,12 @@
 
 
 
-        function createPage(name, title){
-            if(name === null || name === '' || typeof name === 'undefined')
+        function createPage(page){
+            // if(name === null || name === '' || typeof name === 'undefined')
+            if(page.name === '' )
                 model.error = "Please provide page name.";
             else {
-                var newPage = pageService.createPage(name, title, model.websiteId);
+                var newPage = pageService.createPage(page.name, page.title, model.websiteId);
                 $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
             }
         }

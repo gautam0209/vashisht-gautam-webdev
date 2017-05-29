@@ -35,9 +35,7 @@
             {
                 var user = {
                     username: username,
-                    password: password,
-                    firstName: "New",
-                    lastName: "Entry"
+                    password: password
                 };
                 var newUser = userService.createUser(user);
                 $location.url('/user/' + newUser._id);

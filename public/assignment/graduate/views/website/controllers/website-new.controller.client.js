@@ -18,16 +18,17 @@
 
 
         function init(){
-            model.websites = websiteService.findWebsitesForUser(model.userId);
+            model.websites = websiteService.findWebsitesByUser(model.userId);
         }
 
         init();
 
-        function createWebsite(name, description){
-            if(name === null || name === '' || typeof name === 'undefined')
+        function createWebsite(website){
+            // if(website.name === null || website.name === '' || typeof website.name === 'undefined')
+            if(website.name === '')
                 model.error = "Please provide website name.";
             else {
-                websiteService.createWebsite(name, description, model.userId);
+                websiteService.createWebsite(website.name, website.description, model.userId);
                 $location.url('/user/' + model.userId + '/website');
             }
         }

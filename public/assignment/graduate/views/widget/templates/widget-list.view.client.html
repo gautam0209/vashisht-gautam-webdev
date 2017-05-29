@@ -3,14 +3,14 @@
         <div class="navbar-header">
 
 
-            <a class="navbar-brand pull-left" href="../../page/page-list.html">
+            <a class="navbar-brand pull-left" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand">
                 Widgets
             </a>
 
-            <a href="widget-chooser.html" class="navbar-text pull-right">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-text pull-right">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -23,28 +23,13 @@
 
     <div ng-repeat= "widget in model.widgets" class="wd-widget">
         <div class="wd-widget-toolbar">
-            <a href="widget-heading-edit.html">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
         <div ng-include="model.widgetUrl(widget)"></div>
-
-        <!--<div ng-switch="widget.widgetType">-->
-            <!--<div ng-switch-when="HEADING">-->
-                <!--<div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>-->
-            <!--</div>-->
-            <!--<div ng-switch-when="IMAGE">-->
-                <!--<img ng-src="{{widget.url}}" width="{{widget.width}}"></img>-->
-            <!--</div>-->
-            <!--<div ng-switch-when="HTML"-->
-                 <!--ng-bind-html="model.trust(widget.text)">-->
-            <!--</div>-->
-            <!--<div ng-switch-when="YOUTUBE">-->
-                <!--<iframe width="100%" src="{{model.getYouTubeEmbedURL(widget.url)}}" frameborder="0" allowfullscreen></iframe>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
 

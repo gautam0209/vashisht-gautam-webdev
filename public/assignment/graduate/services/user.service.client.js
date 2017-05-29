@@ -21,7 +21,9 @@
                 findUserByCredential: findUserByCredential,
                 findUserById: findUserById,
                 findUserByUserName: findUserByUserName,
-                createUser:createUser
+                createUser:createUser,
+                deleteUser:deleteUser,
+                updateUser:updateUser
             };
 
         return api;
@@ -69,6 +71,28 @@
 
             return null;
         }
+
+        function deleteUser(userId){
+            var user = findUserById(userId);
+            var index = users.indexOf(user);
+            users.splice(index,1);
+            }
+
+        function updateUser(userId, user)
+        {
+            for(var u in users)
+            {
+                var tempUser = users[u];
+                if(tempUser._id === userId)
+                {
+                    users[u].username = user.username;
+                    users[u].firstName = user.firstName;
+                    users[u].lastName = user.lastName;
+                }
+
+            }
+        }
+
 
     }
 

@@ -18,16 +18,17 @@
 
 
             var api = {
-                findPagesForWebsite: findPagesForWebsite,
+                findPagesByWebsiteId: findPagesByWebsiteId,
                 createPage:createPage,
-                findPageFromId: findPageFromId,
+                findPageById: findPageById,
+                updatePage:updatePage,
                 deletePage: deletePage
 
             };
 
             return api;
 
-            function findPagesForWebsite(websiteId)
+            function findPagesByWebsiteId(websiteId)
             {
                 var results = [];
                 for(var p in pages)
@@ -42,12 +43,26 @@
 
             function createPage(name, description, websiteId)
             {
-                var newPage = { "_id": new Date().getTime(), "name": name,    "websiteId": websiteId, "description": description };
+                var newPage = { "_id": new Date().getTime().toString(), "name": name,    "websiteId": websiteId, "description": description };
                 pages.push(newPage);
                 return newPage;
             }
 
-            function findPageFromId(pageId)
+            function updatePage(pageId, page)
+            {
+                for(var p in pages)
+                {
+                    // var web = websites[w];
+                    if(pages[p]._id == pageId)
+                    {
+                        pages[p].name = page.name;
+                        pages[p].description = page.description;
+                    }
+                }
+
+            }
+
+            function findPageById(pageId)
             {
                 for(var p in pages)
                 {
@@ -60,7 +75,7 @@
             }
 
             function deletePage(pageId){
-                var page = findPageFromId(pageId);
+                var page = findPageById(pageId);
                 var index = pages.indexOf(page);
                 pages.splice(index, 1);
             }

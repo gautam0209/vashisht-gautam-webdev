@@ -22,7 +22,7 @@ a{
     text-decoration: none !important;
 }
 
-.navbar-default{
+.navbar-default > div{
     background-color: darkblue;
     border-color: darkblue;
 }

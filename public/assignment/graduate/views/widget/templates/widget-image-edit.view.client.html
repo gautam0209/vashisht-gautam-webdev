@@ -1,0 +1,85 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Widget {{model.mode}}
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)"
+                   class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+                <a ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)"
+                   class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+            <label for="name">Name</label>
+            <input class="form-control"
+                   ng-model="model.widget.name"
+                   placeholder="Image Name"
+                   id="name"/>
+
+    <label for="text">Text</label>
+    <input class="form-control"
+           ng-model="model.widget.text"
+           placeholder="Info about Image"
+           id="text"/>
+
+    <label for="url">URL</label>
+    <input class="form-control"
+           ng-model="model.widget.url"
+           placeholder="URL of Image"
+           id="url"/>
+
+    <label for="width">Width</label>
+    <input class="form-control"
+           ng-model="model.widget.width"
+           placeholder="Provide width in percentage"
+           id="width"/>
+
+     <label for="Upload">Upload</label>
+     <input id="Upload" type="file" class="form-control"/>
+
+    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="btn btn-block btn-primary">Upload Image</a>
+
+    <a ng-if="model.mode == 'Edit'" ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
+
+    <a ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)"
+       class="btn btn-block btn-success">
+        Update
+    </a>
+
+    <a ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)"
+       class="btn btn-block btn-success">
+        Create
+    </a>
+
+</div>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

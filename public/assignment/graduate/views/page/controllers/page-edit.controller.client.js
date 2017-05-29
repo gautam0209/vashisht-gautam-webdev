@@ -18,15 +18,22 @@
         model.pageId = $routeParams['pageId'];
 
         model.deletePage = deletePage;
+        model.updatePage = updatePage;
 
 
         function init()
         {
-            model.page = pageService.findPageFromId(model.pageId);
+            model.page = pageService.findPageById(model.pageId);
 
         }
 
         init();
+
+       function updatePage(page)
+       {
+           pageService.updatePage(model.pageId, page);
+           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+       }
 
         function deletePage(pageId)
         {

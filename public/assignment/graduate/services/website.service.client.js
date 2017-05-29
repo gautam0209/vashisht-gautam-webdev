@@ -21,10 +21,11 @@
 
         var api =
             {
-                findWebsitesForUser: findWebsitesForUser,
+                findWebsitesByUser: findWebsitesByUser,
                 findWebsiteById:findWebsiteById,
                 deleteWebsite:deleteWebsite,
-                createWebsite:createWebsite
+                createWebsite:createWebsite,
+                updateWebsite:updateWebsite
             };
 
         return api;
@@ -34,7 +35,7 @@
                 return website._id === websiteId;
             });
 
-            return web;
+            return angular.copy(web);
         }
 
         function deleteWebsite(websiteId){
@@ -45,12 +46,26 @@
 
         function createWebsite(name, description, userId)
         {
-            var newWebsite = { "_id": new Date().getTime(), "name": name,    "developerId": userId, "description": description };
+            var newWebsite = { "_id": new Date().getTime().toString(), "name": name,    "developerId": userId, "description": description };
             websites.push(newWebsite);
             return newWebsite;
         }
 
-        function findWebsitesForUser(userId)
+        function updateWebsite(websiteId, website)
+        {
+            for(var w in websites)
+            {
+                // var web = websites[w];
+                if(websites[w]._id == websiteId)
+                {
+                    websites[w].name = website.name;
+                    websites[w].description = website.description;
+                }
+            }
+
+        }
+
+        function findWebsitesByUser(userId)
         {
             var results = [];
 
