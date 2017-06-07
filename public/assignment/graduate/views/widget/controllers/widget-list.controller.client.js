@@ -15,6 +15,7 @@
             model.trust = trust;
             model.getYouTubeEmbedURL = getYouTubeEmbedURL;
             model.widgetUrl = widgetUrl;
+            model.sortWidget = sortWidget;
 
             model.userId = $routeParams['userId'];
             model.websiteId = $routeParams['websiteId'];
@@ -23,13 +24,27 @@
 
             function init()
             {
-                model.widget = widgetService.findWidgetById(model.widgetId);
-                model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-                console.log(model.widgets);
+                widgetService.findWidgetsByPageId(model.pageId)
+                    .then(function(widgets){
+                        model.widgets = widgets
+                    },
+                    function(){});
+
 
             }
 
             init();
+
+            function sortWidget(indexArr)
+            {
+                widgetService.sortWidget(model.pageId, indexArr)
+                    .then(function(){
+                        model.message = "Widget Sorted Successfully."
+                    },
+                    function(){
+                        model.message = "Widget Sorting Failed."
+                    });
+            }
 
             function trust(html)
             {

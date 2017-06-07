@@ -26,20 +26,25 @@
                 return;
             }
 
-            var found = userService.findUserByUserName(username);
-            if(found != null)
-            {
-                model.error = "Sorry, username: " + username + " already exist!!";
-            }
-            else
-            {
-                var user = {
-                    username: username,
-                    password: password
-                };
-                var newUser = userService.createUser(user);
-                $location.url('/user/' + newUser._id);
-            }
+            userService.findUserByUserName(username)
+                .then(function(){
+                        model.error = "Sorry, username: " + username + " already exist!!";
+                    },
+                    function()
+                    {
+                        var newUser = {
+                            username: username,
+                            password: password
+                        };
+                        userService
+                            .createUser(newUser)
+                            .then(function (user){
+                                $location.url('/user/' + user._id);
+                            });
+
+                    }
+
+                );
         }
     }
 })();

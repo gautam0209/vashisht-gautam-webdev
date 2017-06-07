@@ -1,4 +1,8 @@
 var app = require('./express');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.set('view engine', 'ejs');
 require('./utilities/filelist');
@@ -11,4 +15,6 @@ blog(app);
 var todo = require('./lectures/undergraduate/todo/app');
 todo(app);
 
-app.listen(process.env.PORT || 3000);
+require('./assignment/app');
+
+app.listen(process.env.PORT || 3001);

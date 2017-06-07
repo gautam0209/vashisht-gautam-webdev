@@ -21,16 +21,21 @@
 
 <div class="container-fluid">
 
-    <div ng-repeat= "widget in model.widgets" class="wd-widget">
-        <div class="wd-widget-toolbar">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
+        <!--<div wbdv-sortable get-index ="model.sortWidget(indexArr)">-->
+    <div wbdv-sortable get-index-array="model.sortWidget(indexArr)">
+        <div ng-repeat= "widget in model.widgets" class="wd-widget">
+            <div class="wd-widget-toolbar">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <a class="draggable">
+                    <span  class="glyphicon glyphicon-align-justify"></span>
+                </a>
+            </div>
 
-        <div ng-include="model.widgetUrl(widget)"></div>
-    </div>
+            <div ng-include="model.widgetUrl(widget)"></div>
+        </div>
+        </div>
 </div>
 
 <div ng-include="'views/common/footer.view.client.html'"></div>

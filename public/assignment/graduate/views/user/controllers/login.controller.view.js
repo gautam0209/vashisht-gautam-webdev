@@ -15,16 +15,17 @@
 
         function login(username, password)
         {
-            var found = userService.findUserByCredential(username, password);
-            if(found != null)
-            {
-                $location.url('/user/' + found._id);
-                model.message = "Welcome, " + username;
-            }
-            else
-            {
-                model.message = "Sorry, username: " + username + " with entered password doesnt exist";
-            }
-        }
+            userService.findUserByCredential(username, password)
+                .then(function (found){
+                        $location.url('/user/' + found._id);
+                        model.message = "Welcome, " + username;
+                    },
+                    function()
+                    {
+                        model.message = "Sorry, username: " + username + " with entered password doesnt exist";
+                    }
+                )
+
+        };
     }
 })();

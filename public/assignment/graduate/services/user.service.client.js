@@ -7,15 +7,8 @@
         .module('WebAppMaker')
         .factory('userService',userService);
 
-    function userService()
+    function userService($http)
     {
-        var users =             [
-            {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-            {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-            {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-        ];
-
         var api =
             {
                 findUserByCredential: findUserByCredential,
@@ -30,69 +23,56 @@
 
         function createUser(user)
         {
-            user._id = (new Date()).getTime() + "";
-            user.created = new Date();
-            users.push(user);
-
-            return user;
+            var url="/api/assignment/graduate/user";
+            return $http.post(url, user)
+                .then(function(response){
+                    return response.data;
+                });
         }
 
         function findUserByUserName(userName) {
-            for(var v in users)
-            {
-                var user = users[v];
-                if(user.username === userName)
-                    return user;
-            }
-
-            return null;
+            var url="/api/assignment/graduate/user?username="+userName;
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                });
         }
 
         function findUserById(userId)
         {
-            for(var v in users)
-            {
-                var user = users[v];
-                if(user._id === userId)
-                    return user;
-            }
-
-            return null;
+            var url = '/api/assignment/graduate/user/' + userId;
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
         }
 
         function findUserByCredential(username, password)
         {
-            for(var v in users)
-            {
-                var user = users[v];
-                if(user.username === username && user.password === password)
-                    return user;
-            }
-
-            return null;
-        }
+            var url="/api/assignment/graduate/user?username="+username+"&password=" + password;
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                });
+         }
 
         function deleteUser(userId){
-            var user = findUserById(userId);
-            var index = users.indexOf(user);
-            users.splice(index,1);
+
+            var url="/api/assignment/graduate/user/" + userId;
+            return $http.delete(url)
+                .then(function(response){
+                    return response.data;
+                });
             }
 
         function updateUser(userId, user)
         {
-            for(var u in users)
-            {
-                var tempUser = users[u];
-                if(tempUser._id === userId)
-                {
-                    users[u].username = user.username;
-                    users[u].firstName = user.firstName;
-                    users[u].lastName = user.lastName;
-                }
-
-            }
+            var url="/api/assignment/graduate/user/" + userId;
+            return $http.put(url, user)
+                .then(function(response){
+                    return response.data;
+                });
         }
-
 
     }
 

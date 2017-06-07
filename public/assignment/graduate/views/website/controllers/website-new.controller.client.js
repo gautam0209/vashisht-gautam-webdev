@@ -18,7 +18,10 @@
 
 
         function init(){
-            model.websites = websiteService.findWebsitesByUser(model.userId);
+             websiteService.findWebsitesByUser(model.userId)
+                 .then(function(websites){
+                     model.websites = websites;
+                 });
         }
 
         init();
@@ -28,7 +31,16 @@
             if(website.name === '')
                 model.error = "Please provide website name.";
             else {
-                websiteService.createWebsite(website.name, website.description, model.userId);
+                websiteService
+                    .createWebsite(website.name, website.description, model.userId)
+                    .then(function()
+                    {
+                        model.message = "Website Created Successfully";
+                    },
+                    function(){
+                        model.message = "Website Creation Failed.";
+                    });
+
                 $location.url('/user/' + model.userId + '/website');
             }
         }

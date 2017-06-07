@@ -9,7 +9,8 @@
 
     function widgetCreateController($routeParams,
                                  $location,
-                                 widgetService){
+                                 widgetService,
+                                    abc){
 
         var model = this;
 
@@ -29,10 +30,23 @@
         model.createWidget = createWidget;
         model.getUrl = getUrl;
 
+
         function init()
         {
-            model.widget = widgetService.findWidgetById(model.widgetId);
-             model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(function(widgets){
+                    model.widgets = widgets
+                })
+
+                    var temp=abc.getUrl();
+                    if(temp){
+                        model.widget = {
+                            url:temp,
+                            width: '100%'
+                        }
+                    }
+
         }
 
         init();
@@ -45,7 +59,9 @@
 
         function deleteWidget(widgetId)
         {
-            widgetService.deleteWidget(widgetId);
+            widgetService
+                .deleteWidget(widgetId)
+                .then(function(){});
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
         }
 
@@ -55,8 +71,10 @@
             else
                 widget.widgetType = model.widgetType.toUpperCase();
             widget._id = (new Date()).getTime().toString();
-            widgetService.createWidget(model.pageId, widget);
-            console.log(widget);
+
+            widgetService.createWidget(model.pageId, widget)
+                .then(function(){});
+
             $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
         }
 

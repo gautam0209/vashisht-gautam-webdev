@@ -23,21 +23,26 @@
 
         function init()
         {
-            model.page = pageService.findPageById(model.pageId);
-
+            // model.page = pageService.findPageById(model.pageId);
+            pageService.findPageById(model.pageId)
+                .then(function(page){
+                    model.page = page
+                        });
         }
 
         init();
 
        function updatePage(page)
        {
-           pageService.updatePage(model.pageId, page);
+           pageService.updatePage(model.pageId, page)
+               .then(function(){});
            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
        }
 
         function deletePage(pageId)
         {
-            pageService.deletePage(pageId);
+            pageService.deletePage(pageId)
+                .then(function(){});
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
 
         }

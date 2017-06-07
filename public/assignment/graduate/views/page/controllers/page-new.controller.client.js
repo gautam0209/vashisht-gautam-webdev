@@ -24,7 +24,11 @@
             if(page.name === '' )
                 model.error = "Please provide page name.";
             else {
-                var newPage = pageService.createPage(page.name, page.title, model.websiteId);
+                //var newPage = pageService.createPage(page.name, page.title, model.websiteId);
+                pageService.createPage(page.name, page.title, model.websiteId)
+                    .then(function(page){
+                        var newPage = page;
+                    });
                 $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
             }
         }
