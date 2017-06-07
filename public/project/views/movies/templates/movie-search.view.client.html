@@ -1,0 +1,59 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand">
+                Search Movie
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updatePage(model.page)" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchMovie" type="text" class="form-control">
+
+        <span class="input-group-btn">
+            <a ng-click="model.searchMovie(searchMovie)"
+               class="btn btn-default"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+
+    </div>
+
+    <div ng-repeat="movie in model.movies">
+        <div class="row table-bordered">
+            <div class="col-lg-6">
+                 <b>Title:</b>
+                {{movie.title}}
+            </div>
+            <div class="col-lg-12">
+                <b>Overview:</b>
+                {{movie.overview}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
