@@ -9,8 +9,7 @@
 
         function widgetNewController($routeParams,
                                         $location,
-                                        widgetService,
-                                        abc){
+                                        widgetService){
 
             var model = this;
 

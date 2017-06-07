@@ -73,7 +73,6 @@ function findAllWebsitesForUser(req, res){
         }
 
         res.json(results);
-        return;
     }
 
 function createWebsite(req, res){

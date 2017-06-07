@@ -13,6 +13,12 @@
 
         model.login = login;
 
+        function init()
+        {
+
+        }
+        init();
+
         function login(username, password)
         {
             userService.findUserByCredential(username, password)

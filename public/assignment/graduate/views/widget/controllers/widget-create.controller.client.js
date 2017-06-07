@@ -10,7 +10,7 @@
     function widgetCreateController($routeParams,
                                  $location,
                                  widgetService,
-                                    abc){
+                                    sessionService){
 
         var model = this;
 
@@ -39,7 +39,7 @@
                     model.widgets = widgets
                 })
 
-                    var temp=abc.getUrl();
+                    var temp=sessionService.getUrl();
                     if(temp){
                         model.widget = {
                             url:temp,

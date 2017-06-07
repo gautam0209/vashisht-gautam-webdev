@@ -71,7 +71,6 @@ function findAllPagesForWebsite(req, res){
             }
         }
         res.json(results);
-        return;
     }
 
 function createPage(req, res){

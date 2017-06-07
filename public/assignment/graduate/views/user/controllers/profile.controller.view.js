@@ -24,6 +24,12 @@
         model.updateProfile = updateProfile;
         model.deleteProfile = deleteProfile;
 
+        function init()
+        {
+
+        }
+        init();
+
         function updateProfile(user){
             userService.updateUser(model.userId, user)
                 .then(function(){

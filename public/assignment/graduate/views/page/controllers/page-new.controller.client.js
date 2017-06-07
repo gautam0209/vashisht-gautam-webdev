@@ -17,6 +17,13 @@
 
         model.createPage = createPage;
 
+        function init()
+        {
+
+        }
+
+        init();
+
 
 
         function createPage(page){

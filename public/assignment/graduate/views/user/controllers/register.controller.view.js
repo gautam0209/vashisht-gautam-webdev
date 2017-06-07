@@ -13,6 +13,12 @@
 
         model.register = register;
 
+        function init()
+        {
+
+        }
+        init();
+
         function register(username, password, password2)
         {
             if(username === null || username === '' || typeof username === 'undefined')

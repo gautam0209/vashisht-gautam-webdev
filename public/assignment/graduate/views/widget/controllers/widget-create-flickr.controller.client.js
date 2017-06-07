@@ -4,7 +4,10 @@
         .module('WebAppMaker')
         .controller('widgetCreateFlickrController',widgetCreateFlickrController);
 
-    function widgetCreateFlickrController(flickrService, widgetService, $routeParams, $location, abc){
+    function widgetCreateFlickrController(flickrService,
+                                          widgetService,
+                                          $routeParams,
+                                          $location){
 
         var model = this;
         model.searchPhotos = searchPhotos;
@@ -28,14 +31,8 @@
 
         function selectPhoto(photo)
         {
-            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
-            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
-
-            abc.putUrl(url);
-
-            console.log('hello');
-          // widgetService
-          //       .createWidget(model.pageId,widget);
+            flickrService
+                .selectPhoto(photo);
 
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/IMAGE');
         }

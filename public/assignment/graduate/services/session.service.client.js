@@ -5,9 +5,9 @@
 (function (){
     angular
         .module('WebAppMaker')
-        .factory('abc',abc);
+        .factory('sessionService',sessionService);
 
-    function abc($http)
+    function sessionService($http)
     {
 
         var url;

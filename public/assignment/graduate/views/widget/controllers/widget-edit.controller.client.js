@@ -10,7 +10,7 @@
         function widgetEditController($routeParams,
                                         $location,
                                         widgetService,
-                                        abc){
+                                        sessionService){
 
             var model = this;
 
@@ -31,7 +31,7 @@
                     .then(function(widget){
                         model.widget = widget
 
-                            var temp=abc.getUrl();
+                            var temp=sessionService.getUrl();
                             if(temp){
                                 model.widget.url=temp;
                             }

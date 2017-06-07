@@ -35,10 +35,6 @@ function sortWidget(req, res)
     var end = req.query['final'];
     var len = widgets.length;
 
-    console.log("Length is:" + len);
-
-    console.log("Start is:" + start);
-
 
     var i = len-1;
 
@@ -93,7 +89,6 @@ function deleteWidget(req, res)
         }
     }
     res.sendStatus(404);
-    return;
 }
 
 function createWidget(req, res)
@@ -136,7 +131,6 @@ function findAllWidgetsForPage(req, res)
     }
 
     res.json(results);
-    return;
 }
 
 function findWidgetById(req, res)

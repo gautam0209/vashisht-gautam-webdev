@@ -26,7 +26,6 @@ function deleteUser(req, res) {
         }
     }
     res.sendStatus(404);
-    return;
 }
 
 
@@ -49,7 +48,6 @@ function updateUser(req, res)
 
     }
     res.sendStatus(404);
-    return;
 }
 function findUserById(req, res)
 {
@@ -80,7 +78,6 @@ function findUserByCredential(req,res){
     }
 
     res.sendStatus(404);
-    return;
 
 }
 
@@ -101,7 +98,6 @@ function findUserByUsername(req, res)
     }
 
     res.sendStatus(404);
-    return;
 }
 
 function findAllUsers(req, res){
