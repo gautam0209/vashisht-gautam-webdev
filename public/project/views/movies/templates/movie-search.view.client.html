@@ -33,8 +33,10 @@
     <div ng-repeat="movie in model.data">
         <div class="row table-bordered">
             <div class="col-lg-5">
-                 <b>Title:</b>
-                {{movie.title}}
+                <b>Title:</b>
+                <a ng-click="model.movieDetails(movie.title)">
+                    {{movie.title}}
+                </a>
             </div>
             <div class="col-lg-11">
                 <b>Overview:</b>

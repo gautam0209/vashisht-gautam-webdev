@@ -16,6 +16,7 @@
         model.movies = [];
         model.searchMovie = searchMovie;
         model.getRating = getRating;
+        model.movieDetails = movieDetails;
 
         function init()
         {
@@ -27,6 +28,20 @@
         }
 
         init();
+
+        function movieDetails(movieName){
+
+            for(var m in model.data)
+            {
+                var movie = model.data[m];
+
+                if(movie.title.toLowerCase().valueOf() == movieName.toLowerCase().valueOf())
+                {
+                    movieService.putMovie(movie);
+                    $location.url('/movie/details');
+                }
+            }
+        }
 
         function getRating(movieName)
         {

@@ -28,5 +28,10 @@
                controllerAs: 'model'
             })
 
+            .when('/movie/details',{
+                templateUrl: 'views/movies/templates/movie-details.view.client.html',
+                controller: 'detMovieController',
+                controllerAs: 'model'
+            })
     }
 })();

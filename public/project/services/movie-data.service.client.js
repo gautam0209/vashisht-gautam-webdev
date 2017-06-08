@@ -14,16 +14,31 @@
         var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
         var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
 
+        var movie;
+
 
 
         var api =
             {
                 getMovies:getMovies,
-                searchMovie: searchMovie
+                searchMovie: searchMovie,
+                putMovie: putMovie,
+                getMovie: getMovie
             };
 
 
         return api;
+
+        function putMovie(mov)
+        {
+            movie = mov;
+
+        }
+
+        function getMovie()
+        {
+            return movie;
+        }
 
         function getMovies()
         {
@@ -35,8 +50,6 @@
             var url = urlBase.replace("mvName",movieName);
             return $http.get(url);
         }
-
-
     }
 
 })();

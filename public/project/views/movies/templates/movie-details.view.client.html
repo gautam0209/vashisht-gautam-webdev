@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand">
+               {{model.movie.title}} Movie
+            </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updatePage(model.page)" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<h1> Movie Details </h1>
+
+<ul>
+    <li>
+        <b>Title</b>: {{model.movie.title}}
+    </li>
+    <li>
+        <b>Overview</b>: {{model.movie.overview}}
+    </li>
+    <li>
+        <b>Release Date</b>: {{model.movie.release_date}}
+    </li>
+    <li>
+        <b>Number of Ratings</b>:{{model.movie.vote_count}}
+    </li>
+    <li>
+        <b>Rating</b>:{{model.movie.vote_average}}
+    </li>
+
+</ul>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
