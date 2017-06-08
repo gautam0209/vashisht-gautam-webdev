@@ -34,6 +34,14 @@
     <li>
         <b>Rating</b>:{{model.movie.vote_average}}
     </li>
+    <li>
+       <div ng-if="model.reviews">
+           <b>Reviews:</b>
+       </div>
+       <div ng-repeat="review in model.reviews" class="table-bordered">
+           {{review.content}}
+       </div>
+    </li>
 
 </ul>
 

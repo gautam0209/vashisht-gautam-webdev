@@ -12,10 +12,17 @@
 
         var model = this;
 
+       // model.getReviews = getReviews;
+
 
         function init()
         {
            model.movie = movieService.getMovie();
+          movieService.getReviews(model.movie.id)
+               .then(function(response){
+                   model.reviews = response.data.results;
+                   console.log(response.data.results);
+               })
         }
 
         init();
