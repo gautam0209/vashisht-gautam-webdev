@@ -14,7 +14,7 @@
         var mId;
         var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
         var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
-        var urlBaseRev = "http://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
+        var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
 
         var movie;
 
