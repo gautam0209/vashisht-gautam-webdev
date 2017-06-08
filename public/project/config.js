@@ -12,15 +12,21 @@
 
         $routeProvider
             .when('/',{
+                templateUrl: 'views/movies/templates/movie-start.view.client.html'
+                // controller: 'movieStartController',
+                // controllerAs: 'model'
+            })
+
+            .when('/searchMovie',{
                 templateUrl: 'views/movies/templates/movie-search.view.client.html',
                 controller: 'movieController',
                 controllerAs: 'model'
             })
-            // .when('/movies',{
-            //     templateUrl: 'views/movies/templates/movie-data.view.client.html',
-            //    controller: 'movieController',
-            //    controllerAs: 'model'
-            // })
+            .when('/current/movies',{
+                templateUrl: 'views/movies/templates/movie-current.view.client.html',
+               controller: 'curMovieController',
+               controllerAs: 'model'
+            })
 
     }
 })();

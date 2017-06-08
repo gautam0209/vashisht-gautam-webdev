@@ -7,48 +7,53 @@
         .module('WebAppProj')
         .controller('movieController',movieController);
 
-
-
-    function movieController($http, $location)
+    function movieController($http, $location, movieService)
     {
-
-        var key = "56ebcfaec1cf2e96e005ccf98f7feeb6";
-        var urlBase = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
 
         var model = this;
 
         model.data = [];
         model.movies = [];
         model.searchMovie = searchMovie;
-        //model.single;
+        //model.getRating = getRating;
 
         function init()
         {
-            $http.get(urlBase)
-                .then(function (response){
-                   model.data = response.data.results;
-                });
+            // movieService.getMovies()
+            //     .then(function(response){
+            //         model.data = response.data.results;
+            //         console.log(response.data.results);
+            //     })
 
+            //console.log(model.data);
         }
 
         init();
 
+        // function getRating(movieName)
+        // {
+        //     for(var m in model.data)
+        //     {
+        //         var movie = model.data[m];
+        //
+        //         console.log("here");
+        //
+        //         if(movie.title.toLowerCase().valueOf() == movieName.toLowerCase().valueOf())
+        //         {
+        //             console.log("here1");
+        //             model.rating = movie.vote_average;
+        //         }
+        //     }
+        // }
+
         function searchMovie(movieName)
         {
-            console.log(movieName);
-
-            for(var m in model.data)
-            {
-                var movie = model.data[m];
-
-                if(movie.title.toLowerCase().indexOf(movieName.toLowerCase()) !== -1)
-                {
-                    console.log("Inside");
-                    model.movies.push(movie);
-                }
-            }
+            movieService.searchMovie(movieName)
+                .then(function(response){
+                    model.data = response.data.results;
+                    console.log(response.data.results);
+                })
         }
-
 
     }
 

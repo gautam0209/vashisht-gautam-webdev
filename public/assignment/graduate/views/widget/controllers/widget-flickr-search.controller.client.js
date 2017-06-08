@@ -25,6 +25,8 @@
                     data = JSON.parse(data);
                     model.photos = data.photos;
                 });
+
+
         }
 
         function selectPhoto(photo)

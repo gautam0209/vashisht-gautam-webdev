@@ -5,7 +5,7 @@
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand">
-                Search Movie
+                Current Movie
             </a>
             <p class="navbar-text pull-right">
                 <a ng-click="model.updatePage(model.page)" class="navbar-link">
@@ -30,26 +30,25 @@
 
     </div>
 
-    <div ng-repeat="movie in model.data">
+    <div ng-repeat="movie in model.movies">
         <div class="row table-bordered">
             <div class="col-lg-5">
-                 <b>Title:</b>
+                <b>Title:</b>
                 {{movie.title}}
             </div>
             <div class="col-lg-11">
                 <b>Overview:</b>
                 {{movie.overview}}
             </div>
-            <!--<div ng-if="model.rating" class="col-lg-11">-->
-                <!--<b>Rating:</b>-->
-                <!--{{model.rating}}-->
-            <!--</div>-->
-            <!--<div class="col-lg-2">-->
-                <!--<a ng-click="model.getRating(movie.title)">-->
-                    <!--See Rating-->
-                <!--</a>-->
-            <!--</div>-->
-
+            <div ng-if="model.rating" class="col-lg-11">
+                <b>Rating:</b>
+                {{model.rating}}
+            </div>
+            <div class="col-lg-2">
+                <a ng-click="model.getRating(movie.title)">
+                    See Rating
+                </a>
+            </div>
         </div>
     </div>
 
