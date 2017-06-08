@@ -17,20 +17,20 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="input-group">
-        <input ng-model="searchMovie" type="text" class="form-control">
+    <!--<div class="input-group">-->
+        <!--<input ng-model="searchMovie" type="text" class="form-control">-->
 
-        <span class="input-group-btn">
-            <a ng-click="model.searchMovie(searchMovie)"
-               class="btn btn-default"
-               type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-        </span>
+        <!--<span class="input-group-btn">-->
+            <!--<a ng-click="model.searchMovie(searchMovie)"-->
+               <!--class="btn btn-default"-->
+               <!--type="button">-->
+                <!--<span class="glyphicon glyphicon-search"></span>-->
+            <!--</a>-->
+        <!--</span>-->
 
-    </div>
+    <!--</div>-->
 
-    <div ng-repeat="movie in model.movies">
+    <div ng-repeat="movie in model.data">
         <div class="row table-bordered">
             <div class="col-lg-5">
                 <b>Title:</b>
