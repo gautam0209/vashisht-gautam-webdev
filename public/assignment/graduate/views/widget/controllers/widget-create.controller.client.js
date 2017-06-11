@@ -70,7 +70,6 @@
                 widget.widgetType = 'HEADING';
             else
                 widget.widgetType = model.widgetType.toUpperCase();
-            widget._id = (new Date()).getTime().toString();
 
             widgetService.createWidget(model.pageId, widget)
                 .then(function(){});

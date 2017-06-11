@@ -13,8 +13,35 @@ var websiteModel = require('../website/website.model.server');
     pageModel.deletePageFromWebsite = deletePageFromWebsite;
     pageModel.deletePage = deletePage;
     pageModel.updatePage = updatePage;
+    pageModel.addWidget = addWidget;
+    pageModel.deleteWidget = deleteWidget;
+
 
 module.exports = pageModel;
+
+    function deleteWidget(pageId, widgetId)
+    {
+        return pageModel
+            .findById(pageId)
+            .then(function(page){
+                var index = page.widgets.indexOf(widgetId);
+                page.widgets.splice(index, 1);
+                return page.save();
+            });
+    }
+
+    function addWidget(pageId, widgetId)
+    {
+       return pageModel
+           .findPageById(pageId)
+           .then(function(page){
+                page.widgets.push(widgetId);
+                return page.save();
+           },
+           function(){
+
+           })
+    }
 
     function deletePageFromWebsite(websiteId, pageId) {
         return pageModel

@@ -27,6 +27,7 @@
                 widgetService.findWidgetsByPageId(model.pageId)
                     .then(function(widgets){
                         model.widgets = widgets
+                        console.log(widgets);
                     },
                     function(){});
 
