@@ -41,7 +41,6 @@
 
         function createWebsite(name, description, userId) {
             var newWebsite = {
-                "_id": new Date().getTime().toString(),
                 "name": name,
                 "developerId": userId,
                 "description": description

@@ -33,7 +33,7 @@
 
             function createPage(name, description, websiteId)
             {
-                var newPage = { "_id": new Date().getTime().toString(), "name": name,    "websiteId": websiteId, "description": description };
+                var newPage = { "name": name,    "websiteId": websiteId, "description": description };
 
                 var url = "/api/website/" + websiteId + "/page";
 
