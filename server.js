@@ -6,6 +6,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.set('view engine', 'ejs');
 require('./utilities/filelist');
+require('./test/app');
 
 app.use(app.express.static(__dirname + '/public'));
 
