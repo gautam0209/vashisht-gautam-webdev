@@ -25,7 +25,19 @@ app.delete('/api/website/:websiteId', deleteWebsite);
 
 function deleteWebsite(req, res) {
     var websiteId = req.params['websiteId'];
-    var userId = req.params['userId'];
+
+    websiteModel
+        .findWebsiteById(websiteId)
+        .then(function(website){
+            var userId = website._user;
+            websiteModel.deleteWebsiteFromUser(userId, websiteId)
+                .then(function(){
+                        res.sendStatus(200);
+                    },
+                    function(){
+                        res.sendStatus(404);
+                    });
+        })
 
     // for (var w in websites) {
     //     if (websites[w]._id === websiteId) {
@@ -34,14 +46,7 @@ function deleteWebsite(req, res) {
     //         return;
     //     }
     // }
-    websiteModel.deleteWebsiteFromUser(userId, websiteId)
-        .then(function(){
-            res.sendStatus(200);
-            },
-        function(){
-            console.log("hello");
-            res.sendStatus(404);
-        });
+
 }
 
     function updateWebsite(req, res) {

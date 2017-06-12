@@ -19,7 +19,7 @@ app.delete('/api/page/:pageId', deletePage);
 
 function deletePage(req, res) {
     var pageId = req.params['pageId'];
-    var websiteId = req.params['websiteId'];
+
     //
     // for (var p in pages) {
     //     if (pages[p]._id == pageId) {
@@ -28,14 +28,23 @@ function deletePage(req, res) {
     //         return;
     //     }
     // }
-    pageModel
-        .deletePageFromWebsite(websiteId, pageId)
-        .then(function(){
-            res.sendStatus(200);
+    pageModel.findPageById(pageId)
+        .then(function(page)
+        {
+            var websiteId = page._website;
+            pageModel
+                .deletePageFromWebsite(websiteId, pageId)
+                .then(function(){
+                        res.sendStatus(200);
+                    },
+                    function(){
+                        res.sendStatus(404);
+                    });
         },
         function(){
             res.sendStatus(404);
-        });
+        })
+
 }
 
 function updatePage(req, res) {
@@ -120,8 +129,9 @@ function createPage(req, res){
     pageModel.createPage(websiteId, page)
         .then(function(page){
             res.json(page);
-        }, function(){
-            console.log('hello123');
+        }, function(err){
+            console.log(err);
+            console.log('error in page creation');
             res.sendStatus(404);
         });
 }

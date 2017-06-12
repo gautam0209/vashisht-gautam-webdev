@@ -35,54 +35,62 @@ function sortWidget(req, res)
     var pageId = req.params['pageId'];
     var start = req.query['initial'];
     var end = req.query['final'];
-    var len = widgets.length;
 
+    widgetModel.reorderWidget(pageId,start,end)
+        .then(function(){
+            res.sendStatus(200);
+        },function(){
+            res.sendStatus(404);
+        });
 
-    var i = len-1;
-
-    if(start > end) {
-        while (i >= 0) {
-
-            if (i === len - 1)
-                var tempE = widgets[start];
-
-            if (i > end && i <= start) {
-                widgets[i] = widgets[parseInt(i) - 1];
-            }
-
-            if (i == end) {
-                console.log("I m here" + i);
-                widgets[end] = tempE;
-                res.sendStatus(200);
-                return;
-            }
-            i -= 1;
-        }
-    }
-    else {
-        for (var w in widgets) {
-            if (w == start) {
-                var tempW = widgets[start];
-            }
-
-            if (w >= start && w < end) {
-                widgets[w] = widgets[parseInt(w) + 1];
-            }
-            if (w == end) {
-                widgets[w] = tempW;
-                res.sendStatus(200);
-                return;
-            }
-        }
-    }
-    res.sendStatus(200);
+    // var len = widgets.length;
+    //
+    //
+    // var i = len-1;
+    //
+    // if(start > end) {
+    //     while (i >= 0) {
+    //
+    //         if (i === len - 1)
+    //             var tempE = widgets[start];
+    //
+    //         if (i > end && i <= start) {
+    //             widgets[i] = widgets[parseInt(i) - 1];
+    //         }
+    //
+    //         if (i == end) {
+    //             console.log("I m here" + i);
+    //             widgets[end] = tempE;
+    //             res.sendStatus(200);
+    //             return;
+    //         }
+    //         i -= 1;
+    //     }
+    // }
+    // else {
+    //     for (var w in widgets) {
+    //         if (w == start) {
+    //             var tempW = widgets[start];
+    //         }
+    //
+    //         if (w >= start && w < end) {
+    //             widgets[w] = widgets[parseInt(w) + 1];
+    //         }
+    //         if (w == end) {
+    //             widgets[w] = tempW;
+    //             res.sendStatus(200);
+    //             return;
+    //         }
+    //     }
+    // }
+    // res.sendStatus(200);
 }
 
 
 function deleteWidget(req, res)
 {
     var widgetId = req.params['widgetId'];
-    var pageId = req.params['pageId'];
+
     // for(var w in widgets)
     // {
     //     if(widgets[w]._id === widgetId) {
@@ -92,13 +100,20 @@ function deleteWidget(req, res)
     //     }
     // }
     // res.sendStatus(404);
-    widgetModel
-        .deleteWidget(pageId, widgetId)
-        .then(function(){
-            res.sendStatus(200);
-        },function(){
-            res.sendStatus(404);
-        });
+
+    widgetModel.findWidgetById(widgetId)
+        .then(function(widget){
+            var pageId = widget._page;
+            widgetModel
+                .deleteWidgetFromPage(pageId, widgetId)
+                .then(function(){
+                    res.sendStatus(200);
+                },function(){
+                    res.sendStatus(404);
+                });
+        },function(){});
+
+
 }
 
 function createWidget(req, res)

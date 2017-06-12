@@ -16,11 +16,15 @@ var userModel = mongoose.model('userModel', userSchema);
  module.exports = userModel;
 
     function deleteWebsite(userId, websiteId) {
+
         return userModel
             .findById(userId)
             .then(function (user) {
+
                 var index = user.websites.indexOf(websiteId);
+
                 user.websites.splice(index, 1);
+
                 return user.save();
             });
     }
