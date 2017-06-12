@@ -7,7 +7,7 @@
             <ng-include src="'views/widget/templates/widget-image-edit.view.client.html'">
             </ng-include>
         </div>
-        <div ng-switch-when="YOUTUBE">
+        <div ng-switch-when="YOUTUBE" class="youtube-widget">
             <ng-include src="'views/widget/templates/widget-youtube-edit.view.client.html'">
             </ng-include>
         </div>
@@ -15,4 +15,9 @@
              <ng-include src="'views/widget/templates/widget-html-edit.view.client.html'">
              </ng-include>
         </div>
+     <div ng-switch-when="TEXT">
+         <ng-include src="'views/widget/templates/widget-text-edit.view.client.html'">
+         </ng-include>
+     </div>
+
  </div>

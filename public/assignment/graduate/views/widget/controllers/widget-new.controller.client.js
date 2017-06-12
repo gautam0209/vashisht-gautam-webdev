@@ -36,6 +36,8 @@
             {
                 if(widgetType === 'Header')
                     model.widgetType = 'HEADING';
+                else if(widgetType === 'Text Input')
+                    model.widgetType = 'TEXT';
                 else
                     model.widgetType = widgetType.toUpperCase();
                  $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/new/" + model.widgetType);
