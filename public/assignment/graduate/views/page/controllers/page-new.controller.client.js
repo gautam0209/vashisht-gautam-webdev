@@ -19,7 +19,15 @@
 
         function init()
         {
+            pageService.findPagesByWebsiteId(model.websiteId)
+                .then(function(pages){
+                    model.pages = pages
+                });
 
+            pageService.findPageById(model.pageId)
+                .then(function(page){
+                    model.page = page
+                });
         }
 
         init();

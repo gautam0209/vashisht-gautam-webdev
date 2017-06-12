@@ -222,16 +222,16 @@ function findWidgetForUploadById(widgetId)
     //
     // return null;
 
-    widgetModel
-        .findWidgetById(widgetId)
-        .then(function(widget){
-            if(widget)
-                res.json(widget);
-            else
-                res.sendStatus(404);
-        }, function(){
-            res.sendStatus(404);
-        });
+    return widgetModel
+        .findWidgetById(widgetId);
+        // .then(function(widget){
+        //     if(widget)
+        //         res.json(widget);
+        //     else
+        //         res.sendStatus(404);
+        // }, function(){
+        //     res.sendStatus(404);
+        // });
 
 
 }
@@ -255,13 +255,26 @@ function uploadImage(req, res) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
 
-        console.log(widgetId);
-        widget = findWidgetForUploadById(widgetId);
-        widget.url = '/assignment/graduate/uploads/' + filename;
+       // widget = findWidgetForUploadById(widgetId);
+        if(widgetId)
+        findWidgetForUploadById(widgetId)
+            .then(function(widget){
 
-        var callbackUrl = "/assignment/graduate/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                widget.url = '/assignment/graduate/uploads/' + filename;
 
-        res.redirect(callbackUrl);
+                //sessionService.putUrl(widget.url);
+
+                widgetModel.updateWidget(widgetId, widget)
+                    .then(function() {
+                        var callbackUrl = "/assignment/graduate/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                        res.redirect(callbackUrl);
+                    })
+            });
+        // widget.url = '/assignment/graduate/uploads/' + filename;
+        //
+        // var callbackUrl = "/assignment/graduate/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+
+        // res.redirect(callbackUrl);
     }
 }
 

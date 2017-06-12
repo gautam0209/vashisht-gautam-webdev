@@ -90,7 +90,7 @@ function deletePageFromWebsite(websiteId, pageId) {
         delete newPage.dateCreated;
 
         return pageModel
-            .update({_id: pageId}, {$set: {widgets: newPage.widgets}});
+            .update({_id: pageId},{$set: newPage});
     }
 
     function deletePage(pageId)

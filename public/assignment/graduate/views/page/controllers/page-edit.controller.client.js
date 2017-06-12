@@ -23,6 +23,10 @@
 
         function init()
         {
+            pageService.findPagesByWebsiteId(model.websiteId)
+                .then(function(pages){
+                    model.pages = pages
+                });
             // model.page = pageService.findPageById(model.pageId);
             pageService.findPageById(model.pageId)
                 .then(function(page){

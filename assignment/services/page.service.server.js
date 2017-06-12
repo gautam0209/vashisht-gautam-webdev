@@ -63,6 +63,8 @@ function updatePage(req, res) {
     //     }
     // }
 
+
+
     pageModel
         .updatePage(pageId, page)
         .then(function(){

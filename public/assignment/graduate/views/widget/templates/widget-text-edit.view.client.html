@@ -30,6 +30,21 @@
     <input ng-model="model.widget.placeholder" class="form-control"/>
     Formatted
     <input ng-model="model.widget.formatted" type="checkbox"/>
+
+    <a ng-if="model.mode == 'Edit'" ng-click="model.deleteWidget(model.widgetId)"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
+
+    <a ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)"
+       class="btn btn-block btn-success">
+        Update
+    </a>
+
+    <a ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)"
+       class="btn btn-block btn-success">
+        Create
+    </a>
 </div>
 
 
