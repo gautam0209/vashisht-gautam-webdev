@@ -1,16 +1,11 @@
 var mongoose = require('mongoose');
 var widgetSchema = require('./widget.schema.server');
 var widgetModel = mongoose.model('widgetModel', widgetSchema);
-// var pageModel = require('../page/page.model.server');
-// var websiteModel = require('../website/website.model.server');
 
 var q = require('q');
 
-var userModel = require('../user/user.model.server');
-var websiteModel = require('../website/website.model.server');
-var pageModel = require('../page/page.model.server');
 
-//var widgetModel = require('../widget/widget.model.server');
+var pageModel = require('../page/page.model.server');
 
 
 // api
@@ -90,7 +85,6 @@ module.exports = widgetModel;
 
                     page.widgets = widgets;
 
-                    //return page.save();
                     pageModel.updatePage(pageId, page)
                         .then(function(page){
 
@@ -181,16 +175,19 @@ function findAllWidgetsForPage(pageId) {
 function createWidget(pageId, widget) {
 
     widget._page = pageId;
-
-    return widgetModel
+    var prom = q.defer();
+     widgetModel
         .create(widget)
         .then(function (widget) {
              pageModel
                 .addWidget(pageId, widget._id)
-            //.addWidget(pageId, widget._id)
+                 .then(function(){
+                     prom.resolve(widget);
+                 })
         },function(err){
             console.log(err);
         })
+    return prom.promise;
 }
 
 function findAllWidgets() {

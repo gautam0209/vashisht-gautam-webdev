@@ -30,8 +30,6 @@
                         console.log(widgets);
                     },
                     function(){});
-
-
             }
 
             init();

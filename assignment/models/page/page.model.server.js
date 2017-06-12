@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var pageSchema = require('./page.schema.server');
 var pageModel = mongoose.model('pageModel', pageSchema);
 
- var userModel = require('../user/user.model.server');
+var q = require('q');
+
  var websiteModel = require('../website/website.model.server');
-//var widgetModel = require('../widget/widget.model.server');
 
 // api
     pageModel.findAllPages = findAllPages;
@@ -114,14 +114,19 @@ function deletePageFromWebsite(websiteId, pageId) {
 
     function createPage(websiteId, page) {
         page._website = websiteId;
-        return pageModel
+        var prom = q.defer();
+         pageModel
             .create(page)
             .then(function (page) {
                 websiteModel
-                            .addPages(websiteId, page._id);
+                            .addPages(websiteId, page._id)
+                    .then(function(){
+                        prom.resolve(page);
+                    })
             },function(err){
                 console.log(err);
             })
+        return prom.promise;
     }
 
     function findAllPages() {

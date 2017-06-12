@@ -43,7 +43,8 @@
             var newWebsite = {
                 "name": name,
                 "developerId": userId,
-                "description": description
+                "description": description,
+                "dateCreated": Date.now()
             };
 
             var url = "/api/assignment/graduate/user/" + userId + "/website";

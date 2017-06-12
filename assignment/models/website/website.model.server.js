@@ -5,7 +5,6 @@ var websiteModel = mongoose.model('websiteModel', websiteSchema);
 var q = require('q');
 
  var userModel = require('../user/user.model.server');
-//var pageModel = require('../page/page.model.server');
 
 // api
 websiteModel.findAllWebsites = findAllWebsites;
@@ -53,11 +52,6 @@ function deleteWebsiteFromUser(userId, websiteId) {
                     return userModel
                         .deleteWebsite(userId, websiteId);
                 });
-
-
-
-        //})
-
 }
 
 function updateWebsite(websiteId, newWebsite) {
@@ -104,7 +98,9 @@ function createWebsiteForUser(userId, website) {
         .then(function (website) {
                userModel
                         .addWebsite(userId, website._id)
-            prom.resolve(website);
+                   .then(function(){
+                       prom.resolve(website);
+                   })
         },function(err){
             console.log(err);
         })

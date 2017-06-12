@@ -38,29 +38,11 @@ function deleteWebsite(req, res) {
                         res.sendStatus(404);
                     });
         })
-
-    // for (var w in websites) {
-    //     if (websites[w]._id === websiteId) {
-    //         websites.splice(w, 1);
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-
 }
 
     function updateWebsite(req, res) {
         var websiteId = req.params['websiteId'];
         var website = req.body;
-
-        // for (var w in websites) {
-        //     if (websites[w]._id == websiteId) {
-        //         websites[w].name = website.name;
-        //         websites[w].description = website.description;
-        //         res.sendStatus(200);
-        //         return;
-        //     }
-        // }
 
         websiteModel.updateWebsite(websiteId, website)
             .then(function(){
@@ -75,10 +57,7 @@ function deleteWebsite(req, res) {
 function findWebsiteById(req, res)
 {
     var websiteId = req.params['websiteId'];
-    // var web = websites.find(function (website) {
-    //     return website._id === websiteId;
-    // });
-    //     res.json(web);
+
     websiteModel
         .findWebsiteById(websiteId)
         .then(function(website){
@@ -98,16 +77,6 @@ function findAllWebsitesForUser(req, res){
 
         var userId = req.params['userId'];
 
-        // for(var v in websites){
-        //     if(websites[v].developerId === userId){
-        //         websites[v].created = (new Date()).getDate() + "/" + (new Date()).getMonth() + "/2017";
-        //         websites[v].accessed = (new Date()).getDate() + "/" + (new Date()).getMonth() + "/2017";
-        //         results.push(websites[v]);
-        //     }
-        // }
-        //
-        // res.json(results);
-
 
     websiteModel
         .findAllWebsitesForUser(userId)
@@ -125,8 +94,7 @@ function createWebsite(req, res){
 
     var website = req.body;
     var userId = req.params['userId'];
-    // websites.push(website);
-    // res.sendStatus(200);
+
     websiteModel
         .createWebsiteForUser(userId, website)
         .then(function(website){
