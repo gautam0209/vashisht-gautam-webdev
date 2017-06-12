@@ -4,6 +4,8 @@ var widgetModel = mongoose.model('widgetModel', widgetSchema);
 // var pageModel = require('../page/page.model.server');
 // var websiteModel = require('../website/website.model.server');
 
+var q = require('q');
+
 var userModel = require('../user/user.model.server');
 var websiteModel = require('../website/website.model.server');
 var pageModel = require('../page/page.model.server');
@@ -38,71 +40,71 @@ module.exports = widgetModel;
 //
 
 
-function reorderWidget(pageId,start, end)
-{
+    function reorderWidget(pageId,start, end)
+    {
 
-    return pageModel
-        .findPageById(pageId)
-        .then(function(page){
-                var widgets = page.widgets;
-                var len = widgets.length;
+        return pageModel
+            .findPageById(pageId)
+            .then(function(page){
+                    var widgets = page.widgets;
+                    var len = widgets.length;
 
 
-                var i = len-1;
+                    var i = len-1;
 
-                if(start > end) {
-                    while (i >= 0) {
+                    if(start > end) {
+                        while (i >= 0) {
 
-                        if (i === len - 1)
-                            var tempE = widgets[start];
+                            if (i === len - 1)
+                                var tempE = widgets[start];
 
-                        if (i > end && i <= start) {
-                            widgets[i] = widgets[parseInt(i) - 1];
+                            if (i > end && i <= start) {
+                                widgets[i] = widgets[parseInt(i) - 1];
+                            }
+
+                            if (i == end) {
+                                widgets[end] = tempE;
+                                break;
+                            }
+                            i -= 1;
                         }
 
-                        if (i == end) {
-                            widgets[end] = tempE;
-                            break;
+                    }
+                    else {
+
+                        for (var w in widgets) {
+                            if (w == start) {
+                                var tempW = widgets[start];
+                            }
+
+                            if (w >= start && w < end) {
+                                widgets[w] = widgets[parseInt(w) + 1];
+                            }
+                            if (w == end) {
+                                widgets[w] = tempW;
+                                break;
+                            }
                         }
-                        i -= 1;
                     }
 
+
+                    page.widgets = widgets;
+
+                    //return page.save();
+                    pageModel.updatePage(pageId, page)
+                        .then(function(page){
+
+                        }, function(){
+
+                        });
+
+
+                }, function(){
+
+                    res.sendStatus(404);
                 }
-                else {
-
-                    for (var w in widgets) {
-                        if (w == start) {
-                            var tempW = widgets[start];
-                        }
-
-                        if (w >= start && w < end) {
-                            widgets[w] = widgets[parseInt(w) + 1];
-                        }
-                        if (w == end) {
-                            widgets[w] = tempW;
-                            break;
-                        }
-                    }
-                }
-
-
-                page.widgets = widgets;
-
-                //return page.save();
-                pageModel.updatePage(pageId, page)
-                    .then(function(page){
-
-                    }, function(){
-
-                    });
-
-
-            }, function(){
-
-                res.sendStatus(404);
-            }
-        );
-}
+            );
+    }
 
 function deleteWidgetFromPage(pageId, widgetId) {
 
@@ -134,12 +136,37 @@ function findWidgetById(widgetId)
 }
 
 function findAllWidgetsForPage(pageId) {
+//     var prom = q.defer();
+//     var widgets = [];
+//     var wids = [];
+//     pageModel.findPageById(pageId)
+//         .then(function (page) {
+//                 widgets = page.widgets;
+//                 widgets.forEach(function (w) {
+//                     widgetModel.findWidgetById(w)
+//                         .then(function (widget) {
+//                              console.log(widget);
+//                             wids.push(widget);
+//                             //console.log(wids);
+//                         })
+//
+//                 })
+//                 prom.resolve(wids);
+//             }
+//
+//         )
+//
+//     return prom.promise;
+// }
 
+    //})
     return widgetModel
         .find({_page: pageId})
         .populate('_page')
         .exec();
 }
+
+
 //
 //     function addPages(websiteId, pageId)
 //     {

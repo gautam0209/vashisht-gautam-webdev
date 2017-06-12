@@ -176,9 +176,9 @@ function findAllWidgetsForPage(req, res)
 
     widgetModel
         .findAllWidgetsForPage(pageId)
-        .then(function(pages){
-            if(pages)
-                res.json(pages);
+        .then(function(widgets){
+            if(widgets)
+                res.json(widgets);
             else
                 res.sendStatus(404);
         }, function(){

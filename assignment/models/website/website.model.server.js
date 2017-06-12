@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var websiteSchema = require('./website.schema.server');
 var websiteModel = mongoose.model('websiteModel', websiteSchema);
 
+var q = require('q');
+
  var userModel = require('../user/user.model.server');
 //var pageModel = require('../page/page.model.server');
 
@@ -96,14 +98,17 @@ function findAllWebsitesForUser(userId) {
 
 function createWebsiteForUser(userId, website) {
     website._user = userId;
-     return websiteModel
+    var prom = q.defer();
+      websiteModel
         .create(website)
         .then(function (website) {
                userModel
                         .addWebsite(userId, website._id)
+            prom.resolve(website);
         },function(err){
             console.log(err);
         })
+    return prom.promise;
 }
 
 function findAllWebsites() {
