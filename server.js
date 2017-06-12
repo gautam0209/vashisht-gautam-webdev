@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.set('view engine', 'ejs');
 require('./utilities/filelist');
-require('./test/app');
+
 
 app.use(app.express.static(__dirname + '/public'));
 
@@ -16,6 +16,7 @@ blog(app);
 var todo = require('./lectures/undergraduate/todo/app');
 todo(app);
 
+require('./test/app');
 require('./assignment/app');
 
 app.listen(process.env.PORT || 3000);
