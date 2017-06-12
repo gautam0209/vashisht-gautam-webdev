@@ -131,7 +131,6 @@ function createPage(req, res){
             res.json(page);
         }, function(err){
             console.log(err);
-            console.log('error in page creation');
             res.sendStatus(404);
         });
 }

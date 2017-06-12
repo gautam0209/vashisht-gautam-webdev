@@ -126,10 +126,7 @@ function createUser(req, res){
     var user = req.body;
     userModel.createUser(user)
         .then(function(user){
-            if(user)
                 res.json(user);
-            else
-                res.sendStatus(404);
         },
         function(err){
             res.send(err);

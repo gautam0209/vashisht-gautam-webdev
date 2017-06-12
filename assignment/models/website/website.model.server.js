@@ -96,10 +96,10 @@ function findAllWebsitesForUser(userId) {
 
 function createWebsiteForUser(userId, website) {
     website._user = userId;
-    return websiteModel
+     return websiteModel
         .create(website)
         .then(function (website) {
-            return userModel
+               userModel
                         .addWebsite(userId, website._id)
         },function(err){
             console.log(err);

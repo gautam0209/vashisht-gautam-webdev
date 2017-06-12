@@ -158,7 +158,7 @@ function createWidget(pageId, widget) {
     return widgetModel
         .create(widget)
         .then(function (widget) {
-            return pageModel
+             pageModel
                 .addWidget(pageId, widget._id)
             //.addWidget(pageId, widget._id)
         },function(err){

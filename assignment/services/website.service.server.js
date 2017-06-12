@@ -130,10 +130,7 @@ function createWebsite(req, res){
     websiteModel
         .createWebsiteForUser(userId, website)
         .then(function(website){
-            if(website)
                 res.json(website);
-            else
-                res.sendStatus(404);
         },function(){
             res.sendStatus(404);
         });
