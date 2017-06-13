@@ -18,6 +18,9 @@
 
         var movie;
 
+        var movies = [];
+
+
 
 
         var api =
@@ -26,11 +29,20 @@
                 searchMovie: searchMovie,
                 putMovie: putMovie,
                 getMovie: getMovie,
-                getReviews: getReviews
+                getReviews: getReviews,
+                addReview: addReview,
+                getLocalReview:getLocalReview
             };
 
 
         return api;
+
+        function addReview(movieId, review)
+        {
+            var movie = {id:movieId, review: review};
+            movies.push(movie);
+        }
+
 
         function putMovie(mov)
         {
@@ -63,6 +75,21 @@
             console.log(url);
 
             return $http.get(url);
+        }
+
+        function getLocalReview(id)
+        {
+            var results = [];
+            for(var m in movies)
+            {
+                var movie = movies[m];
+                if(movie.id === id)
+                {
+                    var output = {content: movie.review};
+                    results.push(output);
+                }
+            }
+            return results;
         }
     }
 

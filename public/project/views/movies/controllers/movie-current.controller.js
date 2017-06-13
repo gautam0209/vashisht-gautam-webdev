@@ -17,6 +17,7 @@
         model.searchMovie = searchMovie;
         model.getRating = getRating;
         model.movieDetails = movieDetails;
+        model.submitReview = submitReview;
 
         function init()
         {
@@ -28,6 +29,12 @@
         }
 
         init();
+
+        function submitReview(movieId, review)
+        {
+            movieService.addReview(movieId, review);
+
+        }
 
         function movieDetails(movieName){
 

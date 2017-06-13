@@ -32,13 +32,14 @@
 
     <div ng-repeat="movie in model.data">
         <div class="row table-bordered">
-            <div class="col-lg-5">
+
+            <div class="col-lg-4">
                 <b>Title:</b>
                 <a ng-click="model.movieDetails(movie.title)">
                         {{movie.title}}
                 </a>
             </div>
-            <div class="col-lg-11">
+            <div class="col-lg-10">
                 <b>Overview:</b>
                 {{movie.overview}}
             </div>
@@ -50,6 +51,22 @@
                 <a ng-click="model.getRating(movie.title)">
                     See Rating
                 </a>
+            </div>
+            <div class="col-lg-2 pull-right">
+                <a class = "btn btn-info btn-block" data-target="#review_{{movie.id}}" data-toggle="collapse">
+                    Add Rating
+                </a>
+                <div id ="review_{{movie.id}}" class="collapse">
+                    <textarea class="form-control"
+                              ng-model="movie.review"
+                              rows="5"
+                              placeholder="Start writing your Review">
+            </textarea>
+                    <a class="btn btn-success btn-block" ng-click="model.submitReview(movie.id,movie.review)" data-target="#review_{{movie.id}}"
+                    data-toggle="collapse">
+                        Submit Review
+                    </a>
+                </div>
             </div>
         </div>
     </div>

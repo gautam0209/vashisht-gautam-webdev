@@ -18,6 +18,7 @@
         //model.getRating = getRating;
         model.movieDetails =movieDetails;
 
+
         function init()
         {
             // movieService.getMovies()

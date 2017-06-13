@@ -21,7 +21,10 @@
           movieService.getReviews(model.movie.id)
                .then(function(response){
                    model.reviews = response.data.results;
-                   console.log(response.data.results);
+                   console.log(model.reviews);
+                   //model.reviews.push(movieService.getLocalReview(model.movie.id));
+                   console.log(movieService.getLocalReview(model.movie.id));
+                  model.reviews =  model.reviews.concat(movieService.getLocalReview(model.movie.id));
                })
         }
 
