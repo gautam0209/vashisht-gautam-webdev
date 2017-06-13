@@ -144,6 +144,8 @@ function uploadImage(req, res) {
         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
+        var width = req.body.width;
+
 
         var originalname = myFile.originalname; // file name on user's computer
         var filename = myFile.filename;     // new file name in upload folder
@@ -156,7 +158,7 @@ function uploadImage(req, res) {
         if(widgetId)
         findWidgetForUploadById(widgetId)
             .then(function(widget){
-
+                widget.width = width;
                 widget.url = '/assignment/graduate/uploads/' + filename;
 
                 widgetModel.updateWidget(widgetId, widget)
@@ -166,6 +168,7 @@ function uploadImage(req, res) {
                     })
             });
         else {
+            widget.width = width;
             widget.url = '/assignment/graduate/uploads/' + filename;
             widget.widgetType= 'IMAGE';
 
