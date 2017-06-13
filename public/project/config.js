@@ -12,6 +12,13 @@
 
         $routeProvider
             .when('/',{
+                templateUrl: 'views/user/templates/movie-login.view.client.html',
+                 controller: 'loginController',
+                 controllerAs: 'model'
+            })
+
+        $routeProvider
+            .when('/user/:userId',{
                 templateUrl: 'views/movies/templates/movie-start.view.client.html'
                 // controller: 'movieStartController',
                 // controllerAs: 'model'
