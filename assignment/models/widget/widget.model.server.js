@@ -37,70 +37,159 @@ module.exports = widgetModel;
 
     function reorderWidget(pageId,start, end)
     {
+        if(start < end)
+        {
+            console.log("Inside");
+            widgetModel.find({_page:pageId,
+                            $and:[{order: {$gt:start}}, {order: {$lte:end}} ]})
+                .then(function(widgets){
 
-        return pageModel
-            .findPageById(pageId)
-            .then(function(page){
-                    var widgets = page.widgets;
-                    var len = widgets.length;
+                        widgets.forEach(function (w) {
 
+                            w.order = w.order - 1;
+                            widgetModel.update({_id:w._id},{$set:{order:w.order}})
+                                .then(function(){
+                                    console.log("success");
+                                },function(err){
+                                    console.log(err);
+                                })
+                        })
+                }, function(err){
+                    console.log("error");
+                    console.log(err);
+                })
 
-                    var i = len-1;
+            return widgetModel.findOne({order:start})
+                .then(function(widget)
+                {
+                  widgetModel.update({_id:widget._id}, {$set:{order:end}})
+                      .then(function(){
+                          console.log("success");
+                      })
+                });
+        }
 
-                    if(start > end) {
-                        while (i >= 0) {
+        else if(end <= start)
+        {
+            //var wid;
+            console.log("Inside");
+             return widgetModel.findOne({$and: [{_page:pageId},{order:start}]})
+                .then(function(widget){
+                  //  wid = widget;
+                    widgetModel.find({_page:pageId,
+                $and:[{order: {$gte:end}}, {order: {$lt:start}} ]})
+                .then(function(widgets){
+                    widgets.forEach(function (w) {
+                        w.order = w.order + 1;
+                        widgetModel.update({_id:w._id},{$set:{order:w.order}})
+                            .then(function(){
+                            },function(err){
+                                console.log(err);
+                            })
+                    })
+                }, function(err){
+                    console.log("error");
+                    console.log(err);
+                })
 
-                            if (i === len - 1)
-                                var tempE = widgets[start];
+                     widgetModel.update({_id:widget._id}, {$set:{order:end}})
+                        .then(function(){
+                            console.log("success");
+                        })
+                });
 
-                            if (i > end && i <= start) {
-                                widgets[i] = widgets[parseInt(i) - 1];
-                            }
+        }
 
-                            if (i == end) {
-                                widgets[end] = tempE;
-                                break;
-                            }
-                            i -= 1;
-                        }
-
-                    }
-                    else {
-
-                        for (var w in widgets) {
-                            if (w == start) {
-                                var tempW = widgets[start];
-                            }
-
-                            if (w >= start && w < end) {
-                                widgets[w] = widgets[parseInt(w) + 1];
-                            }
-                            if (w == end) {
-                                widgets[w] = tempW;
-                                break;
-                            }
-                        }
-                    }
-
-
-                    page.widgets = widgets;
-
-                    pageModel.updatePage(pageId, page)
-                        .then(function(page){
-
-                        }, function(){
-
-                        });
-
-
-                }, function(){
-
-                    res.sendStatus(404);
-                }
-            );
+        // return pageModel
+        //     .findPageById(pageId)
+        //     .then(function(page){
+        //             var widgets = page.widgets;
+        //             var len = widgets.length;
+        //
+        //
+        //             var i = len-1;
+        //
+        //             if(start > end) {
+        //                 while (i >= 0) {
+        //
+        //                     if (i === len - 1)
+        //                         var tempE = widgets[start];
+        //
+        //                     if (i > end && i <= start) {
+        //                         widgets[i] = widgets[parseInt(i) - 1];
+        //                     }
+        //
+        //                     if (i == end) {
+        //                         widgets[end] = tempE;
+        //                         break;
+        //                     }
+        //                     i -= 1;
+        //                 }
+        //
+        //             }
+        //             else {
+        //
+        //                 for (var w in widgets) {
+        //                     if (w == start) {
+        //                         var tempW = widgets[start];
+        //                     }
+        //
+        //                     if (w >= start && w < end) {
+        //                         widgets[w] = widgets[parseInt(w) + 1];
+        //                     }
+        //                     if (w == end) {
+        //                         widgets[w] = tempW;
+        //                         break;
+        //                     }
+        //                 }
+        //             }
+        //
+        //
+        //             page.widgets = widgets;
+        //
+        //             pageModel.updatePage(pageId, page)
+        //                 .then(function(page){
+        //
+        //                 }, function(){
+        //
+        //                 });
+        //
+        //
+        //         }, function(){
+        //
+        //             res.sendStatus(404);
+        //         }
+        //     );
     }
 
 function deleteWidgetFromPage(pageId, widgetId) {
+
+        var curOrder;
+        widgetModel.findById(widgetId)
+            .then(function(widget){
+                curOrder = widget.order;
+               // console.log("I am here");
+                //console.log(widgetModel.find().count());
+
+                    widgetModel.find({_page:pageId, order:{$gt:curOrder}})
+                        .then(function(widgets){
+                            console.log(widgets.length);
+                            if(widgets.length != 0) {
+                                widgets.forEach(function (w) {
+                                    w.order = w.order - 1;
+                                  //  console.log("updating");
+                                   // console.log(w.order);
+                                    widgetModel.update({_id:w._id},{$set:{order:w.order}})
+                                        .then(function(){
+                                            console.log("success");
+                                        },function(err){
+                                            console.log(err);
+                                        })
+                                })
+                            }
+                    })
+
+            });
 
     return widgetModel
         .remove({_id: widgetId})
@@ -111,7 +200,7 @@ function deleteWidgetFromPage(pageId, widgetId) {
 }
 
 function updateWidget(widgetId, newWidget) {
-    delete newWidget._page;
+   // delete newWidget._page;
     delete newWidget.dateCreated;
     return widgetModel
         .update({_id: widgetId},{$set: newWidget});
@@ -156,6 +245,7 @@ function findAllWidgetsForPage(pageId) {
     //})
     return widgetModel
         .find({_page: pageId})
+        .sort({order:1})
         .populate('_page')
         .exec();
 }
@@ -176,17 +266,31 @@ function createWidget(pageId, widget) {
 
     widget._page = pageId;
     var prom = q.defer();
-     widgetModel
-        .create(widget)
-        .then(function (widget) {
-             pageModel
-                .addWidget(pageId, widget._id)
-                 .then(function(){
-                     prom.resolve(widget);
-                 })
-        },function(err){
-            console.log(err);
-        })
+    var curOrder;
+
+    widgetModel
+        .findOne({_page:pageId})
+        .sort({order:-1})
+        .then(function(wid){
+            if(wid)
+                widget.order = wid.order + 1;
+            else
+                widget.order =0;
+            widgetModel
+                .create(widget)
+                .then(function (widget) {
+                    pageModel
+                        .addWidget(pageId, widget._id)
+                        .then(function(){
+                            prom.resolve(widget);
+                        })
+                },function(err){
+                    console.log(err);
+                })
+        }, function(err){
+
+        });
+
     return prom.promise;
 }
 

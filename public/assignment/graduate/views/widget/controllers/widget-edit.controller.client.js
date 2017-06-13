@@ -24,6 +24,8 @@
             model.deleteWidget = deleteWidget;
             model.updateWidget = updateWidget;
 
+
+
             function init()
             {
                 // model.widget = widgetService.findWidgetById(model.widgetId);

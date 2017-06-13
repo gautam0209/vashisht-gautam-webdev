@@ -31,6 +31,11 @@
         model.getUrl = getUrl;
 
 
+            model.widget = {
+                width:"100%"
+            };
+
+
         function init()
         {
             //model.widgets = widgetService.findWidgetsByPageId(model.pageId);

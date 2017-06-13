@@ -23,7 +23,15 @@
             model.lists = lists;
             model.mode = 'New';
 
+
             model.getUrl = getUrl;
+
+
+                // model.widget = {
+                //     width:"100%"
+                // };
+
+
 
             function init()
             {
