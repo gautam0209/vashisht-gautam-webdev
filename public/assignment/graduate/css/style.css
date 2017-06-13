@@ -79,7 +79,6 @@ a{
 
 .youtube-widget {
     position: relative;
-    z-index:-1;
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
 }
