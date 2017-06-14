@@ -26,6 +26,8 @@
                     model.data = response.data.results;
                     console.log(response.data.results);
                 })
+
+            movieService.addMode('Current');
         }
 
         init();

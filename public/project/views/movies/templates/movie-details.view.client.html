@@ -1,7 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#!/current/movies">
+            <a ng-if = "model.mode == 'Current'" class="navbar-brand" href="#!/current/movies">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a ng-if = "model.mode == 'Search'" class="navbar-brand" href="#!/searchMovie">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand">

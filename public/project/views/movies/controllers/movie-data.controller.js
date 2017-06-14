@@ -17,6 +17,8 @@
         model.searchMovie = searchMovie;
         //model.getRating = getRating;
         model.movieDetails =movieDetails;
+        model.submitReview = submitReview;
+
 
 
         function init()
@@ -28,9 +30,16 @@
             //     })
 
             //console.log(model.data);
+            movieService.addMode('Search');
         }
 
         init();
+
+        function submitReview(movieId, review)
+        {
+            movieService.addReview(movieId, review);
+
+        }
 
         function movieDetails(movieName){
 
@@ -67,7 +76,6 @@
             movieService.searchMovie(movieName)
                 .then(function(response){
                     model.data = response.data.results;
-                    console.log(response.data.results);
                 })
         }
 

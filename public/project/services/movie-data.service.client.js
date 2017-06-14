@@ -20,6 +20,8 @@
 
         var movies = [];
 
+        var mode;
+
 
 
 
@@ -31,11 +33,23 @@
                 getMovie: getMovie,
                 getReviews: getReviews,
                 addReview: addReview,
-                getLocalReview:getLocalReview
+                getLocalReview:getLocalReview,
+                addMode:addMode,
+                getMode:getMode
             };
 
 
         return api;
+
+        function addMode(m)
+        {
+            mode = m;
+        }
+
+        function getMode()
+        {
+            return mode;
+        }
 
         function addReview(movieId, review)
         {
@@ -69,10 +83,8 @@
         function getReviews(id)
         {
             mid = id;
-            console.log("id is:" + mid);
             var url = urlBaseRev.replace("ID",mid);
             //url = "http://api.themoviedb.org/3/movie/83542/reviews?api_key=56ebcfaec1cf2e96e005ccf98f7feeb6";
-            console.log(url);
 
             return $http.get(url);
         }
