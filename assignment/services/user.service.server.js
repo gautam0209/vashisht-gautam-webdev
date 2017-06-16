@@ -2,6 +2,15 @@ var app = require('../../express');
 
 var userModel = require('../models/user/user.model.server');
 
+var passport = require('passport');
+
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+
+
+
 // var users =             [
 //     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
 //     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
@@ -16,6 +25,61 @@ app.get('/api/assignment/graduate/user/:userId', findUserById);
 app.put('/api/assignment/graduate/user/:userId', updateUser);
 app.delete('/api/assignment/graduate/user/:userId', deleteUser);
 
+
+app.post('/api/assignment/graduate/login', passport.authenticate('local'), login);
+app.post('/api/assignment/graduate/logout', logout);
+
+
+app.get   ('/api/assignment/graduate/loggedin', loggedin);
+app.post  ('/api/assignment/graduate/register', register);
+
+
+function register(req, res) {
+    var userObj = req.body;
+    userModel
+        .createUser(userObj)
+        .then(function (user) {
+            req
+                .login(user, function (status) {
+                    res.send(status);
+                });
+        });
+}
+
+function logout(req, res){
+    req.logout();
+    res.sendStatus(200);
+}
+
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+
+}
+
+function loggedin(req, res) {
+    console.log(req.user);
+    if(req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
+}
+
+
+function login(req, res)
+{
+    res.json(req.user);
+}
 
 function deleteUser(req, res) {
      var userId = req.params['userId'];
@@ -131,4 +195,21 @@ function createUser(req, res){
         function(err){
             res.send(err);
         });
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
 }

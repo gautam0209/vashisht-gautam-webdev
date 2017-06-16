@@ -7,11 +7,14 @@
         .module('WebAppMaker')
         .controller('profileController',profileController);
 
-    function profileController(userService, $routeParams, $location){
+    function profileController(userService,
+                               //$routeParams,
+                               currentUser,
+                               $location){
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+       // model.userId = $routeParams['userId'];
 
         //model.user = userService.findUserById(model.userId);
 
@@ -19,16 +22,27 @@
 
        // promise.then(renderUser);
 
+        model.userId = currentUser._id;
 
 
         model.updateProfile = updateProfile;
         model.deleteProfile = deleteProfile;
+        model.logout = logout;
 
         function init()
         {
-
+            renderUser(currentUser);
         }
         init();
+
+        function logout()
+        {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
 
         function updateProfile(user){
             userService.updateUser(model.userId, user)
@@ -50,8 +64,8 @@
                     });
         }
 
-        userService.findUserById(model.userId)
-            .then(renderUser, userError);
+        // userService.findUserById(model.userId)
+        //     .then(renderUser, userError);
 
         function userError(error){
             model.error = "User Not Found.";

@@ -8,11 +8,13 @@
         .controller('websiteEditController', websiteEditController);
 
     function websiteEditController($routeParams,
+                                   currentUser,
                                    websiteService,
                                    $location){
         var model = this;
 
-        model.userId = $routeParams['userId'];
+       // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
 
         model.deleteWebsite = deleteWebsite;
@@ -26,10 +28,12 @@
                                 model.websites = websites;
                 });
 
+
             websiteService.findWebsiteById(model.websiteId)
                 .then(function(website){
+                    console.log(website);
                     model.website = website
-                });
+                }, function(){});
 
         }
 
@@ -44,7 +48,7 @@
                 function(){
                     model.message = "Website Deletion Failed."
                 });
-            $location.url('/user/' + model.userId + '/website');
+            $location.url('/website');
         }
 
         function updateWebsite(website)

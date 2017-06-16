@@ -21,9 +21,9 @@
 
         function login(username, password)
         {
-            userService.findUserByCredential(username, password)
+            userService.login(username, password)
                 .then(function (found){
-                        $location.url('/user/' + found._id);
+                        $location.url('/profile');
                         model.message = "Welcome, " + username;
                     },
                     function()
