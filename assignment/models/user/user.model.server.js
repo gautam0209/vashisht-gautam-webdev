@@ -12,7 +12,15 @@ var userModel = mongoose.model('userModel', userSchema);
     userModel.deleteUser = deleteUser;
     userModel.deleteWebsite = deleteWebsite;
     userModel.addWebsite = addWebsite;
+    userModel.findUserByGoogleId = findUserByGoogleId;
     module.exports = userModel;
+
+
+
+    function findUserByGoogleId(googleId) {
+        return userModel
+                .findOne({'google.id': googleId});
+    }
 
 
 
