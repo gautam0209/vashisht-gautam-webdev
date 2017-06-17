@@ -163,7 +163,7 @@ function uploadImage(req, res) {
 
                 widgetModel.updateWidget(widgetId, widget)
                     .then(function() {
-                        var callbackUrl = "/assignment/graduate/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                        var callbackUrl = "/assignment/graduate/index.html#!/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
                         res.redirect(callbackUrl);
                     })
             });
@@ -174,7 +174,7 @@ function uploadImage(req, res) {
 
             widgetModel.createWidget(pageId, widget)
                 .then(function (widget) {
-                    var callbackUrl = "/assignment/graduate/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+                    var callbackUrl = "/assignment/graduate/index.html#!/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
                     res.redirect(callbackUrl);
                 })
         }
