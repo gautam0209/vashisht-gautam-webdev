@@ -8,11 +8,13 @@
         .controller('pageNewController', pageNewController);
 
     function pageNewController($routeParams,
+                                   currentUser,
                                    pageService,
                                    $location){
         var model = this;
 
-        model.userId = $routeParams['userId'];
+       // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
 
         model.createPage = createPage;
@@ -37,7 +39,7 @@
                     .then(function(page){
                         var newPage = page;
                     });
-                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                $location.url('/website/' + model.websiteId + '/page');
             }
         }
 

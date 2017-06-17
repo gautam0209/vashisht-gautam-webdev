@@ -48,7 +48,7 @@
                     model.widgetType = 'TEXT';
                 else
                     model.widgetType = widgetType.toUpperCase();
-                 $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/new/" + model.widgetType);
+                 $location.url("/website/" + model.websiteId + "/page/" + model.pageId + "/widget/new/" + model.widgetType);
             }
 
 

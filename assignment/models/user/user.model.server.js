@@ -12,8 +12,9 @@ var userModel = mongoose.model('userModel', userSchema);
     userModel.deleteUser = deleteUser;
     userModel.deleteWebsite = deleteWebsite;
     userModel.addWebsite = addWebsite;
+    module.exports = userModel;
 
- module.exports = userModel;
+
 
     function deleteWebsite(userId, websiteId) {
 
@@ -39,6 +40,7 @@ var userModel = mongoose.model('userModel', userSchema);
     }
 
     function createUser(user) {
+        user.roles =['USER'];
         return userModel
                 .create(user);
     }

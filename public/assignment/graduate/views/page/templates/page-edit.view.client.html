@@ -3,14 +3,14 @@
         <div class="col-lg-4 visible-lg pull-left">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                    <a class="navbar-brand" href="#!/website/{{model.websiteId}}/page">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     <a class="navbar-brand" href="">
                         Pages
                     </a>
                     <p class="navbar-text pull-right">
-                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link">
+                        <a href="#!/website/{{model.websiteId}}/page/new" class="navbar-link">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
                     </p>
@@ -20,7 +20,7 @@
         <div class="col-lg-8 col-xs-12 pull-right">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                    <a class="navbar-brand hidden-lg pull-left wd-pad-left-15" href="#!/website/{{model.websiteId}}/page">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     <a class="navbar-brand">
@@ -45,12 +45,12 @@
                     <li ng-repeat="page in model.pages" class="list-group-item">
                         <div class="row">
                             <div class="col-xs-10">
-                                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                                <a href="#!/website/{{model.websiteId}}/page/{{page._id}}/widget">
                                     {{page.name}}
                                 </a>
                             </div>
                             <div class="col-xs-2">
-                                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                                <a href="#!/website/{{model.websiteId}}/page/{{page._id}}">
                                     <span class="glyphicon glyphicon-cog pull-right"></span>
                                 </a>
                             </div>
@@ -91,7 +91,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>

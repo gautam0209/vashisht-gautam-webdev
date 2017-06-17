@@ -6,13 +6,15 @@
 
     function widgetCreateFlickrController(flickrService,
                                           widgetService,
+                                          currentUser,
                                           $routeParams,
                                           $location){
 
         var model = this;
         model.searchPhotos = searchPhotos;
         model.selectPhoto = selectPhoto;
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.mode = 'New';
@@ -34,7 +36,7 @@
             flickrService
                 .selectPhoto(photo);
 
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/IMAGE');
+            $location.url('/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/IMAGE');
         }
 
     }

@@ -3,14 +3,14 @@
         <div class="col-lg-4 visible-lg pull-left">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#!/user/{{model.userId}}/website">
+                    <a class="navbar-brand" href="#!/website">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     <a class="navbar-brand" href="">
                         Websites
                     </a>
                     <p class="navbar-text pull-right">
-                        <a href="#!/user/{{model.userId}}/website/new" class="navbar-link">
+                        <a href="#!/website/new" class="navbar-link">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
                     </p>
@@ -50,12 +50,12 @@
 
                         <div class="row">
                             <div class="col-lg-10">
-                                <a href="#!/user/{{model.userId}}/website/{{website._id}}/page" class="text-nowrap">
+                                <a href="#!/website/{{website._id}}/page" class="text-nowrap">
                                     {{website.name}}
                                 </a>
                             </div>
                             <div class="col-lg-2">
-                                <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                                <a href="#!/website/{{website._id}}">
                                     <span class="glyphicon glyphicon-cog pull-right"></span>
                                 </a>
                             </div>
@@ -96,7 +96,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>

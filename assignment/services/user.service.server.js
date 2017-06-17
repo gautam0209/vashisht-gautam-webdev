@@ -19,11 +19,11 @@ passport.deserializeUser(deserializeUser);
 // ];
 
 app.post('/api/assignment/graduate/user', createUser);
-app.get('/api/assignment/graduate/user', findAllUsers);
+app.get('/api/assignment/graduate/admin/users', isAdmin, findAllUsers);
 
 app.get('/api/assignment/graduate/user/:userId', findUserById);
 app.put('/api/assignment/graduate/user/:userId', updateUser);
-app.delete('/api/assignment/graduate/user/:userId', deleteUser);
+app.delete('/api/assignment/graduate/user/:userId', isAdmin, deleteUser);
 
 
 app.post('/api/assignment/graduate/login', passport.authenticate('local'), login);
@@ -31,8 +31,32 @@ app.post('/api/assignment/graduate/logout', logout);
 
 
 app.get   ('/api/assignment/graduate/loggedin', loggedin);
-app.post  ('/api/assignment/graduate/register', register);
+app.get   ('/api/assignment/graduate/admin', checkAdmin);
 
+app.post  ('/api/assignment/graduate/register', register);
+app.post  ('/api/assignment/graduate/unregister', unregister);
+
+
+
+function unregister(req,res)
+{
+    userModel
+        .deleteUser(req.user._id)
+        .then(function (user) {
+            req
+                .logout();
+            res.sendStatus(200);
+        });
+}
+
+
+function isAdmin(req,res,next)
+{
+    if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1)
+        next();
+    else
+        res.sendStatus(401);
+}
 
 function register(req, res) {
     var userObj = req.body;
@@ -67,8 +91,17 @@ function localStrategy(username, password, done) {
 }
 
 function loggedin(req, res) {
-    console.log(req.user);
     if(req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
+}
+
+
+function checkAdmin(req, res) {
+    console.log(req.user);
+    if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1) {
         res.json(req.user);
     } else {
         res.send('0');
@@ -83,6 +116,10 @@ function login(req, res)
 
 function deleteUser(req, res) {
      var userId = req.params['userId'];
+    //var userId = req.user._id;
+
+    console.log("deleting user");
+    console.log(req.user);
 
     userModel.deleteUser(userId)
         .then(function(){

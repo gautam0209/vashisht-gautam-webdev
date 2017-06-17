@@ -4,12 +4,17 @@
         .module('WebAppMaker')
         .controller('widgetFlickrController',widgetFlickrController);
 
-    function widgetFlickrController(flickrService, widgetService, $routeParams, $location){
+    function widgetFlickrController(flickrService,
+                                    widgetService,
+                                    $routeParams,
+                                    currentUser,
+                                    $location){
 
         var model = this;
         model.searchPhotos = searchPhotos;
         model.selectPhoto = selectPhoto;
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
@@ -35,7 +40,7 @@
                 .selectPhoto(photo);
 
 
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + model.widgetId);
+            $location.url('/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + model.widgetId);
         }
 
     }

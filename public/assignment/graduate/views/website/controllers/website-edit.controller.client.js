@@ -31,7 +31,6 @@
 
             websiteService.findWebsiteById(model.websiteId)
                 .then(function(website){
-                    console.log(website);
                     model.website = website
                 }, function(){});
 
@@ -61,7 +60,7 @@
                     function(){
                         model.message = "Website Update Failed."
                     });
-            $location.url('/user/' + model.userId + '/website');
+            $location.url('/website');
         }
 
 

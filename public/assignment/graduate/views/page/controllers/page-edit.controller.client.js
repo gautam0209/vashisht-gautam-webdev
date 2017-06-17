@@ -9,12 +9,14 @@
 
    function pageEditController(pageService,
                                $routeParams,
+                                currentUser,
                                 $location)
    {
         var model = this;
 
         model.websiteId = $routeParams['websiteId'];
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId =  currentUser._id;
         model.pageId = $routeParams['pageId'];
 
         model.deletePage = deletePage;
@@ -40,14 +42,14 @@
        {
            pageService.updatePage(model.pageId, page)
                .then(function(){});
-           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+           $location.url('/website/' + model.websiteId + '/page');
        }
 
         function deletePage(pageId)
         {
             pageService.deletePage(pageId)
                 .then(function(){});
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+            $location.url('/website/' + model.websiteId + '/page');
 
         }
 

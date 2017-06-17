@@ -7,12 +7,15 @@
        .module('WebAppMaker')
        .controller('pageListController', pageListController);
 
-   function pageListController(pageService, $routeParams)
+   function pageListController(pageService,
+                               currentUser,
+                               $routeParams)
    {
         var model = this;
 
         model.websiteId = $routeParams['websiteId'];
-        model.userId = $routeParams['userId'];
+       // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         function init()
         {

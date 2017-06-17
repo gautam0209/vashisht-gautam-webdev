@@ -14,20 +14,43 @@
                 findUserByCredential: findUserByCredential,
                 findUserById: findUserById,
                 findUserByUserName: findUserByUserName,
+                findAllUsers:findAllUsers,
                 createUser:createUser,
                 deleteUser:deleteUser,
                 updateUser:updateUser,
                 login: login,
                 logout: logout,
                 loggedin: loggedin,
+                checkAdmin:checkAdmin,
+                unregister: unregister,
                 register:register
             };
 
         return api;
 
+
+        function findAllUsers()
+        {
+            var url = "/api/assignment/graduate/admin/users";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+
         function register(userObj) {
             var url = "/api/assignment/graduate/register";
             return $http.post(url, userObj)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+        function unregister() {
+            var url = "/api/assignment/graduate/unregister";
+            return $http.post(url)
                 .then(function (response) {
                     return response.data;
                 });
@@ -45,6 +68,14 @@
 
         function loggedin() {
             var url = "/api/assignment/graduate/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/assignment/graduate/admin";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

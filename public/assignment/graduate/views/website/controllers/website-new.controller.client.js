@@ -9,10 +9,12 @@
 
     function websiteNewController($routeParams,
                                    websiteService,
+                                   currentUser,
                                    $location){
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.createWebsite = createWebsite;
 
 
@@ -41,7 +43,7 @@
                         model.message = "Website Creation Failed.";
                     });
 
-                $location.url('/user/' + model.userId + '/website');
+                $location.url('/website');
             }
         }
 

@@ -11,6 +11,9 @@ var userSchema = mongoose.Schema({
     email: String,
     phone: String,
     websites: [{type: mongoose.Schema.Types.ObjectId, ref: "websiteModel"}],
+    roles: [{type: String,
+            default: 'USER',
+            enum: ['USER','FACULTY', 'STUDENT', 'ADMIN' ]}],
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "user"});
 

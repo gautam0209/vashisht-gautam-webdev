@@ -9,6 +9,7 @@
 
     function widgetCreateController($routeParams,
                                  $location,
+                                 currentUser,
                                  widgetService,
                                     sessionService){
 
@@ -17,7 +18,8 @@
         var lists = [ 'Header', 'Label', 'HTML', 'Text Input', 'Link', 'Button', 'Image', 'Youtube', 'Data Table', 'Repeater'
         ];
 
-        model.userId = $routeParams['userId'];
+       // model.userId = $routeParams['userId'];
+        model.userId = currentUser.userId;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetType = $routeParams['widgetType'];
@@ -79,7 +81,7 @@
             widgetService.createWidget(model.pageId, widget)
                 .then(function(){});
 
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+            $location.url("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
         }
 
         function getTemplateUrl() {

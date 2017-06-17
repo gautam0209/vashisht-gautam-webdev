@@ -3,14 +3,14 @@
         <div class="navbar-header">
 
 
-            <a class="navbar-brand pull-left" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+            <a class="navbar-brand pull-left" href="#!/website/{{model.websiteId}}/page">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand">
                 Widgets
             </a>
 
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-text pull-right">
+            <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-text pull-right">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -25,7 +25,7 @@
     <div wbdv-sortable get-index-array="model.sortWidget(indexArr)">
         <div ng-repeat= "widget in model.widgets" class="wd-widget">
             <div class="wd-widget-toolbar">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <a class="draggable">

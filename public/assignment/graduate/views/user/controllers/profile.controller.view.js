@@ -27,6 +27,7 @@
 
         model.updateProfile = updateProfile;
         model.deleteProfile = deleteProfile;
+        model.unregister = unregister;
         model.logout = logout;
 
         function init()
@@ -62,6 +63,18 @@
                     function(){
                         model.message = "User delete failed.";
                     });
+        }
+
+        function unregister(){
+            userService
+                .unregister()
+                .then(function(){
+                        $location.url('/');
+                    },
+                    function(){
+                        model.message = "User delete failed.";
+                    });
+
         }
 
         // userService.findUserById(model.userId)
