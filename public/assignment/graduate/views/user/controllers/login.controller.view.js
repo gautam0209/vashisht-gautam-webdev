@@ -21,16 +21,27 @@
 
         function login(username, password)
         {
-            userService.login(username, password)
-                .then(function (found){
-                        $location.url('/profile');
-                        model.message = "Welcome, " + username;
-                    },
-                    function()
-                    {
-                        model.message = "Sorry, username: " + username + " with entered password doesnt exist";
-                    }
-                )
+            if(!username && !password)
+            {
+                model.error = "Username and Password is required.";
+            }
+            else if(!username)
+            {
+                model.error = "UserName is required.";
+            }
+            else if(!password)
+                model.error = "Password is required.";
+            else {
+                userService.login(username, password)
+                    .then(function (found) {
+                            $location.url('/profile');
+                            model.message = "Welcome, " + username;
+                        },
+                        function () {
+                            model.error = "Sorry, username: " + username + " with entered password doesnt exist";
+                        }
+                    )
+            }
 
         };
     }

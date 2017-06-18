@@ -18,6 +18,7 @@
                 createUser:createUser,
                 deleteUser:deleteUser,
                 updateUser:updateUser,
+                updateProfile:updateProfile,
                 login: login,
                 logout: logout,
                 loggedin: loggedin,
@@ -142,6 +143,15 @@
         function updateUser(userId, user)
         {
             var url="/api/assignment/graduate/user/" + userId;
+            return $http.put(url, user)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function updateProfile(userId, user)
+        {
+            var url="/api/assignment/graduate/user";
             return $http.put(url, user)
                 .then(function(response){
                     return response.data;

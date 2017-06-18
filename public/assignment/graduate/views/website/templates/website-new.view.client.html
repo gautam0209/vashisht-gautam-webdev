@@ -20,7 +20,7 @@
         <div class="col-lg-8 col-xs-12 pull-right">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand hidden-lg pull-left wd-pad-left-15" href="#!/user/{{model.userId}}/website">
+                        <a class="navbar-brand hidden-lg pull-left wd-pad-left-15" href="#!/website">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                         <a class="navbar-brand wd-pad-left-0">
@@ -39,6 +39,8 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-warning">{{model.error}}</div>
+
     <div class="row">
         <div class="col-lg-4 visible-lg">
             <div class="container-fluid">
@@ -69,14 +71,19 @@
 
 
         <div class="col-lg-8 col-xs-12 ">
-            <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+            <form name="userForm" novalidate>
+                <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="model.website.name"
+                   name="name"
                    placeholder="facebook"
                    value="BodyBuilding"
-                   id="name"/>
-
+                   id="name"
+                    required/>
+                    <p ng-show="userForm.name.$invalid && userForm.$submitted" class="help-block">Website Name is required.</p>
+                </div>
+                <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control"
                       ng-model="model.website.description"
@@ -84,10 +91,12 @@
                       placeholder="Social Networking"
                       id="description">We help you to be fit.
             </textarea>
-            <a ng-click="model.createWebsite(model.website)"
+                </div>
+            <button type="submit" ng-click="model.createWebsite(model.website)"
                class="btn btn-success btn-block">
                 Create
-            </a>
+            </button>
+            </form>
         </div>
     </div>
 </div>

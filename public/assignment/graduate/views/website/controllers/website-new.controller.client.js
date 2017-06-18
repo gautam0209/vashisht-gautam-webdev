@@ -30,7 +30,8 @@
 
         function createWebsite(website){
             // if(website.name === null || website.name === '' || typeof website.name === 'undefined')
-            if(website.name === '')
+            console.log(website);
+            if(!website || !website.name)
                 model.error = "Please provide website name.";
             else {
                 websiteService

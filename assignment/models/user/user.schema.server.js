@@ -18,7 +18,11 @@ var userSchema = mongoose.Schema({
         google: {
             id:    String,
             token: String
-        }
+        },
+    facebook: {
+        id:    String,
+        token: String
+    }
 }, {collection: "user"});
 
 module.exports = userSchema;

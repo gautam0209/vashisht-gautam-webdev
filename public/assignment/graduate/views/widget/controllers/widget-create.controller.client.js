@@ -73,6 +73,10 @@
         }
 
         function createWidget(widget) {
+            if(!widget || !widget.name )
+                model.error = "Widget name is required.";
+            else
+            {
             if(model.widgetType === 'Header')
                 widget.widgetType = 'HEADING';
             else
@@ -82,6 +86,7 @@
                 .then(function(){});
 
             $location.url("/website/" + model.websiteId + "/page/" + model.pageId + "/widget");
+        }
         }
 
         function getTemplateUrl() {

@@ -13,9 +13,14 @@ var userModel = mongoose.model('userModel', userSchema);
     userModel.deleteWebsite = deleteWebsite;
     userModel.addWebsite = addWebsite;
     userModel.findUserByGoogleId = findUserByGoogleId;
+    userModel.findUserByFacebookId = findUserByFacebookId;
     module.exports = userModel;
 
 
+function findUserByFacebookId(facebookId) {
+    return userModel
+        .findOne({'facebook.id': facebookId});
+}
 
     function findUserByGoogleId(googleId) {
         return userModel
@@ -48,7 +53,10 @@ var userModel = mongoose.model('userModel', userSchema);
     }
 
     function createUser(user) {
-        user.roles =['USER'];
+        if(user.roles)
+            user.roles = user.roles.split(",");
+        else
+            user.roles =['USER'];
         return userModel
                 .create(user);
     }

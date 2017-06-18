@@ -23,7 +23,7 @@
         {
             if(username === null || username === '' || typeof username === 'undefined')
             {
-                model.error = 'username is required';
+                model.error = 'username is required. ';
                 return;
             }
 

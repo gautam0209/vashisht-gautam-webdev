@@ -53,6 +53,10 @@
 
             function updateWidget(widget)
             {
+                if(!widget || !widget.name)
+                    model.error = "Widget name is required.";
+                else
+                {
                 widgetService
                     .updateWidget(model.widgetId, widget)
                     .then(function(){
@@ -62,6 +66,7 @@
                         model.message = "Widget Update Failed."
                     });
                 $location.url('/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+            }
             }
 
             function deleteWidget(widgetId)

@@ -52,15 +52,20 @@
 
         function updateWebsite(website)
         {
-            websiteService
-                .updateWebsite(model.websiteId, website)
-                .then(function(){
-                        model.message = "Website Update Successfully."
-                    },
-                    function(){
-                        model.message = "Website Update Failed."
-                    });
-            $location.url('/website');
+            if(!website || !website.name)
+                model.error = "Website Name is required.";
+            else {
+                websiteService
+                    .updateWebsite(model.websiteId, website)
+                    .then(function () {
+                            model.message = "Website Update Successfully."
+                        },
+                        function () {
+                            model.message = "Website Update Failed."
+                        });
+                $location.url('/website');
+            }
+
         }
 
 

@@ -31,7 +31,7 @@
 
         function createPage(page){
             // if(name === null || name === '' || typeof name === 'undefined')
-            if(page.name === '' )
+            if(!page || !page.name)
                 model.error = "Please provide page name.";
             else {
                 //var newPage = pageService.createPage(page.name, page.title, model.websiteId);

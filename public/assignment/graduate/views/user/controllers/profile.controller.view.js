@@ -46,7 +46,7 @@
         }
 
         function updateProfile(user){
-            userService.updateUser(model.userId, user)
+            userService.updateProfile(model.userId, user)
                 .then(function(){
                     model.message = "User update was successful.";
                 },

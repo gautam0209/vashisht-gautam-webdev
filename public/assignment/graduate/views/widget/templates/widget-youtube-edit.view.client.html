@@ -22,12 +22,22 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-warning">{{model.error}}</div>
+
+
+    <form name="userForm" novalidate>
+
+        <div class="form-group">
 
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="model.widget.name"
                    placeholder="Name"
-                   id="name"/>
+                   name="name"
+                   id="name"
+                   required/>
+            <p ng-show="userForm.name.$invalid && userForm.$submitted" class="help-block">Youtube Name is required.</p>
+        </div>
 
     <label for="text">Text</label>
     <input class="form-control"
@@ -51,13 +61,14 @@
         Delete
     </a>
 
-    <a ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)" class="btn btn-block btn-success">
+    <button type="submit" ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)" class="btn btn-block btn-success">
         Update
-    </a>
+    </button>
 
-    <a ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)" class="btn btn-block btn-success">
+    <button type="submit" ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)" class="btn btn-block btn-success">
         Create
-    </a>
+    </button>
+    </form>
 
 </div>
 

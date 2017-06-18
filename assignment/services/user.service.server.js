@@ -4,8 +4,11 @@ var userModel = require('../models/user/user.model.server');
 
 var passport = require('passport');
 
+var bcrypt = require("bcrypt-nodejs");
+
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID,
@@ -13,7 +16,15 @@ var googleConfig = {
     callbackURL  : process.env.GOOGLE_CALLBACK_URL
 };
 
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ['id', 'displayName', 'photos', 'email']
+};
+
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
@@ -28,11 +39,13 @@ passport.deserializeUser(deserializeUser);
 //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
 // ];
 
-app.post('/api/assignment/graduate/user', createUser);
+app.post('/api/assignment/graduate/user', isAdmin, createUser);
 app.get('/api/assignment/graduate/admin/users', isAdmin, findAllUsers);
 
+app.put('/api/assignment/graduate/user', updateProfile);
+
 app.get('/api/assignment/graduate/user/:userId', findUserById);
-app.put('/api/assignment/graduate/user/:userId', updateUser);
+app.put('/api/assignment/graduate/user/:userId', isAdmin, updateUser);
 app.delete('/api/assignment/graduate/user/:userId', isAdmin, deleteUser);
 
 
@@ -47,12 +60,57 @@ app.post  ('/api/assignment/graduate/register', register);
 app.post  ('/api/assignment/graduate/unregister', unregister);
 
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/assignment/graduate/index.html#!/profile',
         failureRedirect: '/assignment/graduate/index.html#!/login'
     }));
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/assignment/graduate/index.html#!/profile',
+        failureRedirect: '/assignment/graduate/index.html#!/login'
+    }));
+
+
+function facebookStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByFacebookId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newFacebookUser = {
+                        username:  emailParts[0],
+                        firstName: profile.displayName.split(" ")[0],
+                        lastName:  profile.displayName.split(" ")[1],
+                        email:     email,
+                        facebook: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newFacebookUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 
 function googleStrategy(token, refreshToken, profile, done) {
@@ -116,6 +174,7 @@ function isAdmin(req,res,next)
 
 function register(req, res) {
     var userObj = req.body;
+    userObj.password = bcrypt.hashSync(userObj.password);
     userModel
         .createUser(userObj)
         .then(function (user) {
@@ -132,17 +191,29 @@ function logout(req, res){
 }
 
 function localStrategy(username, password, done) {
+    // userModel
+    //     .findUserByCredentials(username, password)
+    //     .then(
+    //         function(user) {
+    //             if (!user) { return done(null, false); }
+    //             return done(null, user);
+    //         },
+    //         function(err) {
+    //             if (err) { return done(err); }
+    //         }
+    //     );
+
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(
             function(user) {
-                if (!user) { return done(null, false); }
-                return done(null, user);
-            },
-            function(err) {
-                if (err) { return done(err); }
-            }
-        );
+                // if the user exists, compare passwords with bcrypt.compareSync
+                if(user && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
+            });
 
 }
 
@@ -191,6 +262,22 @@ function updateUser(req, res)
 {
     var user = req.body;
     var userId = req.params['userId'];
+
+    userModel.updateUser(userId,user)
+        .then(function(){
+                res.sendStatus(200)
+            },
+            function(){
+                res.sendStatus(404)
+            });
+}
+
+
+function updateProfile(req, res)
+{
+    var user = req.body;
+    //var userId = req.params['userId'];
+    var userId = req.user._id;
 
     userModel.updateUser(userId,user)
         .then(function(){

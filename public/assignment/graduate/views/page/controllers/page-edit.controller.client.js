@@ -40,9 +40,15 @@
 
        function updatePage(page)
        {
-           pageService.updatePage(model.pageId, page)
-               .then(function(){});
-           $location.url('/website/' + model.websiteId + '/page');
+           if(!page || !page.name)
+               model.error = "Page Name is required field."
+           else
+           {
+               pageService.updatePage(model.pageId, page)
+                   .then(function () {
+                   });
+               $location.url('/website/' + model.websiteId + '/page');
+           }
        }
 
         function deletePage(pageId)

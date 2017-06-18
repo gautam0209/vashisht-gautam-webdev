@@ -5,6 +5,10 @@ form{
     margin-bottom: 5px;
 }
 
+.ng-submitted .ng-invalid{
+    background-color:yellow;
+    border-color: red;
+}
 
 
 

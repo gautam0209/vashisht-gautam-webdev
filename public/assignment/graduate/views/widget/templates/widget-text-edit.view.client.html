@@ -22,6 +22,17 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-warning">{{model.error}}</div>
+
+    <form name="userForm" novalidate>
+    <div class="form-group">
+    Name
+    <input ng-model="model.widget.name"
+           name="name"
+           class="form-control"
+            required/>
+        <p ng-show="userForm.name.$invalid && userForm.$submitted" class="help-block">Text Name is required.</p>
+    </div>
     Text
     <input ng-model="model.widget.text" class="form-control"/>
     Rows
@@ -36,15 +47,16 @@
         Delete
     </a>
 
-    <a ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)"
+    <button type="submit" ng-if="model.mode == 'Edit'" ng-click="model.updateWidget(model.widget)"
        class="btn btn-block btn-success">
         Update
-    </a>
+    </button>
 
-    <a ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)"
+    <button type="submit" ng-if="model.mode == 'New'" ng-click="model.createWidget(model.widget)"
        class="btn btn-block btn-success">
         Create
-    </a>
+    </button>
+    </form>
 </div>
 
 
