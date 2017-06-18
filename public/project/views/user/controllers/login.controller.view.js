@@ -3,7 +3,8 @@
         .module('WebAppProj')
         .controller('loginController',loginController);
 
-    function loginController(userService, $location){
+    function loginController(userService,
+                             $location){
 
         var model = this;
 
@@ -17,16 +18,28 @@
 
         function login(username, password)
         {
-            var found = userService.findUserByCredential(username, password);
-            if(found != null)
+            if(!username && !password)
             {
-                $location.url('/user/' + found._id);
-                model.message = "Welcome, " + username;
+                model.error = "Username and Password is required.";
             }
-            else
+            else if(!username)
             {
-                model.message = "Sorry, username: " + username + " with entered password doesnt exist";
+                model.error = "UserName is required.";
             }
-        }
+            else if(!password)
+                model.error = "Password is required.";
+            else {
+                userService.login(username, password)
+                    .then(function (found) {
+                            $location.url('/');
+                            model.message = "Welcome, " + username;
+                        },
+                        function () {
+                            model.error = "Sorry, username: " + username + " with entered password doesnt exist";
+                        }
+                    )
+            }
+
+        };
     }
 })();

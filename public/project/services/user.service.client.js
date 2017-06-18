@@ -1,12 +1,11 @@
+/**
+ * Created by Gautam Vashisht on 5/27/2017.
+ */
+
 (function (){
     angular
         .module('WebAppProj')
         .factory('userService',userService);
-
-
-    var user = [
-        {_id: 1, name: "Gautam", username: "g", password: "g"}
-    ];
 
     function userService($http)
     {
@@ -15,12 +14,87 @@
                 findUserByCredential: findUserByCredential,
                 findUserById: findUserById,
                 findUserByUserName: findUserByUserName,
+                findAllUsers:findAllUsers,
                 createUser:createUser,
                 deleteUser:deleteUser,
-                updateUser:updateUser
+                updateUser:updateUser,
+                updateProfile:updateProfile,
+                login: login,
+                logout: logout,
+                loggedin: loggedin,
+                checkAdmin:checkAdmin,
+                unregister: unregister,
+                register:register
             };
 
         return api;
+
+
+        function findAllUsers()
+        {
+            var url = "/api/assignment/graduate/admin/users";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+
+        function register(userObj) {
+            var url = "/api/assignment/graduate/register";
+            return $http.post(url, userObj)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+        function unregister() {
+            var url = "/api/assignment/graduate/unregister";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function logout()
+        {
+            var url = "/api/assignment/graduate/logout";
+
+            return $http.post(url)
+                .then(function(response){
+                    return response.data;
+                })
+        }
+
+        function loggedin() {
+            var url = "/api/assignment/graduate/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/assignment/graduate/admin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function login(username, password)
+        {
+            var url = "/api/assignment/graduate/login";
+            var credentials = {
+                username: username,
+                password: password
+            }
+            return $http.post(url, credentials)
+                .then(function(response){
+                    return response.data;
+                })
+        }
 
         function createUser(user)
         {
@@ -50,13 +124,11 @@
 
         function findUserByCredential(username, password)
         {
-            // var url="/api/assignment/graduate/user?username="+username+"&password=" + password;
-            // return $http.get(url)
-            //     .then(function(response){
-            //         return response.data;
-            //     });
-            if(username == 'g' && password == 'g')
-                return user[0];
+            var url="/api/assignment/graduate/user?username="+username+"&password=" + password;
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                });
          }
 
         function deleteUser(userId){
@@ -71,6 +143,15 @@
         function updateUser(userId, user)
         {
             var url="/api/assignment/graduate/user/" + userId;
+            return $http.put(url, user)
+                .then(function(response){
+                    return response.data;
+                });
+        }
+
+        function updateProfile(userId, user)
+        {
+            var url="/api/assignment/graduate/user";
             return $http.put(url, user)
                 .then(function(response){
                     return response.data;

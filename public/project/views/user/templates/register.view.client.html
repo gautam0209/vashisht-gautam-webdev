@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <h1>Sign up!! Be Ready to dive into the world of movie land!!!!</h1>
+
+    <div ng-show="model.error" class="alert alert-warning">{{model.error}}</div>
+
+    <form name="userForm" novalidate>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text"
+                   ng-model="username"
+                   id="username"
+                   name="username"
+                   class="form-control"
+                   placeholder="gautam0209"
+                   required/>
+        </div>
+        <p ng-show="userForm.username.$invalid && userForm.$submitted" class="help-block">Username is required.</p>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+                   ng-model="password"
+                   id="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="abcD123$"
+                   required/>
+        </div>
+        <p ng-show="userForm.password.$invalid && userForm.$submitted" class="help-block">Password is required.</p>
+
+
+
+        <div class="form-group">
+            <label for="veri-password">Verify-Password</label>
+            <input type="password"
+                   ng-model="password2"
+                   id="veri-password"
+                   name="password2"
+                   class="form-control"
+                   placeholder="abcD123$"
+                   required/>
+        </div>
+        <p ng-show="userForm.password2.$invalid && userForm.$submitted" class="help-block">Verify Password is required.</p>
+        <p ng-show="userForm.password2.$viewValue !== userForm.password.$viewValue && userForm.$submitted" class="help-block">Passwords must match.</p>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                   ng-model="email"
+                   id="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="xyz@mail.com"
+                   required/>
+        </div>
+        <p ng-show="userForm.email.$invalid && userForm.$submitted" class="help-block">Email is required.</p>
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text"
+                   ng-model="firstName"
+                   id="firstName"
+                   name="firstName"
+                   class="form-control"
+                   placeholder="Gomy"
+                   required/>
+        </div>
+        <p ng-show="userForm.firstName.$invalid && userForm.$submitted" class="help-block">First Name is required.</p>
+
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text"
+                   ng-model="lastName"
+                   id="lastName"
+                   name="lastName"
+                   class="form-control"
+                   placeholder="Vashy"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"
+                ng-click="model.register(username, password, password2, email, firstName, lastName)">Register</button>
+        <a class="btn btn-danger  btn-block"
+           href="#!/login">Cancel</a>
+    </form>
+</div>
+

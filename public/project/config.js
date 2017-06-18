@@ -12,13 +12,25 @@
 
         $routeProvider
             .when('/',{
+                templateUrl: 'views/home/templates/home-page.view.client.html',
+                controller: 'homeController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
+            })
+            .when('/login',{
                 templateUrl: 'views/user/templates/movie-login.view.client.html',
                  controller: 'loginController',
                  controllerAs: 'model'
             })
-
+            .when('/register',{
+                templateUrl: 'views/user/templates/register.view.client.html',
+                controller: 'registerController',
+                controllerAs: 'model'
+            })
         $routeProvider
-            .when('/user/:userId',{
+            .when('/user',{
                 templateUrl: 'views/movies/templates/movie-start.view.client.html'
                 // controller: 'movieStartController',
                 // controllerAs: 'model'
@@ -41,4 +53,39 @@
                 controllerAs: 'model'
             })
     }
+
+    function checkLoggedIn(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkCurrentUser(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.resolve({});
+                    // $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
 })();

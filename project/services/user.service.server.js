@@ -189,7 +189,6 @@ function register(req, res) {
 }
 
 function logout(req, res){
-    console.log("here");
     req.logout();
     res.sendStatus(200);
 }
@@ -206,6 +205,7 @@ function localStrategy(username, password, done) {
     //             if (err) { return done(err); }
     //         }
     //     );
+
     userModel
         .findUserByUsername(username)
         .then(
