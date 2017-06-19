@@ -37,7 +37,8 @@
 
         function submitReview(movieId, review)
         {
-            movieService.addReview(movieId, review);
+            movieService
+                .addReview(model.currentUser._id, movieId, review);
 
         }
 

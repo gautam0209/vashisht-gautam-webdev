@@ -62,6 +62,9 @@ app.get   ('/api/assignment/graduate/admin', checkAdmin);
 app.post  ('/api/assignment/graduate/register', register);
 app.post  ('/api/assignment/graduate/unregister', unregister);
 
+//app.post  ('/api/project/review', addReview);
+
+
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
 
@@ -77,6 +80,27 @@ app.get('/auth/facebook/callback',
         failureRedirect: '/assignment/graduate/index.html#!/login'
     }));
 
+
+
+function addReview(req, res)
+{
+    var userObj = req.body;
+
+    //var userId = req.params['userId'];
+    var userId = userObj.userId;
+     userModel.findById(userId)
+         .then(function(user)
+         {
+             user.movieId = userObj.movieId;
+             userModel.updateUser(userId,user)
+                 .then(function(){
+                         res.sendStatus(200)
+                     },
+                     function(){
+                         res.sendStatus(404)
+                     });
+         })
+}
 
 function facebookStrategy(token, refreshToken, profile, done) {
     userModel

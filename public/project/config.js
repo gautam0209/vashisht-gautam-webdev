@@ -47,10 +47,13 @@
                controllerAs: 'model'
             })
 
-            .when('/movie/details',{
+            .when('/movie/:movieId',{
                 templateUrl: 'views/movies/templates/movie-details.view.client.html',
                 controller: 'detMovieController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
             })
     }
 

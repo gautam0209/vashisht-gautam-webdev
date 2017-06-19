@@ -61,7 +61,7 @@
                         userService
                             .register(newUser)
                             .then(function (user){
-                                $location.url('/');
+                                $location.url('#!/');
                             });
 
                     }

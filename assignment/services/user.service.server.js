@@ -189,7 +189,6 @@ function register(req, res) {
 }
 
 function logout(req, res){
-    console.log("here");
     req.logout();
     res.sendStatus(200);
 }
@@ -331,8 +330,6 @@ function findUserByCredential(req,res){
 function findUserByUsername(req, res)
 {
     var username = req.query['username'];
-
-    console.log("hello12");
 
     userModel.findUserByUsername(username)
         .then(function(user){

@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
     lastName: String,
     email: String,
     phone: String,
-    websites: [{type: mongoose.Schema.Types.ObjectId, ref: "websiteModel"}],
+    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "reviewModel"}],
     roles: [{type: String,
             default: 'USER',
             enum: ['USER','FACULTY', 'STUDENT', 'ADMIN' ]}],

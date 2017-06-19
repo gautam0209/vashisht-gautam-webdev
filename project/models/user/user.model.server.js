@@ -14,6 +14,7 @@ var userModel = mongoose.model('userModel', userSchema);
     userModel.addWebsite = addWebsite;
     userModel.findUserByGoogleId = findUserByGoogleId;
     userModel.findUserByFacebookId = findUserByFacebookId;
+    userModel.addReview = addReview;
     module.exports = userModel;
 
 
@@ -49,6 +50,16 @@ function findUserByFacebookId(facebookId) {
             .then(function (user) {
                 user.websites.push(websiteId);
                 return user.save();
+            });
+    }
+
+    function addReview(reviewId, userId)
+    {
+        return userModel
+            .findById(userId)
+            .then(function (user) {
+                user.reviews.push(reviewId);
+                return userModel.update({_id: userId}, {$set: user});
             });
     }
 

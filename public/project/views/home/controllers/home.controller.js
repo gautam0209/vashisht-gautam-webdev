@@ -30,7 +30,10 @@
             movieService.getMovies()
                 .then(function(response){
                     model.data = response.data.results;
+                    console.log(model.data[0]);
                 })
+
+
 
             movieService.addMode('Current');
         }
@@ -42,7 +45,7 @@
             userService
                 .logout()
                 .then(function () {
-                    $location.url('/');
+                    $location.url('#!/');
                 });
         }
 
@@ -52,16 +55,16 @@
 
         }
 
-        function movieDetails(movieName){
+        function movieDetails(movieId){
 
             for(var m in model.data)
             {
                 var movie = model.data[m];
 
-                if(movie.title.toLowerCase().valueOf() == movieName.toLowerCase().valueOf())
+                if(movie.id === movieId)
                 {
-                    movieService.putMovie(movie);
-                    $location.url('/movie/details');
+                    //movieService.putMovie(movie);
+                    $location.url('/movie/' + movieId);
                 }
             }
         }

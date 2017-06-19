@@ -59,10 +59,12 @@
 
         function logout()
         {
+            console.log("hello");
             var url = "/api/assignment/graduate/logout";
 
             return $http.post(url)
                 .then(function(response){
+                    console.log(response);
                     return response.data;
                 })
         }

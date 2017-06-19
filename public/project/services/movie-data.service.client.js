@@ -15,6 +15,7 @@
         var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
         var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
         var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
+        var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&language=en-US";
 
         var movie;
 
@@ -25,15 +26,18 @@
 
 
 
+
+
         var api =
             {
                 getMovies:getMovies,
                 searchMovie: searchMovie,
-                putMovie: putMovie,
-                getMovie: getMovie,
+               // putMovie: putMovie,
+                //getMovie: getMovie,
                 getReviews: getReviews,
                 addReview: addReview,
                 getLocalReview:getLocalReview,
+                findMovieById:findMovieById,
                 addMode:addMode,
                 getMode:getMode
             };
@@ -51,32 +55,49 @@
             return mode;
         }
 
-        function addReview(movieId, review)
+        function addReview(userId,
+                           movieId,
+                           review)
         {
-            var movie = {id:movieId, review: review};
-            movies.push(movie);
+            // var movie = {id:movieId, review: review};
+            // movies.push(movie);
+            var url = "/api/project/review";
+
+            var reviewObj = {
+                userId: userId,
+                movieId: movieId,
+                review: review
+            }
+            return $http.post(url, reviewObj);
         }
 
 
-        function putMovie(mov)
-        {
-            movie = mov;
-
-        }
-
-        function getMovie()
-        {
-            return movie;
-        }
+        // function putMovie(mov)
+        // {
+        //     movie = mov;
+        //
+        // }
+        //
+        // function getMovie()
+        // {
+        //     return movie;
+        // }
 
         function getMovies()
         {
-            return $http.get(urlBaseCur);
+            return $http
+                    .get(urlBaseCur);
         }
 
         function searchMovie(movieName)
         {
             var url = urlBase.replace("mvName",movieName);
+            return $http.get(url);
+        }
+
+        function findMovieById(movieId)
+        {
+            var url = urlById.replace("ID",movieId);
             return $http.get(url);
         }
 
