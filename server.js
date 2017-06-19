@@ -32,6 +32,6 @@ todo(app);
 
 require('./test/app')(app) ;
 require('./assignment/app');
-//require('./project/app');
+require('./project/app');
 
 app.listen(process.env.PORT || 3000);

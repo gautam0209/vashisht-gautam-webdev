@@ -1,6 +1,6 @@
 var app = require('../../express');
 
-var userModel = require('../models/user/user.model.server');
+var userProjModel = require('../models/user/user.model.server');
 
 var passport = require('passport');
 
@@ -88,11 +88,11 @@ function addReview(req, res)
 
     //var userId = req.params['userId'];
     var userId = userObj.userId;
-     userModel.findById(userId)
+     userProjModel.findById(userId)
          .then(function(user)
          {
              user.movieId = userObj.movieId;
-             userModel.updateUser(userId,user)
+             userProjModel.updateUser(userId,user)
                  .then(function(){
                          res.sendStatus(200)
                      },
@@ -103,7 +103,7 @@ function addReview(req, res)
 }
 
 function facebookStrategy(token, refreshToken, profile, done) {
-    userModel
+    userProjModel
         .findUserByFacebookId(profile.id)
         .then(
             function(user) {
@@ -122,7 +122,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
                             token: token
                         }
                     };
-                    return userModel.createUser(newFacebookUser);
+                    return userProjModel.createUser(newFacebookUser);
                 }
             },
             function(err) {
@@ -141,7 +141,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
 
 
 function googleStrategy(token, refreshToken, profile, done) {
-    userModel
+    userProjModel
         .findUserByGoogleId(profile.id)
         .then(
             function(user) {
@@ -160,7 +160,7 @@ function googleStrategy(token, refreshToken, profile, done) {
                             token: token
                         }
                     };
-                    return userModel.createUser(newGoogleUser);
+                    return userProjModel.createUser(newGoogleUser);
                 }
             },
             function(err) {
@@ -181,7 +181,7 @@ function googleStrategy(token, refreshToken, profile, done) {
 
 function unregister(req,res)
 {
-    userModel
+    userProjModel
         .deleteUser(req.user._id)
         .then(function (user) {
             req
@@ -202,7 +202,7 @@ function isAdmin(req,res,next)
 function register(req, res) {
     var userObj = req.body;
     userObj.password = bcrypt.hashSync(userObj.password);
-    userModel
+    userProjModel
         .createUser(userObj)
         .then(function (user) {
             req
@@ -218,7 +218,7 @@ function logout(req, res){
 }
 
 function localStrategy(username, password, done) {
-    // userModel
+    // userProjModel
     //     .findUserByCredentials(username, password)
     //     .then(
     //         function(user) {
@@ -230,7 +230,7 @@ function localStrategy(username, password, done) {
     //         }
     //     );
 
-    userModel
+    userProjModel
         .findUserByUsername(username)
         .then(
             function(user) {
@@ -275,7 +275,7 @@ function deleteUser(req, res) {
     console.log("deleting user");
     console.log(req.user);
 
-    userModel.deleteUser(userId)
+    userProjModel.deleteUser(userId)
         .then(function(){
             res.sendStatus(200)
         },
@@ -290,7 +290,7 @@ function updateUser(req, res)
     var user = req.body;
     var userId = req.params['userId'];
 
-    userModel.updateUser(userId,user)
+    userProjModel.updateUser(userId,user)
         .then(function(){
                 res.sendStatus(200)
             },
@@ -306,7 +306,7 @@ function updateProfile(req, res)
     //var userId = req.params['userId'];
     var userId = req.user._id;
 
-    userModel.updateUser(userId,user)
+    userProjModel.updateUser(userId,user)
         .then(function(){
                 res.sendStatus(200)
             },
@@ -319,7 +319,7 @@ function findUserById(req, res)
 {
     var userId = req.params['userId'];
 
-    userModel.
+    userProjModel.
         findUserById(userId)
         .then(function(user)
         {
@@ -339,7 +339,7 @@ function findUserByCredential(req,res){
     var username = req.query['username'];
     var password = req.query['password'];
 
-    userModel.findUserByCredentials(username,password)
+    userProjModel.findUserByCredentials(username,password)
         .then(function(user){
             if(user)
                 res.json(user);
@@ -358,7 +358,7 @@ function findUserByUsername(req, res)
 
     console.log("hello12");
 
-    userModel.findUserByUsername(username)
+    userProjModel.findUserByUsername(username)
         .then(function(user){
             if(user)
                 res.json(user);
@@ -383,7 +383,7 @@ function findAllUsers(req, res){
                 findUserByUsername(req, res);
         }
       else
-        userModel.findAllUsers()
+        userProjModel.findAllUsers()
             .then(function(users){
                 if(users)
                     res.send(users);
@@ -397,7 +397,7 @@ function findAllUsers(req, res){
 
 function createUser(req, res){
     var user = req.body;
-    userModel.createUser(user)
+    userProjModel.createUser(user)
         .then(function(user){
                 res.json(user);
         },
@@ -411,7 +411,7 @@ function serializeUser(user, done) {
 }
 
 function deserializeUser(user, done) {
-    userModel
+    userProjModel
         .findUserById(user._id)
         .then(
             function(user){

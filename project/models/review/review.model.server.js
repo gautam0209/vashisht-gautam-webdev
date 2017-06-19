@@ -4,16 +4,15 @@ var reviewModel = mongoose.model('reviewModel', reviewSchema);
 
 var q = require('q');
 
- var websiteModel = require('../website/website.model.server');
  var userModel = require('../user/user.model.server');
 
 
 // api
     reviewModel.findAllPages = findAllPages;
-    reviewModel.createPage = createPage;
+    //reviewModel.createPage = createPage;
     reviewModel.findPageById = findPageById;
     reviewModel.findAllPagesForWebsite = findAllPagesForWebsite;
-    reviewModel.deletePageFromWebsite = deletePageFromWebsite;
+    //reviewModel.deletePageFromWebsite = deletePageFromWebsite;
     reviewModel.deletePage = deletePage;
     reviewModel.updatePage = updatePage;
     reviewModel.addWidget = addWidget;
@@ -78,17 +77,7 @@ module.exports = reviewModel;
            })
     }
 
-function deletePageFromWebsite(websiteId, pageId) {
-            return pageModel
-                .remove({_id: pageId})
-                .then(function (status) {
-                    return websiteModel
-                        .deletePages(websiteId, pageId)
-                        .then(function(){
 
-                        }, function(err){console.log(err);});
-                });
-}
 
 
 /*
@@ -141,22 +130,7 @@ function deletePageFromWebsite(websiteId, pageId) {
             .exec();
     }
 
-    function createPage(websiteId, page) {
-        page._website = websiteId;
-        var prom = q.defer();
-         pageModel
-            .create(page)
-            .then(function (page) {
-                websiteModel
-                            .addPages(websiteId, page._id)
-                    .then(function(){
-                        prom.resolve(page);
-                    })
-            },function(err){
-                console.log(err);
-            })
-        return prom.promise;
-    }
+
 
     function findAllPages() {
         return pageModel.find();

@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/webdev_summer1_2017');
 mongoose.Promise = require('q').Promise;
 
-var userSchema = mongoose.Schema({
+var userProjSchema = mongoose.Schema({
     username: {type: String, unique: true},
     password: String,
     firstName: String,
@@ -25,4 +25,4 @@ var userSchema = mongoose.Schema({
     }
 }, {collection: "user"});
 
-module.exports = userSchema;
+module.exports = userProjSchema;

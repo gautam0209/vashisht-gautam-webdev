@@ -1,30 +1,30 @@
 var mongoose = require('mongoose');
 
-var userSchema = require('./user.schema.server');
-var userModel = mongoose.model('userModel', userSchema);
+var userProjSchema = require('./user.schema.server');
+var userProjModel = mongoose.model('userProjModel', userProjSchema);
 
-    userModel.createUser = createUser;
-    userModel.findUserById = findUserById;
-    userModel.findAllUsers = findAllUsers;
-    userModel.findUserByUsername = findUserByUsername;
-    userModel.findUserByCredentials = findUserByCredentials;
-    userModel.updateUser = updateUser;
-    userModel.deleteUser = deleteUser;
-    userModel.deleteWebsite = deleteWebsite;
-    userModel.addWebsite = addWebsite;
-    userModel.findUserByGoogleId = findUserByGoogleId;
-    userModel.findUserByFacebookId = findUserByFacebookId;
-    userModel.addReview = addReview;
-    module.exports = userModel;
+    userProjModel.createUser = createUser;
+    userProjModel.findUserById = findUserById;
+    userProjModel.findAllUsers = findAllUsers;
+    userProjModel.findUserByUsername = findUserByUsername;
+    userProjModel.findUserByCredentials = findUserByCredentials;
+    userProjModel.updateUser = updateUser;
+    userProjModel.deleteUser = deleteUser;
+    userProjModel.deleteWebsite = deleteWebsite;
+    userProjModel.addWebsite = addWebsite;
+    userProjModel.findUserByGoogleId = findUserByGoogleId;
+    userProjModel.findUserByFacebookId = findUserByFacebookId;
+    userProjModel.addReview = addReview;
+    module.exports = userProjModel;
 
 
 function findUserByFacebookId(facebookId) {
-    return userModel
+    return userProjModel
         .findOne({'facebook.id': facebookId});
 }
 
     function findUserByGoogleId(googleId) {
-        return userModel
+        return userProjModel
                 .findOne({'google.id': googleId});
     }
 
@@ -32,7 +32,7 @@ function findUserByFacebookId(facebookId) {
 
     function deleteWebsite(userId, websiteId) {
 
-        return userModel
+        return userProjModel
             .findById(userId)
             .then(function (user) {
 
@@ -45,7 +45,7 @@ function findUserByFacebookId(facebookId) {
     }
 
     function addWebsite(userId, websiteId) {
-        return userModel
+        return userProjModel
             .findById(userId)
             .then(function (user) {
                 user.websites.push(websiteId);
@@ -55,11 +55,11 @@ function findUserByFacebookId(facebookId) {
 
     function addReview(reviewId, userId)
     {
-        return userModel
+        return userProjModel
             .findById(userId)
             .then(function (user) {
                 user.reviews.push(reviewId);
-                return userModel.update({_id: userId}, {$set: user});
+                return userProjModel.update({_id: userId}, {$set: user});
             });
     }
 
@@ -68,33 +68,33 @@ function findUserByFacebookId(facebookId) {
             user.roles = user.roles.split(",");
         else
             user.roles =['USER'];
-        return userModel
+        return userProjModel
                 .create(user);
     }
 
     function findUserById(userId) {
-        return userModel.findById(userId);
+        return userProjModel.findById(userId);
     }
 
     function findAllUsers() {
-        return userModel.find();
+        return userProjModel.find();
     }
 
     function findUserByUsername(username) {
-        return userModel.findOne({username: username});
+        return userProjModel.findOne({username: username});
     }
 
     function findUserByCredentials(username, password) {
-        return userModel
+        return userProjModel
             .findOne({username: username, password: password});
     }
 
     function updateUser(userId, newUser) {
         delete newUser.username;
         delete newUser.password;
-        return userModel.update({_id: userId}, {$set: newUser});
+        return userProjModel.update({_id: userId}, {$set: newUser});
     }
 
     function deleteUser(userId) {
-        return userModel.remove({_id: userId});
+        return userProjModel.remove({_id: userId});
     }
