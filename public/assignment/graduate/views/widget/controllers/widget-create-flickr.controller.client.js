@@ -23,7 +23,6 @@
             flickrService
                 .searchPhotos(searchTerm)
                 .then(function(response) {
-                    console.log(response.data);
                     data = response.data.replace("jsonFlickrApi(","");
                     data = data.substring(0,data.length - 1);
                     data = JSON.parse(data);
