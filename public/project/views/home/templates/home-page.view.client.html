@@ -42,27 +42,59 @@
 </div>
 
 
+<div class="container-fluid">
+    <div class="input-group">
+        <input ng-model="searchMovie"
+               type="text"
+               placeholder="Find Movie of your choice"
+               class="form-control">
+
+        <span class="input-group-btn">
+            <a ng-click="model.searchMovie(searchMovie)"
+               class="btn btn-default btn-primary"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+
+    </div>
+</div>
+
+
+<div class="container-fluid">
+
+    <h1 ng-if="model.searchMovies"> List of Movies for your search </h1>
+
+    <div ng-repeat="movie in model.searchMovies">
+        <!--<div class="col-xs-2 table-bordered" style="float:left">-->
+        <div class="pull-left" style="border: 2px solid black">
+            <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = 100px/>
+            <a href="#!/movie/{{movie.id}}">
+                {{movie.title}}
+            </a>
+            <br>
+            <a>
+                Year Released:
+                {{movie.release_date.substring(0,4)}}
+            </a>
+        </div>
+    </div>
+</div>
+
+
 
 <div class="container">
 
     <h1> Currently Running Movies Near your Theatres</h1>
 
-    <div ng-repeat="movie in model.data">
+    <div ng-repeat="movie in model.currentMovies">
         <!--<div class="col-xs-2 table-bordered" style="float:left">-->
             <div class="pull-left" style="border: 2px solid black">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = 100px/>
-                <a ng-click="model.movieDetails(movie.id)">
+                <a href="#!/movie/{{movie.id}}">
                     {{movie.title}}
                 </a>
             </div>
-
-            <!--<div class="col-lg-9">-->
-                <!--<b>Title:</b>-->
-                <!--<a ng-click="model.movieDetails(movie.title)">-->
-                        <!--{{movie.title}}-->
-                <!--</a>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
 

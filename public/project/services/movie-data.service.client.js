@@ -15,7 +15,7 @@
         var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
         var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
         var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
-        var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&language=en-US";
+        var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&append_to_response=credits&language=en-US";
 
         var movie;
 
@@ -35,41 +35,13 @@
                // putMovie: putMovie,
                 //getMovie: getMovie,
                 getReviews: getReviews,
-                addReview: addReview,
+                //addReview: addReview,
                 getLocalReview:getLocalReview,
                 findMovieById:findMovieById,
-                addMode:addMode,
-                getMode:getMode
             };
 
 
         return api;
-
-        function addMode(m)
-        {
-            mode = m;
-        }
-
-        function getMode()
-        {
-            return mode;
-        }
-
-        function addReview(userId,
-                           movieId,
-                           review)
-        {
-            // var movie = {id:movieId, review: review};
-            // movies.push(movie);
-            var url = "/api/project/review";
-
-            var reviewObj = {
-                userId: userId,
-                movieId: movieId,
-                review: review
-            }
-            return $http.post(url, reviewObj);
-        }
 
 
         // function putMovie(mov)
@@ -110,19 +82,11 @@
             return $http.get(url);
         }
 
-        function getLocalReview(id)
+        function getLocalReview(movieId)
         {
-            var results = [];
-            for(var m in movies)
-            {
-                var movie = movies[m];
-                if(movie.id === id)
-                {
-                    var output = {content: movie.review};
-                    results.push(output);
-                }
-            }
-            return results;
+            var url = '/api/movie/' + movieId + '/localReview';
+            return $http.get(url);
+
         }
     }
 

@@ -19,6 +19,22 @@
                     currentUser:checkCurrentUser
                 }
             })
+            .when('/movie/:movieId',{
+                templateUrl: 'views/movies/templates/movie-details.view.client.html',
+                controller: 'detMovieController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
+            })
+            .when('/movie/:movieId/review',{
+                templateUrl: 'views/movies/templates/movie-reviews.view.client.html',
+                controller: 'revMovieController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
+            })
             .when('/login',{
                 templateUrl: 'views/user/templates/movie-login.view.client.html',
                  controller: 'loginController',
@@ -29,7 +45,6 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-        $routeProvider
             .when('/user',{
                 templateUrl: 'views/movies/templates/movie-start.view.client.html'
                 // controller: 'movieStartController',

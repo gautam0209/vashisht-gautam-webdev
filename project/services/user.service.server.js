@@ -1,6 +1,9 @@
 var app = require('../../express');
 
+var q = require('q');
+
 var userProjModel = require('../models/user/user.model.server');
+// var reviewModel = require('../models/review/review.model.server');
 
 var passport = require('passport');
 
@@ -52,7 +55,7 @@ app.delete('/api/assignment/graduate/user/:userId', isAdmin, deleteUser);
 
 app.get('/api/assignment/graduate/user', findUserByUsername);
 
-app.post('/api/assignment/graduate/login', passport.authenticate('local'), login);
+app.post('/api/project/graduate/login', passport.authenticate('local'), login);
 app.post('/api/assignment/graduate/logout', logout);
 
 
@@ -62,7 +65,6 @@ app.get   ('/api/assignment/graduate/admin', checkAdmin);
 app.post  ('/api/assignment/graduate/register', register);
 app.post  ('/api/assignment/graduate/unregister', unregister);
 
-//app.post  ('/api/project/review', addReview);
 
 
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -422,3 +424,6 @@ function deserializeUser(user, done) {
             }
         );
 }
+
+
+

@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/movie/{{model.movieId}}">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand">
+               {{model.movie.title}} Reviews
+            </a>
+            <p class="navbar-text pull-right">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+            <h1 id="title">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
+    <div class="row">
+        <div class="col-lg-2 pull-left">
+            <img ng-src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}" width = 100px/>
+        </div>
+        <div class="col-lg-10">
+           <h3> Reviews For Movie </h3>
+            <div ng-show="!model.currentUser._id">
+                <a href="#!/login">
+                    Please Login to add reviews.
+                </a>
+            </div>
+            <div ng-show="model.currentUser._id">
+                <a class = "btn btn-success" data-target="#review_{{model.movie.id}}" data-toggle="collapse">
+                    Post Review
+                </a>
+                <div id ="review_{{model.movie.id}}" class="collapse">
+                        <textarea class="form-control"
+                                  ng-model="model.movie.review"
+                                  rows="5"
+                                  placeholder="Start writing your Review">
+                </textarea>
+                    <a class="btn btn-success btn-block"
+                       ng-click="model.submitReview(model.movie.id,model.movie.review)"
+                       data-target="#review_{{movie.id}}"
+                       data-toggle="collapse">
+                        Submit Review
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<ul>
+    <div ng-show="!model.reviews[0]">
+        <p>No Reviews Yet. Please add reviews.</p>
+    </div>
+       <div ng-repeat="review in model.reviews" class="table-bordered">
+           <div><b> A review by {{review.author}}</b></div>
+           <div> {{review.content}} </div>
+       </div>
+
+
+</ul>
+
+</div>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

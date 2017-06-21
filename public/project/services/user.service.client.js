@@ -24,10 +24,25 @@
                 loggedin: loggedin,
                 checkAdmin:checkAdmin,
                 unregister: unregister,
-                register:register
+                register:register,
+                addReview: addReview
             };
 
         return api;
+
+        function addReview(userId,
+                           movieId,
+                           review)
+        {
+            var url = "/api/project/review";
+
+            var reviewObj = {
+                userId: userId,
+                movieId: movieId,
+                review: review
+            }
+            return $http.post(url, reviewObj);
+        }
 
 
         function findAllUsers()
@@ -87,7 +102,7 @@
 
         function login(username, password)
         {
-            var url = "/api/assignment/graduate/login";
+            var url = "/api/project/graduate/login";
             var credentials = {
                 username: username,
                 password: password
@@ -95,6 +110,7 @@
             return $http.post(url, credentials)
                 .then(function(response){
                     return response.data;
+
                 })
         }
 

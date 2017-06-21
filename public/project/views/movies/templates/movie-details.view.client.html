@@ -1,10 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a ng-if = "model.mode == 'Current'" class="navbar-brand" href="#!/current/movies">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a ng-if = "model.mode == 'Search'" class="navbar-brand" href="#!/searchMovie">
+            <a  class="navbar-brand" href="#!/">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="navbar-brand">
@@ -19,53 +16,90 @@
     </div>
 </nav>
 
-<h1> Movie Details </h1>
+<div class="container-fluid">
 
-<ul>
-    <li>
-        <b>Title</b>: {{model.movie.title}}
-    </li>
-    <li>
-        <b>Overview</b>: {{model.movie.overview}}
-    </li>
-    <li>
-        <b>Release Date</b>: {{model.movie.release_date}}
-    </li>
-    <li>
-        <b>Number of Ratings</b>:{{model.movie.vote_count}}
-    </li>
-    <li>
-        <b>Rating</b>:{{model.movie.vote_average}}
-    </li>
-    <li ng-show="model.currentUser._id">
-        <div>
-            <a class = "btn btn-info btn-block" data-target="#review_{{model.movie.id}}" data-toggle="collapse">
-                Add Review
-            </a>
-            <div id ="review_{{model.movie.id}}" class="collapse">
-                        <textarea class="form-control"
-                                  ng-model="model.movie.review"
-                                  rows="5"
-                                  placeholder="Start writing your Review">
-                </textarea>
-                <a class="btn btn-success btn-block" ng-click="model.submitReview(model.movie.id,model.movie.review)" data-target="#review_{{movie.id}}"
-                   data-toggle="collapse">
-                    Submit Review
-                </a>
-            </div>
+
+            <h1 id="title">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
+    <div class="row">
+        <div class="col-lg-3 pull-left">
+            <img ng-src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}" width = 200px/>
         </div>
-    </li>
-    <li>
-       <div ng-if="model.reviews">
-           <b>Reviews:</b>
-       </div>
-       <div ng-repeat="review in model.reviews" class="table-bordered">
-           {{review.content}}
-       </div>
-    </li>
+        <div class="col-lg-9">
+            Overview: {{model.movie.overview}}
+            <br> <br>
+            Release Date:{{model.movie.release_date}}
+            <br><br>
+            Rating: {{model.movie.vote_average}}
+            <br><br>
+            Home Page: <a href="{{model.movie.homepage}}">{{model.movie.homepage}}</a>
+            <br><br>
+            <a href="#!/movie/{{model.movie.id}}/review">
+                Read and Post Reviews
+            </a>
+        </div>
+    </div>
 
-</ul>
 
+    <div id="mov-det" class="panel panel-default">
+        <div class="panel-heading">Movie Details</div>
+        <div class="panel-body">
+            {{model.movie.overview}}
+        </div>
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item">Tagline: {{model.movie.tagline}}</li>
+            <li class="list-group-item">Running Time: {{model.movie.runtime}}</li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Movie Genre</div>
+        <!-- List group -->
+        <ul class="list-group">
+            <li ng-repeat="genre in model.movie.genres" class="list-group-item">
+                    {{genre.name}}
+            </li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Box Office</div>
+
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item">Budget: {{model.movie.budget}} USD </li>
+            <li class="list-group-item">Revenue: {{model.movie.revenue}} USD</li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Production Companies</div>
+            <!-- List group -->
+        <div ng-repeat="company in model.movie.production_companies">
+                    <li class="list-group-item">{{company.name}}</li>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Star Cast</div>
+        <!-- List group -->
+        <ul class="list-group">
+            <li ng-repeat="character in model.movie.credits.cast" class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-11 pull-left">
+                        Character: {{character.character}}
+                        <br>
+                        Name: {{character.name}}
+                    </div>
+                    <div class="col-lg-1 pull-right">
+                        <img ng-src="http://image.tmdb.org/t/p/w185{{character.profile_path}}" width = 50px/>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
 
 
 
