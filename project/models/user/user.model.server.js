@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var userProjSchema = require('./user.schema.server');
 var userProjModel = mongoose.model('userProjModel', userProjSchema);
 
+var q = require('q');
+
     userProjModel.createUser = createUser;
     userProjModel.findUserById = findUserById;
     userProjModel.findAllUsers = findAllUsers;
@@ -15,7 +17,53 @@ var userProjModel = mongoose.model('userProjModel', userProjSchema);
     userProjModel.findUserByGoogleId = findUserByGoogleId;
     userProjModel.findUserByFacebookId = findUserByFacebookId;
     userProjModel.addReview = addReview;
-    module.exports = userProjModel;
+    userProjModel.isLike = isLike;
+    userProjModel.likeMovie = likeMovie;
+    userProjModel.unLikeMovie = unLikeMovie;
+
+module.exports = userProjModel;
+
+
+function unLikeMovie(userId, movieId)
+{
+    return userProjModel
+        .findById(userId)
+        .then(function(user) {
+            var index = user.movieLiked.indexOf(movieId);
+
+            user.movieLiked.splice(index, 1);
+
+            return user.save();
+        })
+}
+
+    function likeMovie(userId, movieId)
+    {
+     return userProjModel
+            .findById(userId)
+            .then(function(user) {
+                user.movieLiked.push(movieId);
+                return user.save();
+            })
+    }
+function isLike(userId, movieId)
+{
+    var prom = q.defer();
+    return userProjModel
+        .findById(userId)
+        .then(function(user){
+            var moviesLiked = user.movieLiked;
+            for(var m in moviesLiked)
+            {
+                var movie = moviesLiked[m];
+                if(movie == movieId){
+                    return q.resolve(user);
+                }
+            }
+        })
+
+    return q.promise;
+}
 
 
 function findUserByFacebookId(facebookId) {

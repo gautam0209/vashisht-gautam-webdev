@@ -25,10 +25,36 @@
                 checkAdmin:checkAdmin,
                 unregister: unregister,
                 register:register,
-                addReview: addReview
+                addReview: addReview,
+                isLike: isLike,
+                likeMovie: likeMovie,
+                unLikeMovie: unLikeMovie
             };
 
         return api;
+
+        function unLikeMovie(userId, movieId)
+        {
+
+            var url = '/api/user/' + userId + '/movie/' + movieId + '/unlike';
+
+            return $http.post(url);
+        }
+
+        function likeMovie(userId, movieId)
+        {
+
+            var url = '/api/user/' + userId + '/movie/' + movieId + '/like';
+
+            return $http.post(url);
+        }
+
+        function isLike(userId, movieId)
+        {
+            var url = '/api/user/' + userId + '/movie/' + movieId + '/like';
+
+            return $http.get(url);
+        }
 
         function addReview(userId,
                            movieId,

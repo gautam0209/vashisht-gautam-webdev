@@ -39,27 +39,35 @@ function getLocalReviews(movieId)
 
     function addReview(userObj)
     {
-        var review = {
-            _user: userObj.userId,
-            movieId: userObj.movieId,
-            content: userObj.review
-        };
-
-        console.log("hello");
-
-
         var prom = q.defer();
-        reviewModel
-            .create(review)
-            .then(function (review) {
-                userModel
-                    .addReview(review._id, review._user)
-                    .then(function(){
-                        prom.resolve(review);
+
+        userModel
+            .findUserById(userObj.userId)
+            .then(function(user)
+            {
+                var review = {
+                    _user: userObj.userId,
+                    movieId: userObj.movieId,
+                    content: userObj.review,
+                    author: user.username
+                };
+
+                console.log("hello");
+
+
+                reviewModel
+                    .create(review)
+                    .then(function (review) {
+                        userModel
+                            .addReview(review._id, review._user)
+                            .then(function(){
+                                prom.resolve(review);
+                            })
+                    },function(err){
+                        console.log(err);
                     })
-            },function(err){
-                console.log(err);
             })
+
         return prom.promise;
     }
 

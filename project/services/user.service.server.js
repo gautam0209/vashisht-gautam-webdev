@@ -81,7 +81,61 @@ app.get('/auth/facebook/callback',
         successRedirect: '/assignment/graduate/index.html#!/profile',
         failureRedirect: '/assignment/graduate/index.html#!/login'
     }));
+app.get('/api/user/:userId/movie/:movieId/like', isLike);
+app.post('/api/user/:userId/movie/:movieId/like', likeMovie);
+app.post('/api/user/:userId/movie/:movieId/unlike', unLikeMovie);
 
+
+function unLikeMovie(req, res)
+{
+    var userId = req.params['userId'];
+    var movieId = req.params['movieId'];
+    userProjModel
+        .unLikeMovie(userId, movieId)
+        .then(function(like){
+            if(like)
+                res.sendStatus(200);
+            else
+                res.sendStatus(404);
+        }, function(){
+            res.sendStatus(404)
+        })
+}
+
+function likeMovie(req, res)
+{
+    var userId = req.params['userId'];
+    var movieId = req.params['movieId'];
+    userProjModel
+        .likeMovie(userId, movieId)
+        .then(function(like){
+            if(like)
+                res.sendStatus(200);
+            else
+                res.sendStatus(404);
+        }, function(){
+            res.sendStatus(404)
+        })
+}
+
+
+
+function isLike(req, res)
+{
+
+    var userId = req.params['userId'];
+    var movieId = req.params['movieId'];
+    userProjModel
+        .isLike(userId, movieId)
+        .then(function(like){
+            if(like)
+                res.sendStatus(200);
+            else
+                res.sendStatus(404);
+        }, function(){
+            res.sendStatus(404)
+        })
+}
 
 
 function addReview(req, res)

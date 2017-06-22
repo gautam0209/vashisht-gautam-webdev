@@ -17,14 +17,13 @@ app.get   ('/api/movie/:movieId/localReview', getLocalReviews);
 
 function getLocalReviews(req, res)
 {
-    var prom = q.defer();
+
     var movieId = req.params['movieId'];
     reviewModel
         .getLocalReviews(movieId)
         .then(function(reviews){
-            q.resolve(reviews);
+            res.json(reviews);
         })
-    return q.promise;
 }
 
 function addReview(req, res)

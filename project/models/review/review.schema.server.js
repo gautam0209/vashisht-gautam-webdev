@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var reviewSchema = mongoose.Schema({
     _user: {type: mongoose.Schema.Types.ObjectId, ref: "userModel"},
+    author:String,
     content:String,
     movieId: Number,
     dateCreated: {type: Date, default: Date.now}

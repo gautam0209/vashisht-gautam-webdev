@@ -33,10 +33,30 @@
             <br><br>
             Home Page: <a href="{{model.movie.homepage}}">{{model.movie.homepage}}</a>
             <br><br>
+            IMDB Link: <a href="http://imdb.com/title/{{model.movie.imdb_id}}">Visit IMDB Link</a>
+            <br><br>
             <a href="#!/movie/{{model.movie.id}}/review">
                 Read and Post Reviews
             </a>
+            <br><br>
+            <div ng-show="model.currentUser._id">
+                <a ng-show="!model.like" ng-click="model.likeMovie()">
+                    <i class="fa fa-heart-o fa-2x"></i>
+                </a>
+                <a ng-show="model.like" ng-click="model.unLikeMovie()">
+                    <i class="fa fa-heart fa-2x" style="color:red"></i>
+                </a>
+            </div>
+            <div ng-show="!model.currentUser._id">
+                <a href="#!/login">
+                    Please Login to like and add movie to your playlist.
+                </a>
+            </div>
+
+
+
         </div>
+     </div>
     </div>
 
 

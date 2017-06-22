@@ -85,9 +85,16 @@
         function getLocalReview(movieId)
         {
             var url = '/api/movie/' + movieId + '/localReview';
-            return $http.get(url);
+
+            return $http.get(url)
+                .then(function(response){
+                    return response.data;
+                }, function(err){
+                    console.log(err);
+                });
 
         }
+
     }
 
 })();

@@ -4,6 +4,7 @@
         .controller('revMovieController',revMovieController);
 
     function revMovieController($routeParams,
+                                $location,
                                 currentUser,
                                 movieService,
                                 userService) {
@@ -23,9 +24,17 @@
             movieService.getReviews(model.movieId)
                 .then(function (response) {
                     model.reviews = response.data.results;
-                    console.log(model.reviews[0]);
-                    model.reviews = model.reviews.concat(movieService
-                        .getLocalReview(model.movieId));
+                    console.log("Inside ser:");
+                    movieService
+                        .getLocalReview(model.movieId)
+                        .then(function(reviews)
+                        {
+                            console.log(reviews);
+                            model.reviews = model.reviews.concat(reviews);
+                        }, function(err){
+                            console.log(err);
+                        })
+
                 });
         }
 
@@ -38,6 +47,7 @@
                 .then(function(){
 
                 });
+            $location.url('/movie/' + movieId + '/review');
 
         }
     }

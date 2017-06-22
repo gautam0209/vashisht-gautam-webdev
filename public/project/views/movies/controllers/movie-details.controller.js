@@ -9,12 +9,17 @@
 
     function detMovieController($routeParams,
                                 currentUser,
+                                userService,
                                 movieService)
     {
 
         var model = this;
         model.currentUser = currentUser;
-       // model.submitReview = submitReview;
+        model.userId = currentUser._id;
+        model.likeMovie = likeMovie;
+        model.unLikeMovie = unLikeMovie;
+
+        // model.submitReview = submitReview;
 
 
        // model.getReviews = getReviews;
@@ -31,9 +36,33 @@
                    model.movie = movie.data;
                    console.log(model.movie);
                });
+           if(currentUser._id)
+                userService
+                    .isLike(model.userId,model.movieId)
+                    .then(function(like){
+                        model.like = like;
+                    },function(){});
         }
 
         init();
+
+        function likeMovie()
+        {
+            userService
+                .likeMovie(model.userId, model.movieId)
+                .then(function(like){
+                    model.like = like;
+                })
+        }
+
+        function unLikeMovie()
+        {
+            userService
+                .unLikeMovie(model.userId, model.movieId)
+                .then(function(){
+                    model.like = '';
+                })
+        }
 
     }
 
