@@ -8,7 +8,7 @@ var q = require('q');
 
 
 // api
-//     reviewModel.findAllPages = findAllPages;
+    reviewModel.findAllReviews = findAllReviews;
 //     //reviewModel.createPage = createPage;
 //     reviewModel.findPageById = findPageById;
 //     reviewModel.findAllPagesForWebsite = findAllPagesForWebsite;
@@ -35,6 +35,10 @@ function getLocalReviews(movieId)
         })
 
     return prom.promise;
+}
+
+function findAllReviews() {
+    return reviewModel.find();
 }
 
     function addReview(userObj)

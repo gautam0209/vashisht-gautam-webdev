@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <h1>Reviews</h1>
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-2">
+                    UserName
+                </div>
+                <div class="col-xs-3">
+                    MovieName
+                </div>
+                <div class="col-xs-6">
+                    Content
+                </div>
+                <div class="col-xs-1">
+
+                </div>
+            </div>
+        </li>
+        <!--<li class="list-group-item">-->
+            <!--<div class="row">-->
+                <!--<div class="col-xs-2">-->
+                    <!--<input ng-model="model.review.username"-->
+                           <!--class="form-control"/>-->
+                <!--</div>-->
+                <!--<div class="col-xs-3">-->
+                    <!--<input ng-model="model.review.movieName"-->
+                           <!--class="form-control"/>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6">-->
+                    <!--<input ng-model="model.review.content"-->
+                           <!--class="form-control"/>-->
+                <!--</div>-->
+                <!--<div class="col-xs-1">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</li>-->
+        <li ng-repeat="review in model.reviews" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-2">
+                    <!--{{model.getUserById(review._user)}}-->
+                </div>
+                <div class="col-xs-3">
+                    {{review.getMovieById(review.movieId)}}
+                </div>
+                <div class="col-xs-6">
+                    {{review.content}}
+                </div>
+                <div class="col-xs-1">
+                    <span ng-click="model.deleteReview(review)" class="glyphicon glyphicon-remove">
+                    </span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

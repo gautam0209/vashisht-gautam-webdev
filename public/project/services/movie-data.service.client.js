@@ -16,6 +16,8 @@
         var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
         var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
         var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&append_to_response=credits&language=en-US";
+        var urlBasePop = "https://api.themoviedb.org/3/movie/popular?api_key="+key+"&language=en-US";
+        var urlBaseUp = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + key + "&language=en-US";
 
         var movie;
 
@@ -31,6 +33,8 @@
         var api =
             {
                 getMovies:getMovies,
+                getPopularMovies:getPopularMovies,
+                getUpcomingMovies:getUpcomingMovies,
                 searchMovie: searchMovie,
                // putMovie: putMovie,
                 //getMovie: getMovie,
@@ -38,6 +42,7 @@
                 //addReview: addReview,
                 getLocalReview:getLocalReview,
                 findMovieById:findMovieById,
+                findAllReviews:findAllReviews
             };
 
 
@@ -59,6 +64,18 @@
         {
             return $http
                     .get(urlBaseCur);
+        }
+
+        function getPopularMovies()
+        {
+            return $http
+                .get(urlBasePop);
+        }
+
+        function getUpcomingMovies()
+        {
+            return $http
+                .get(urlBaseUp);
         }
 
         function searchMovie(movieName)
@@ -91,6 +108,15 @@
                     return response.data;
                 }, function(err){
                     console.log(err);
+                });
+
+        }
+        function findAllReviews()
+        {
+            var url = "/api/project/admin/reviews";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
                 });
 
         }

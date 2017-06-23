@@ -30,6 +30,16 @@
                     model.currentMovies = response.data.results;
                     console.log(model.currentMovies[0]);
                 })
+
+            movieService.getPopularMovies()
+                .then(function(response){
+                    model.popularMovies = response.data.results;
+                    console.log(model.popularMovies[0]);
+                })
+            movieService.getUpcomingMovies()
+                .then(function(response){
+                    model.upcomingMovies = response.data.results;
+                })
         }
 
         init();

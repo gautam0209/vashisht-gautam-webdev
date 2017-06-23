@@ -70,6 +70,41 @@
                     currentUser:checkCurrentUser
                 }
             })
+
+                .when(
+                    '/admin', {
+                        templateUrl: 'views/admin/templates/admin.view.client.html',
+                        resolve:{
+                            currentUser:checkAdmin
+                        }
+                        //controller: 'loginController',
+                        //controllerAs: 'model'
+                    }
+                )
+
+            .when(
+                '/admin/users', {
+                    templateUrl: 'views/admin/templates/admin-users.view.client.html',
+                    resolve:{
+                        currentUser:checkAdmin
+                    },
+                    controller: 'adminController',
+                    controllerAs: 'model'
+                }
+            )
+
+            .when(
+                '/admin/reviews', {
+                    templateUrl: 'views/admin/templates/admin-reviews.view.client.html',
+                    resolve:{
+                        currentUser:checkAdmin
+                    },
+                    controller: 'adminController',
+                    controllerAs: 'model'
+                }
+            )
+
+
     }
 
     function checkLoggedIn(userService, $q, $location) {
@@ -77,6 +112,23 @@
 
         userService
             .loggedin()
+            .then(function (user) {
+                if(user === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkAdmin(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .checkAdmin()
             .then(function (user) {
                 if(user === '0') {
                     deferred.reject();

@@ -7,6 +7,8 @@ var reviewModel = require('../models/review/review.model.server');
 
 app.post  ('/api/project/review', addReview);
 app.get   ('/api/movie/:movieId/localReview', getLocalReviews);
+app.get('/api/project/admin/reviews', isAdmin, findAllReviews);
+
 
 
 // var pages = [
@@ -14,6 +16,28 @@ app.get   ('/api/movie/:movieId/localReview', getLocalReviews);
 //     { "_id": "432", "name": "Post 2", "websiteId": "789", "description": "Lorem" },
 //     { "_id": "543", "name": "Post 3", "websiteId": "789", "description": "Lorem" }
 // ];
+
+
+function isAdmin(req,res,next)
+{
+    if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1)
+        next();
+    else
+        res.sendStatus(401);
+}
+
+function findAllReviews(req, res){
+        reviewModel.findAllReviews()
+            .then(function(reviews){
+                    if(reviews)
+                        res.send(reviews);
+                    else
+                        res.sendStatus(404);
+                },
+                function(){
+                    res.sendStatus(404);
+                })
+}
 
 function getLocalReviews(req, res)
 {

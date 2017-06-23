@@ -73,7 +73,7 @@
 
         function findAllUsers()
         {
-            var url = "/api/assignment/graduate/admin/users";
+            var url = "/api/project/admin/users";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -85,6 +85,15 @@
             var url = "/api/assignment/graduate/register";
             return $http.post(url, userObj)
                 .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function createUser(user)
+        {
+            var url="/api/assignment/graduate/user";
+            return $http.post(url, user)
+                .then(function(response){
                     return response.data;
                 });
         }
@@ -119,7 +128,7 @@
         }
 
         function checkAdmin() {
-            var url = "/api/assignment/graduate/admin";
+            var url = "/api/project/admin";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -140,14 +149,7 @@
                 })
         }
 
-        function createUser(user)
-        {
-            var url="/api/assignment/graduate/user";
-            return $http.post(url, user)
-                .then(function(response){
-                    return response.data;
-                });
-        }
+
 
         function findUserByUserName(userName) {
             var url="/api/assignment/graduate/user?username="+userName;

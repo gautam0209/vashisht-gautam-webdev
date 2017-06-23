@@ -43,7 +43,7 @@ passport.deserializeUser(deserializeUser);
 // ];
 
 app.post('/api/assignment/graduate/user', isAdmin, createUser);
-app.get('/api/assignment/graduate/admin/users', isAdmin, findAllUsers);
+app.get('/api/project/admin/users', isAdmin, findAllUsers);
 
 app.put('/api/assignment/graduate/user', updateProfile);
 
@@ -60,7 +60,7 @@ app.post('/api/assignment/graduate/logout', logout);
 
 
 app.get   ('/api/assignment/graduate/loggedin', loggedin);
-app.get   ('/api/assignment/graduate/admin', checkAdmin);
+app.get   ('/api/project/admin', checkAdmin);
 
 app.post  ('/api/assignment/graduate/register', register);
 app.post  ('/api/assignment/graduate/unregister', unregister);
@@ -268,6 +268,18 @@ function register(req, res) {
         });
 }
 
+function createUser(req, res){
+    var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+    userProjModel.createUser(user)
+        .then(function(user){
+                res.json(user);
+            },
+            function(err){
+                res.send(err);
+            });
+}
+
 function logout(req, res){
     req.logout();
     res.sendStatus(200);
@@ -451,16 +463,7 @@ function findAllUsers(req, res){
             })
 }
 
-function createUser(req, res){
-    var user = req.body;
-    userProjModel.createUser(user)
-        .then(function(user){
-                res.json(user);
-        },
-        function(err){
-            res.send(err);
-        });
-}
+
 
 function serializeUser(user, done) {
     done(null, user);
