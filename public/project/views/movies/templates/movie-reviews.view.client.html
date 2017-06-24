@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#!/movie/{{model.movieId}}">
@@ -16,7 +16,7 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: black; color: whitesmoke">
             <h1 id="title">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
     <div class="row">
         <div class="col-lg-2 pull-left">
@@ -55,7 +55,7 @@
         <p>No Reviews Yet. Please add reviews.</p>
     </div>
        <div ng-repeat="review in model.reviews" class="table-bordered">
-           <div><b> A review by {{review.author}}</b></div>
+           <div style="color: darkgoldenrod"><b> A review by {{review.author}}</b></div>
            <div> {{review.content}} </div>
        </div>
 </ul>
@@ -65,7 +65,7 @@
 
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">

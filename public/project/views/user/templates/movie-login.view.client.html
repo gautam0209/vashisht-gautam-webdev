@@ -1,25 +1,74 @@
- <div class="container-fluid">
-        <h1>Login</h1>
-     <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+<div class="container" style="background-image: url('https://blackgirlnerds.com/wp-content/uploads/2016/02/batmanvsuperman-xlarge.jpg');
+                                background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;">
+    <div id="loginbox" style="margin-top:125px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
 
-        <label for="username">Username</label>
-        <input type="text"
-               ng-model="username"
-               id="username"
-               class="form-control"
-               placeholder="movieLogin"/>
+        <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
+            <div class="panel-heading">
+                <div class="panel-title" style="color: gray"><b>Sign In</b></div>
+            </div>
 
-        <label for="password">Password</label>
-        <input type="password"
-               ng-model="password"
-               id="password"
-               class="form-control"
-               placeholder="moviePassword"/>
+            <div class="panel-body" style="padding-top: 25px;">
+                <div class="input-group" style="margin-bottom: 20px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text"
+                           ng-model="username"
+                           id="username"
+                           class="form-control"
+                           placeholder="movieLogin"/>
+                </div>
 
-        <a class="btn btn-primary btn-block"
-            ng-click="model.login(username, password)">
-            Login</a>
+                <div class="input-group" style="margin-bottom: 20px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-log-in"></i></span>
+                    <input type="password"
+                           ng-model="password"
+                           id="password"
+                           class="form-control"
+                           placeholder="moviePassword"/>
+                </div>
 
-        <!--<a class="btn btn-success btn-block"-->
-           <!--href="#!/register">Register</a>-->
+
+                <div class="input-group">
+                    <a class="btn btn-primary"
+                        ng-click="model.login(username, password)">
+                        Login</a>
+                </div>
+            </div>
+
+
+            <hr style="color:black"/>
+
+            <div class="input-group">
+                <b style="color: gray">
+                    Login Via
+                </b>
+                <br>
+                <a href="/auth/google" class="btn btn-danger" style="margin: 5px">
+                    <span class="fa fa-google-plus"></span>
+                    Google
+                </a>
+
+                <a href="/auth/facebook" class="btn btn-primary" style="margin-right:200px">
+                    <span class="fa fa-facebook"></span>
+                    Facebook
+                </a>
+
+                <b style="color: gray">
+                    New here?
+                </b>
+                <a href="#!/register">Sign Up!!</a>
+            </div>
+
+
+        </div>
+
+
+
+
     </div>
+</div>

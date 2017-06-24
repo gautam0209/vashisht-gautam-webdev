@@ -1,6 +1,3 @@
-/**
- * Created by Gautam Vashisht on 6/7/2017.
- */
 
 (function (){
     angular
@@ -18,6 +15,8 @@
         model.userId = currentUser._id;
         model.likeMovie = likeMovie;
         model.unLikeMovie = unLikeMovie;
+        model.watchMovie = watchMovie;
+        model.unWatchMovie = unWatchMovie;
 
         // model.submitReview = submitReview;
 
@@ -36,11 +35,19 @@
                    model.movie = movie.data;
                    console.log(model.movie);
                });
+
            if(currentUser._id)
                 userService
                     .isLike(model.userId,model.movieId)
                     .then(function(like){
                         model.like = like;
+                    },function(){});
+
+            if(currentUser._id)
+                userService
+                    .isWatch(model.userId,model.movieId)
+                    .then(function(watch){
+                        model.watch = watch;
                     },function(){});
         }
 
@@ -55,12 +62,30 @@
                 })
         }
 
+        function watchMovie()
+        {
+            userService
+                .watchMovie(model.userId, model.movieId)
+                .then(function(watch){
+                    model.watch = watch;
+                })
+        }
+
         function unLikeMovie()
         {
             userService
                 .unLikeMovie(model.userId, model.movieId)
                 .then(function(){
                     model.like = '';
+                })
+        }
+
+        function unWatchMovie()
+        {
+            userService
+                .unWatchMovie(model.userId, model.movieId)
+                .then(function(){
+                    model.watch = '';
                 })
         }
 

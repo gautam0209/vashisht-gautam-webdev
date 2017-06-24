@@ -45,7 +45,7 @@ passport.deserializeUser(deserializeUser);
 app.post('/api/assignment/graduate/user', isAdmin, createUser);
 app.get('/api/project/admin/users', isAdmin, findAllUsers);
 
-app.put('/api/assignment/graduate/user', updateProfile);
+app.put('/api/project/user', updateProfile);
 
 
 
@@ -84,6 +84,63 @@ app.get('/auth/facebook/callback',
 app.get('/api/user/:userId/movie/:movieId/like', isLike);
 app.post('/api/user/:userId/movie/:movieId/like', likeMovie);
 app.post('/api/user/:userId/movie/:movieId/unlike', unLikeMovie);
+app.get('/api/user/:userId/movie/:movieId/watch', isWatch);
+app.post('/api/user/:userId/movie/:movieId/watch', watchMovie);
+app.post('/api/user/:userId/movie/:movieId/unwatch', unWatchMovie);
+
+
+function unWatchMovie(req, res)
+{
+    var userId = req.params['userId'];
+    var movieId = req.params['movieId'];
+    userProjModel
+        .unWatchMovie(userId, movieId)
+        .then(function(watch){
+            if(watch)
+                res.sendStatus(200);
+            else
+                res.sendStatus(404);
+        }, function(){
+            res.sendStatus(404)
+        })
+}
+
+function watchMovie(req, res)
+{
+    var userId = req.params['userId'];
+    var movieId = req.params['movieId'];
+    userProjModel
+        .watchMovie(userId, movieId)
+        .then(function(watch){
+            if(watch)
+                res.sendStatus(200);
+            else
+                res.sendStatus(404);
+        }, function(){
+            res.sendStatus(404)
+        })
+}
+
+
+
+function isWatch(req, res)
+{
+
+    var userId = req.params['userId'];
+    var movieId = req.params['movieId'];
+    userProjModel
+        .isWatch(userId, movieId)
+        .then(function(watch){
+            if(watch)
+                res.sendStatus(200);
+            else
+                res.sendStatus(404);
+        }, function(){
+            res.sendStatus(404)
+        })
+}
+
+
 
 
 function unLikeMovie(req, res)
@@ -373,14 +430,23 @@ function updateProfile(req, res)
     var user = req.body;
     //var userId = req.params['userId'];
     var userId = req.user._id;
+    console.log(user.password);
 
-    userProjModel.updateUser(userId,user)
-        .then(function(){
-                res.sendStatus(200)
-            },
-            function(){
-                res.sendStatus(404)
-            });
+    userProjModel.findUserById(userId)
+        .then(function(oUser){
+            if(oUser.password !== user.password)
+                user.password = bcrypt.hashSync(user.password);
+            userProjModel.updateUser(userId,user)
+                .then(function(){
+                        res.sendStatus(200)
+                        console.log(user.password);
+
+                    },
+                    function(){
+                        res.sendStatus(404)
+                    });
+        })
+
 }
 
 function findUserById(req, res)

@@ -5,12 +5,9 @@ form{
     margin-bottom: 5px;
 }
 
-
-nav.navbar.navbar-default.navbar-fixed-top,
-nav.navbar.navbar-default.navbar-fixed-bottom
+nav.navbar.navbar-inverse.navbar-fixed-top,
+nav.navbar.navbar-inverse.navbar-fixed-bottom
 {
-    background-color: darkblue;
-    border-color: darkblue;
     padding-right: -15px;
 }
 
@@ -71,15 +68,4 @@ a{
 .wd-pad-l-r-15{
     padding-left:15px;
     padding-right:15px;
-}
-
-
-.wd-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-    color:whitesmoke;
 }

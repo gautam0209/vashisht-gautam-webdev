@@ -28,10 +28,14 @@
                 addReview: addReview,
                 isLike: isLike,
                 likeMovie: likeMovie,
-                unLikeMovie: unLikeMovie
+                unLikeMovie: unLikeMovie,
+                isWatch: isWatch,
+                watchMovie: watchMovie,
+                unWatchMovie: unWatchMovie
             };
 
         return api;
+
 
         function unLikeMovie(userId, movieId)
         {
@@ -49,9 +53,30 @@
             return $http.post(url);
         }
 
+        function unWatchMovie(userId, movieId)
+        {
+
+            var url = '/api/user/' + userId + '/movie/' + movieId + '/unwatch';
+            return $http.post(url);
+        }
+
+        function watchMovie(userId, movieId)
+        {
+
+            var url = '/api/user/' + userId + '/movie/' + movieId + '/watch';
+            return $http.post(url);
+        }
+
         function isLike(userId, movieId)
         {
             var url = '/api/user/' + userId + '/movie/' + movieId + '/like';
+
+            return $http.get(url);
+        }
+
+        function isWatch(userId, movieId)
+        {
+            var url = '/api/user/' + userId + '/movie/' + movieId + '/watch';
 
             return $http.get(url);
         }
@@ -197,7 +222,7 @@
 
         function updateProfile(userId, user)
         {
-            var url="/api/assignment/graduate/user";
+            var url="/api/project/user";
             return $http.put(url, user)
                 .then(function(response){
                     return response.data;

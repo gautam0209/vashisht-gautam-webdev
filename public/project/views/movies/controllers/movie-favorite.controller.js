@@ -5,9 +5,9 @@
 (function (){
     angular
         .module('WebAppProj')
-        .controller('homeController',homeController);
+        .controller('favMovieController',favMovieController);
 
-    function homeController(currentUser,
+    function favMovieController(currentUser,
                             userService,
                             $location,
                             movieService)
@@ -17,29 +17,44 @@
         // model.data = [];
         // model.movies = [];
         model.searchMovie = searchMovie;
+        model.logout = logout;
         // model.getRating = getRating;
         // model.movieDetails = movieDetails;
         // model.submitReview = submitReview;
         model.currentUser = currentUser;
-        model.logout = logout;
+        model.favMovies = [];
+        model.watMovies = [];
 
         function init()
         {
-            movieService.getMovies()
-                .then(function(response){
-                    model.currentMovies = response.data.results;
-                    console.log(model.currentMovies[0]);
-                })
+            if(model.currentUser._id)
+            {
+                for(var m in currentUser.movieLiked)
+                {
+                    var movieId = currentUser.movieLiked[m];
+                    movieService
+                        .findMovieById(movieId)
+                        .then(function(movie)
+                        {
+                            model.favMovies.push(movie.data);
+                        })
+                }
+            }
 
-            movieService.getPopularMovies()
-                .then(function(response){
-                    model.popularMovies = response.data.results;
-                    console.log(model.popularMovies[0]);
-                })
-            movieService.getUpcomingMovies()
-                .then(function(response){
-                    model.upcomingMovies = response.data.results;
-                })
+            if(model.currentUser._id)
+            {
+                for(var m in currentUser.movieWatched)
+                {
+                    var movieId = currentUser.movieWatched[m];
+                    movieService
+                        .findMovieById(movieId)
+                        .then(function(movie)
+                        {
+                            model.watMovies.push(movie.data);
+                        })
+                }
+            }
+
         }
 
         init();
@@ -52,6 +67,8 @@
                     $location.url('/');
                 });
         }
+
+
 
         // function submitReview(movieId, review)
         // {

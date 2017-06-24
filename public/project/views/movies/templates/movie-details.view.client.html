@@ -16,22 +16,22 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: black;">
 
 
-            <h1 id="title">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
+            <h1 id="title" style="color:whitesmoke">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
     <div class="row">
         <div class="col-lg-3 pull-left">
             <img ng-src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}" width = 200px/>
         </div>
-        <div class="col-lg-9">
-            Overview: {{model.movie.overview}}
+        <div class="col-lg-9" style="color:whitesmoke">
+                {{model.movie.overview}}
             <br> <br>
-            Release Date:{{model.movie.release_date}}
+            Release Date: {{model.movie.release_date}}
             <br><br>
             Rating: {{model.movie.vote_average}}
             <br><br>
-            Home Page: <a href="{{model.movie.homepage}}">{{model.movie.homepage}}</a>
+            <a href="{{model.movie.homepage}}">{{model.movie.homepage}}</a>
             <br><br>
             IMDB Link: <a href="http://imdb.com/title/{{model.movie.imdb_id}}">Visit IMDB Link</a>
             <br><br>
@@ -46,21 +46,26 @@
                 <a ng-show="model.like" ng-click="model.unLikeMovie()">
                     <i class="fa fa-heart fa-2x" style="color:red"></i>
                 </a>
+                <a ng-show="!model.watch" ng-click="model.watchMovie()">
+                    <i class="fa fa-eye fa-2x"></i>
+                </a>
+                <a ng-show="model.watch" ng-click="model.unWatchMovie()">
+                    <i class="fa fa-eye fa-2x" style="color:red"></i>
+                </a>
             </div>
             <div ng-show="!model.currentUser._id">
                 <a href="#!/login">
                     Please Login to like and add movie to your playlist.
                 </a>
             </div>
-
-
-
         </div>
      </div>
     </div>
 
+<div id="panel" style="background-color: black">
 
-    <div id="mov-det" class="panel panel-default">
+
+    <div id="mov-det" class="panel panel-info">
         <div class="panel-heading">Movie Details</div>
         <div class="panel-body">
             {{model.movie.overview}}
@@ -72,7 +77,7 @@
         </ul>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">Movie Genre</div>
         <!-- List group -->
         <ul class="list-group">
@@ -82,7 +87,7 @@
         </ul>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">Box Office</div>
 
         <!-- List group -->
@@ -92,15 +97,15 @@
         </ul>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">Production Companies</div>
             <!-- List group -->
         <div ng-repeat="company in model.movie.production_companies">
-                    <li class="list-group-item">{{company.name}}</li>
+            <li class="list-group-item">{{company.name}}</li>
         </div>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-info">
         <div class="panel-heading">Star Cast</div>
         <!-- List group -->
         <ul class="list-group">
@@ -118,13 +123,12 @@
             </li>
         </ul>
     </div>
-
 </div>
 
 
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">

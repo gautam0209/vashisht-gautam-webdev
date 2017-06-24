@@ -51,6 +51,15 @@
                 // controllerAs: 'model'
             })
 
+            .when('/profile',{
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: 'profileController',
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+            })
+
             .when('/searchMovie',{
                 templateUrl: 'views/movies/templates/movie-search.view.client.html',
                 controller: 'movieController',
@@ -65,6 +74,15 @@
             .when('/movie/:movieId',{
                 templateUrl: 'views/movies/templates/movie-details.view.client.html',
                 controller: 'detMovieController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
+            })
+
+            .when('/myMovies',{
+                templateUrl: 'views/movies/templates/movie-favorite.view.client.html',
+                controller: 'favMovieController',
                 controllerAs: 'model',
                 resolve: {
                     currentUser:checkCurrentUser

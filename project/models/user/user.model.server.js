@@ -20,8 +20,53 @@ var q = require('q');
     userProjModel.isLike = isLike;
     userProjModel.likeMovie = likeMovie;
     userProjModel.unLikeMovie = unLikeMovie;
+    userProjModel.isWatch = isWatch;
+    userProjModel.watchMovie = watchMovie;
+    userProjModel.unWatchMovie = unWatchMovie;
 
 module.exports = userProjModel;
+
+function unWatchMovie(userId, movieId)
+{
+    return userProjModel
+        .findById(userId)
+        .then(function(user) {
+            var index = user.movieWatched.indexOf(movieId);
+
+            user.movieWatched.splice(index, 1);
+
+            return user.save();
+        })
+}
+
+function watchMovie(userId, movieId)
+{
+    return userProjModel
+        .findById(userId)
+        .then(function(user) {
+            user.movieWatched.push(movieId);
+            return user.save();
+        })
+}
+function isWatch(userId, movieId)
+{
+    var prom = q.defer();
+    return userProjModel
+        .findById(userId)
+        .then(function(user){
+            var moviesWatched = user.movieWatched;
+            for(var m in moviesWatched)
+            {
+                var movie = moviesWatched[m];
+                if(movie == movieId){
+                    return q.resolve(user);
+                }
+            }
+        })
+
+    return q.promise;
+}
+
 
 
 function unLikeMovie(userId, movieId)
@@ -124,6 +169,7 @@ function findUserByFacebookId(facebookId) {
         return userProjModel.findById(userId);
     }
 
+
     function findAllUsers() {
         return userProjModel.find();
     }
@@ -139,7 +185,6 @@ function findUserByFacebookId(facebookId) {
 
     function updateUser(userId, newUser) {
         delete newUser.username;
-        delete newUser.password;
         return userProjModel.update({_id: userId}, {$set: newUser});
     }
 

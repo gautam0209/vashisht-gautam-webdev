@@ -1,0 +1,181 @@
+<div class="container" style="background-image: url('https://images.alphacoders.com/211/thumb-1920-211721.jpg');
+                                background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;">
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+
+        <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
+            <div class="panel-heading">
+                <div class="panel-title" style="color: gray"><b>Your Profile</b></div>
+            </div>
+
+            <div class="panel-body" style="padding-top: 25px;">
+                <div class="input-group" style="margin-bottom: 20px">
+                    <label for="username"><b style="color:gray">Username</b></label>
+                    <input type="text"
+                           ng-model="model.user.username"
+                           id="username"
+                           class="form-control"/>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 20px">
+                    <label for="password"><b style="color:gray">Password</b></label>
+                    <input type="password"
+                           ng-model="model.user.password"
+                           id="password"
+                           class="form-control"
+                           placeholder="moviePassword"/>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 20px">
+                    <label for="email"><b style="color:gray">Email</b></label>
+                    <input type="email"
+                           ng-model="model.user.email"
+                           id="email"
+                           class="form-control"
+                           placeholder="movie@movieBuff.com"/>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 20px">
+                    <label for="firstName"><b style="color:gray">First Name</b></label>
+                    <input type="text"
+                           ng-model="model.user.firstName"
+                           id="firstName"
+                           class="form-control"
+                           placeholder="firstName"/>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 20px">
+                    <label for="lastName"><b style="color:gray">LastName</b></label>
+                    <input type="lastName"
+                           ng-model="model.user.lastName"
+                           id="lastName"
+                           class="form-control"
+                           placeholder="lastName"/>
+                </div>
+                <a class="btn btn-info" style="margin-bottom: 5px"
+                   href="#!/">
+                    <b style="color:gray">Home</b>
+                </a>
+
+
+                <div class="input-group">
+
+                    <a class="btn btn-success" style="margin-right: 5px"
+                    ng-click="model.updateProfile(model.user)">
+                        <b style="color:gray">Update</b>
+                    </a>
+                    <a class="btn btn-danger " style="margin-right: 5px"
+                    ng-click="model.unregister(model.user)">
+                        <b style="color:gray">Unregister</b>
+                    </a>
+                    <a class="btn btn-danger " style="margin-right: 5px"
+                    ng-click="model.logout()">
+                        <b style="color:gray">Logout</b>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<!--<nav class="navbar navbar-default navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<a class="navbar-brand">-->
+                <!--Profile-->
+            <!--</a>-->
+            <!--<p class="navbar-text pull-right">-->
+                <!--<a ng-click="model.updateProfile(model.user)" class="navbar-link">-->
+                    <!--<span class="glyphicon glyphicon-ok"></span>-->
+                <!--</a>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+
+
+
+    <!--<div class="container-fluid">-->
+        <!--&lt;!&ndash;<h1>Profile</h1>&ndash;&gt;-->
+
+        <!--<div ng-show="model.error" class="alert alert-info">-->
+            <!--{{model.error}}-->
+        <!--</div>-->
+        <!--<div ng-show="model.message" class="alert alert-info">-->
+            <!--{{model.message}}-->
+        <!--</div>-->
+        <!--<form>-->
+            <!--<div class="form-group">-->
+                <!--<label for="username">Username</label>-->
+                <!--<input type="text"-->
+                       <!--ng-model="model.user.username"-->
+                       <!--class="form-control"-->
+                       <!--id="username"-->
+                       <!--placeholder="gautam0209">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="email">Email address</label>-->
+                <!--<input type="email"-->
+                       <!--ng-model="model.user.email"-->
+                       <!--class="form-control"-->
+                       <!--id="email"-->
+                       <!--placeholder="gautam.vashisht0209@gmail.com"-->
+                <!--ng-model="model.user.email">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="first-name">First Name</label>-->
+                <!--<input type="text"-->
+                       <!--ng-model="model.user.firstName"-->
+                       <!--class="form-control"-->
+                       <!--id="first-name"-->
+                       <!--placeholder="Gautam">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="last-name">Last Name</label>-->
+                <!--<input type="text"-->
+                       <!--ng-model="model.user.lastName"-->
+                       <!--class="form-control"-->
+                       <!--id="last-name"-->
+                       <!--placeholder="Vashisht">-->
+            <!--</div>-->
+        <!--</form>-->
+
+        <!--<a class="btn btn-primary btn-block"-->
+           <!--href="#!/website">-->
+            <!--Websites-->
+        <!--</a>-->
+        <!--<a class="btn btn-success btn-block"-->
+           <!--ng-click="model.updateProfile(model.user)">-->
+            <!--Update-->
+        <!--</a>-->
+        <!--<a class="btn btn-danger btn-block"-->
+           <!--ng-click="model.unregister(model.user)">-->
+            <!--Unregister-->
+        <!--</a>-->
+        <!--<a class="btn btn-danger  btn-block"-->
+           <!--ng-click="model.logout()">-->
+            <!--Logout-->
+        <!--</a>-->
+    <!--</div>-->
+
+<!--<nav class="navbar navbar-default navbar-fixed-bottom">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<p class="navbar-text pull-right">-->
+                <!--<a class="navbar-link">-->
+                    <!--<span class="glyphicon glyphicon-user"></span>-->
+                <!--</a>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->

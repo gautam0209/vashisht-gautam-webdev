@@ -12,6 +12,7 @@ var userProjSchema = mongoose.Schema({
     phone: String,
     reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "reviewModel"}],
     movieLiked: [{type: Number}],
+    movieWatched: [{type: Number}],
     follow: [{type: mongoose.Schema.Types.ObjectId, ref: "reviewModel"}],
     followers : [{type: mongoose.Schema.Types.ObjectId, ref: "reviewModel"}],
     roles: [{type: String,
