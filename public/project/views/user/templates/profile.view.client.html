@@ -1,21 +1,28 @@
 <div class="container" style="background-image: url('https://images.alphacoders.com/211/thumb-1920-211721.jpg');
-                                background-size: cover;
+    background-size: cover;
     position: absolute;
     top:0;
     left:0;
     min-width: 100%;
     min-height: 100%;">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <!--background-position: center top;-->
+    <!--background-size: cover;-->
+    <!--position:absolute;-->
+    <!--top:0;-->
+    <!--bottom:0;-->
+    <!--width:100%">-->
+
+    <div id="loginbox" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
 
         <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
             <div class="panel-heading">
-                <div class="panel-title" style="color: gray"><b>Your Profile</b></div>
+                <div class="panel-title" style="color: lightgray"><b>Your Profile</b></div>
             </div>
 
             <div class="panel-body" style="padding-top: 25px;">
                 <div class="input-group" style="margin-bottom: 20px">
-                    <label for="username"><b style="color:gray">Username</b></label>
+                    <label for="username"><b style="color:lightgray">Username</b></label>
                     <input type="text"
                            ng-model="model.user.username"
                            id="username"
@@ -23,7 +30,7 @@
                 </div>
 
                 <div class="input-group" style="margin-bottom: 20px">
-                    <label for="password"><b style="color:gray">Password</b></label>
+                    <label for="password"><b style="color:lightgray">Password</b></label>
                     <input type="password"
                            ng-model="model.user.password"
                            id="password"
@@ -32,7 +39,7 @@
                 </div>
 
                 <div class="input-group" style="margin-bottom: 20px">
-                    <label for="email"><b style="color:gray">Email</b></label>
+                    <label for="email"><b style="color:lightgray">Email</b></label>
                     <input type="email"
                            ng-model="model.user.email"
                            id="email"
@@ -41,7 +48,7 @@
                 </div>
 
                 <div class="input-group" style="margin-bottom: 20px">
-                    <label for="firstName"><b style="color:gray">First Name</b></label>
+                    <label for="firstName"><b style="color:lightgray">First Name</b></label>
                     <input type="text"
                            ng-model="model.user.firstName"
                            id="firstName"
@@ -50,7 +57,7 @@
                 </div>
 
                 <div class="input-group" style="margin-bottom: 20px">
-                    <label for="lastName"><b style="color:gray">LastName</b></label>
+                    <label for="lastName"><b style="color:lightgray">LastName</b></label>
                     <input type="lastName"
                            ng-model="model.user.lastName"
                            id="lastName"
@@ -59,7 +66,7 @@
                 </div>
                 <a class="btn btn-info" style="margin-bottom: 5px"
                    href="#!/">
-                    <b style="color:gray">Home</b>
+                    <b>Home</b>
                 </a>
 
 
@@ -67,15 +74,15 @@
 
                     <a class="btn btn-success" style="margin-right: 5px"
                     ng-click="model.updateProfile(model.user)">
-                        <b style="color:gray">Update</b>
+                        <b>Update</b>
                     </a>
                     <a class="btn btn-danger " style="margin-right: 5px"
                     ng-click="model.unregister(model.user)">
-                        <b style="color:gray">Unregister</b>
+                        <b>Unregister</b>
                     </a>
                     <a class="btn btn-danger " style="margin-right: 5px"
                     ng-click="model.logout()">
-                        <b style="color:gray">Logout</b>
+                        <b>Logout</b>
                     </a>
                 </div>
             </div>

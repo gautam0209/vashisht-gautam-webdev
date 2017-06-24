@@ -19,6 +19,14 @@
                     currentUser:checkCurrentUser
                 }
             })
+            .when('/user',{
+                templateUrl: 'views/home/templates/home-page.view.client.html',
+                controller: 'homeController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
+            })
             .when('/movie/:movieId',{
                 templateUrl: 'views/movies/templates/movie-details.view.client.html',
                 controller: 'detMovieController',
@@ -44,11 +52,6 @@
                 templateUrl: 'views/user/templates/register.view.client.html',
                 controller: 'registerController',
                 controllerAs: 'model'
-            })
-            .when('/user',{
-                templateUrl: 'views/movies/templates/movie-start.view.client.html'
-                // controller: 'movieStartController',
-                // controllerAs: 'model'
             })
 
             .when('/profile',{
@@ -88,6 +91,14 @@
                     currentUser:checkCurrentUser
                 }
             })
+            .when('/myReviews',{
+                templateUrl: 'views/movies/templates/my-movie-reviews.view.client.html',
+                controller: 'myRevController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser:checkCurrentUser
+                }
+            })
 
                 .when(
                     '/admin', {
@@ -118,6 +129,16 @@
                         currentUser:checkAdmin
                     },
                     controller: 'adminController',
+                    controllerAs: 'model'
+                }
+            )
+            .when(
+                '/followingReviews', {
+                    templateUrl: 'views/movies/templates/following-reviews.view.client.html',
+                    resolve:{
+                        currentUser:checkCurrentUser
+                    },
+                    controller: 'followingController',
                     controllerAs: 'model'
                 }
             )

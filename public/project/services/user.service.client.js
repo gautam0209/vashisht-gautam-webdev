@@ -31,10 +31,17 @@
                 unLikeMovie: unLikeMovie,
                 isWatch: isWatch,
                 watchMovie: watchMovie,
-                unWatchMovie: unWatchMovie
+                unWatchMovie: unWatchMovie,
+                follow: follow
             };
 
         return api;
+
+        function follow(userId, expertId)
+        {
+            var url = '/api/user/' + userId + '/follow/' + expertId;
+            return $http.post(url);
+        }
 
 
         function unLikeMovie(userId, movieId)

@@ -1,16 +1,18 @@
 <div class="container" style="background-image: url('https://blackgirlnerds.com/wp-content/uploads/2016/02/batmanvsuperman-xlarge.jpg');
-                                background-size: cover;
-    position: absolute;
-    top:0;
-    left:0;
-    min-width: 100%;
-    min-height: 100%;">
-    <div id="loginbox" style="margin-top:125px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+background-position: center top;
+background-size: cover;
+position:absolute;
+top:0;
+bottom:0;
+min-width:100%;
+min-height:100%">
+
+    <div id="loginbox" style="margin-top:125px; bottom:0" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
 
         <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
             <div class="panel-heading">
-                <div class="panel-title" style="color: gray"><b>Sign In</b></div>
+                <div class="panel-title" style="color: lightgray"><b>Sign In</b></div>
             </div>
 
             <div class="panel-body" style="padding-top: 25px;">
@@ -37,31 +39,50 @@
                     <a class="btn btn-primary"
                         ng-click="model.login(username, password)">
                         Login</a>
+                    <a class="btn btn-success" style="margin-left: 15px"
+                       href="#!/">
+                        Continue as Guest</a>
                 </div>
             </div>
 
 
             <hr style="color:black"/>
 
-            <div class="input-group">
-                <b style="color: gray">
-                    Login Via
-                </b>
+            <div class="input-group" style="margin-bottom:-15px">
+                <!--<b style="color: gray">-->
+                    <!--Login Via-->
+                <!--</b>-->
+                <div class="panel-heading">
+                    <div class="panel-title" style="color: lightgray"><b>Login Via</b></div>
+                </div>
                 <br>
-                <a href="/auth/google" class="btn btn-danger" style="margin: 5px">
-                    <span class="fa fa-google-plus"></span>
-                    Google
-                </a>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <a href="/auth/google" class="btn btn-danger" style="margin-left:10px">
+                            <span class="fa fa-google-plus"></span>
+                            Google
+                        </a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="/auth/facebook" class="btn btn-primary">
+                            <span class="fa fa-facebook"></span>
+                            Facebook
+                        </a>
+                    </div>
 
-                <a href="/auth/facebook" class="btn btn-primary" style="margin-right:200px">
-                    <span class="fa fa-facebook"></span>
-                    Facebook
-                </a>
+                </div>
+                <div class="row">
 
-                <b style="color: gray">
-                    New here?
-                </b>
-                <a href="#!/register">Sign Up!!</a>
+                    <div class="col-xs-12" style="margin-left: 10px">
+                        <b style="color: lightgray">
+                            New here?
+                        </b>
+                        <a href="#!/register">Sign Up!!</a>
+
+                    </div>
+
+
+                </div>
             </div>
 
 

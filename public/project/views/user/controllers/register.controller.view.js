@@ -20,8 +20,14 @@
         }
         init();
 
-        function register(username, password, password2, email, firstName, lastName)
+        function register(user)
         {
+            var username = user.username;
+            var password = user.password;
+            var password2 = user.password2;
+            var email = user.email;
+            var firstName = user.firstName;
+            var lastName = user.lastName;
             if(username === null || username === '' || typeof username === 'undefined')
             {
                 model.error = 'username is required. ';

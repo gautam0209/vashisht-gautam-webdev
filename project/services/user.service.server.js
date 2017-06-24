@@ -72,14 +72,14 @@ app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['email']
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/assignment/graduate/index.html#!/profile',
-        failureRedirect: '/assignment/graduate/index.html#!/login'
+        successRedirect: '/project/index.html#!/login',
+        failureRedirect: '/project/index.html#!/login'
     }));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/assignment/graduate/index.html#!/profile',
-        failureRedirect: '/assignment/graduate/index.html#!/login'
+        successRedirect: '/project/index.html#!/login',
+        failureRedirect: '/project/index.html#!/login'
     }));
 app.get('/api/user/:userId/movie/:movieId/like', isLike);
 app.post('/api/user/:userId/movie/:movieId/like', likeMovie);
@@ -87,7 +87,22 @@ app.post('/api/user/:userId/movie/:movieId/unlike', unLikeMovie);
 app.get('/api/user/:userId/movie/:movieId/watch', isWatch);
 app.post('/api/user/:userId/movie/:movieId/watch', watchMovie);
 app.post('/api/user/:userId/movie/:movieId/unwatch', unWatchMovie);
+app.post('/api/user/:userId/follow/:expertId', follow);
 
+
+function follow(req, res)
+{
+    var userId = req.params['userId'];
+    var expertId = req.params['expertId'];
+    userProjModel
+        .follow(userId, expertId)
+        .then(function()
+        {
+            res.sendStatus(200);
+        }, function(){
+            res.sendStatus(404);
+        })
+}
 
 function unWatchMovie(req, res)
 {

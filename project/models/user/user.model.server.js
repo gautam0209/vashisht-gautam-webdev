@@ -23,8 +23,36 @@ var q = require('q');
     userProjModel.isWatch = isWatch;
     userProjModel.watchMovie = watchMovie;
     userProjModel.unWatchMovie = unWatchMovie;
+    userProjModel.follow = follow;
 
 module.exports = userProjModel;
+
+
+function follow(userId, expertId)
+{
+     userProjModel
+        .findById(userId)
+        .then(function(user)
+        {
+            user.follow.push(expertId);
+            console.log(user);
+            userProjModel
+                .updateUser(userId, user)
+                .then(function(){
+                    console.log('here');
+                })
+        })
+
+    return   userProjModel
+        .findById(expertId)
+        .then(function(expert)
+        {
+            expert.followers.push(userId);
+            userProjModel
+                .updateUser(expertId, expert)
+                .then(function(){})
+        })
+}
 
 function unWatchMovie(userId, movieId)
 {

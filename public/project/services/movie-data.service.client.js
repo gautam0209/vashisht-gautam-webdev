@@ -39,10 +39,12 @@
                // putMovie: putMovie,
                 //getMovie: getMovie,
                 getReviews: getReviews,
-                //addReview: addReview,
+                deleteReview: deleteReview,
                 getLocalReview:getLocalReview,
                 findMovieById:findMovieById,
-                findAllReviews:findAllReviews
+                findAllReviews:findAllReviews,
+                findAllReviewsByUserId:findAllReviewsByUserId,
+                updateReview:updateReview
             };
 
 
@@ -59,6 +61,23 @@
         // {
         //     return movie;
         // }
+
+        function deleteReview(userId, reviewId)
+        {
+            var url ='/api/project/user/' + userId + '/review/' + reviewId ;
+            return $http.delete(url);
+        }
+        function updateReview(review)
+        {
+            var url = '/api/project/review';
+            return $http.put(url,review);
+        }
+
+        function findAllReviewsByUserId(userId)
+        {
+            var url = '/api/user/' + userId + '/allReviews';
+            return $http.get(url);
+        }
 
         function getMovies()
         {

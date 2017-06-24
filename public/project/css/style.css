@@ -17,6 +17,7 @@ body {
 }
 
 a{
+    color: lightgreen;
     text-decoration: none !important;
 }
 

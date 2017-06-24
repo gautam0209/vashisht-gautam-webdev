@@ -14,6 +14,7 @@
         model.movieId = $routeParams['movieId'];
         model.currentUser = currentUser;
         model.submitReview = submitReview;
+        model.follow = follow;
 
         function init() {
             movieService.
@@ -31,24 +32,44 @@
                         {
                             console.log(reviews);
                             model.reviews = model.reviews.concat(reviews);
+                            // model.reviews.sort(function(a,b){
+                            //    return (a.star === b.star)?0:as?-1:1;
+                            // })
                         }, function(err){
                             console.log(err);
                         })
 
                 });
+
+
         }
 
         init();
 
+
+        function follow(expertId)
+        {
+            userService
+                .follow(model.currentUser._id, expertId)
+                .then(function(){
+
+                })
+        }
+
         function submitReview(movieId, review)
         {
+
             userService
                 .addReview(currentUser._id, movieId, review)
                 .then(function(){
 
-                });
-            $location.url('/movie/' + movieId + '/review');
+                    //
 
+                });
+            //$location.url('/movie/' + movieId + '/review');
+            $("#review_"+movieId).toggle();
+
+            init();
         }
     }
 })();

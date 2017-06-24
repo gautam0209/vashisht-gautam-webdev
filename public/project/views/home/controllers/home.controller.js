@@ -20,11 +20,14 @@
         // model.getRating = getRating;
         // model.movieDetails = movieDetails;
         // model.submitReview = submitReview;
-        model.currentUser = currentUser;
+        //model.currentUser = currentUser;
         model.logout = logout;
+        model.searchMovies = [];
+        model.error = '';
 
         function init()
         {
+            model.currentUser = currentUser;
             movieService.getMovies()
                 .then(function(response){
                     model.currentMovies = response.data.results;
@@ -49,7 +52,7 @@
             userService
                 .logout()
                 .then(function () {
-                    $location.url('/');
+                    $location.url('#!/');
                 });
         }
 
@@ -105,9 +108,17 @@
 
         function searchMovie(movieName)
         {
-            movieService.searchMovie(movieName)
+            movieService
+                .searchMovie(movieName)
                 .then(function(response){
                     model.searchMovies = response.data.results;
+                    if(!response.data.results[0])
+                        model.error = "No movies Found.";
+                    else
+                        model.error="";
+                }, function(err){
+                    model.searchMovies = [];
+                    model.error="No movies Found.";
                 })
         }
 

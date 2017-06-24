@@ -17,7 +17,7 @@ var userProjSchema = mongoose.Schema({
     followers : [{type: mongoose.Schema.Types.ObjectId, ref: "reviewModel"}],
     roles: [{type: String,
             default: 'USER',
-            enum: ['USER','FACULTY', 'STUDENT', 'ADMIN' ]}],
+            enum: ['USER','EXPERT', 'ADMIN' ]}],
     dateCreated: {type: Date, default: Date.now},
         google: {
             id:    String,
