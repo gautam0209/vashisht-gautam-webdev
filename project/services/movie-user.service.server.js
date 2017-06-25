@@ -42,28 +42,28 @@ passport.deserializeUser(deserializeUser);
 //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
 // ];
 
-app.post('/api/assignment/graduate/user', isAdmin, createUser);
+app.post('/api/project/user', isAdmin, createUser);
 app.get('/api/project/admin/users', isAdmin, findAllUsers);
 
 app.put('/api/project/user', updateProfile);
 
 
 
-app.get('/api/assignment/graduate/user/:userId', findUserById);
-app.put('/api/assignment/graduate/user/:userId', isAdmin, updateUser);
-app.delete('/api/assignment/graduate/user/:userId', isAdmin, deleteUser);
+app.get('/api/project/user/:userId', findUserById);
+app.put('/api/project/user/:userId', isAdmin, updateUser);
+app.delete('/api/project/user/:userId', isAdmin, deleteUser);
 
-app.get('/api/assignment/graduate/user', findUserByUsername);
+app.get('/api/project/user', findUserByUsername);
 
 app.post('/api/project/graduate/login', passport.authenticate('local'), login);
-app.post('/api/assignment/graduate/logout', logout);
+app.post('/api/project/logout', logout);
 
 
-app.get   ('/api/assignment/graduate/loggedin', loggedin);
+app.get   ('/api/project/loggedin', loggedin);
 app.get   ('/api/project/admin', checkAdmin);
 
-app.post  ('/api/assignment/graduate/register', register);
-app.post  ('/api/assignment/graduate/unregister', unregister);
+app.post  ('/api/project/register', register);
+app.post  ('/api/project/unregister', unregister);
 
 
 

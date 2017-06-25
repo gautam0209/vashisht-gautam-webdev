@@ -135,7 +135,7 @@
         }
 
         function register(userObj) {
-            var url = "/api/assignment/graduate/register";
+            var url = "/api/project/register";
             return $http.post(url, userObj)
                 .then(function (response) {
                     return response.data;
@@ -144,7 +144,7 @@
 
         function createUser(user)
         {
-            var url="/api/assignment/graduate/user";
+            var url="/api/project/user";
             return $http.post(url, user)
                 .then(function(response){
                     return response.data;
@@ -153,7 +153,7 @@
 
 
         function unregister() {
-            var url = "/api/assignment/graduate/unregister";
+            var url = "/api/project/unregister";
             return $http.post(url)
                 .then(function (response) {
                     return response.data;
@@ -162,7 +162,7 @@
 
         function logout()
         {
-            var url = "/api/assignment/graduate/logout";
+            var url = "/api/project/logout";
 
             return $http.post(url)
                 .then(function(response){
@@ -171,7 +171,7 @@
         }
 
         function loggedin() {
-            var url = "/api/assignment/graduate/loggedin";
+            var url = "/api/project/loggedin";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -203,7 +203,7 @@
 
 
         function findUserByUserName(userName) {
-            var url="/api/assignment/graduate/user?username="+userName;
+            var url="/api/project/user?username="+userName;
             return $http.get(url)
                 .then(function(response){
                     return response.data;
@@ -212,7 +212,7 @@
 
         function findUserById(userId)
         {
-            var url = '/api/assignment/graduate/user/' + userId;
+            var url = '/api/project/user/' + userId;
             return $http.get(url)
                 .then(function(response) {
                     return response.data;
@@ -221,7 +221,7 @@
 
         function findUserByCredential(username, password)
         {
-            var url="/api/assignment/graduate/user?username="+username+"&password=" + password;
+            var url="/api/project/user?username="+username+"&password=" + password;
             return $http.get(url)
                 .then(function(response){
                     return response.data;
@@ -230,7 +230,7 @@
 
         function deleteUser(userId){
 
-            var url="/api/assignment/graduate/user/" + userId;
+            var url="/api/project/user/" + userId;
             return $http.delete(url)
                 .then(function(response){
                     return response.data;
@@ -239,7 +239,7 @@
 
         function updateUser(userId, user)
         {
-            var url="/api/assignment/graduate/user/" + userId;
+            var url="/api/project/user/" + userId;
             return $http.put(url, user)
                 .then(function(response){
                     return response.data;
