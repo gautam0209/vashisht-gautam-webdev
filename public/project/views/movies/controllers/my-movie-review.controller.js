@@ -6,6 +6,7 @@
     function myRevController($routeParams,
                                 $location,
                                 currentUser,
+                                userService,
                                 movieService) {
 
         var model = this;
@@ -16,6 +17,7 @@
         model.selectReview = selectReview;
         model.updateReview = updateReview;
         model.deleteReview = deleteReview;
+        model.putProfileTrace = putProfileTrace;
 
         model.movies = [];
 
@@ -37,9 +39,17 @@
                 });
 
 
+
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('/myReviews');
+            $location.url('/profile');
+        }
 
         function selectReview(review, title)
         {

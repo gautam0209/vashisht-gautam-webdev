@@ -28,9 +28,9 @@
                             <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                             <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                            <li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
+                            <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
                             <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
                             <!--<li><a href="">About</a></li>-->
                             <!--<li><a href="">Contact</a></li>-->
@@ -126,7 +126,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a class="navbar-link" href="#!/profile">
+                <a class="navbar-link" ng-click="model.putProfileTrace()">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>

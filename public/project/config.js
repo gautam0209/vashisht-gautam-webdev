@@ -93,12 +93,12 @@
 
                 .when(
                     '/admin', {
-                        templateUrl: 'views/admin/templates/admin.view.client.html',
+                        templateUrl: 'views/admin/templates/admin-home.view.client.html',
                         resolve:{
                             currentUser:checkAdmin
-                        }
-                        //controller: 'loginController',
-                        //controllerAs: 'model'
+                        },
+                        controller: 'adminMainController',
+                        controllerAs: 'model'
                     }
                 )
 
@@ -108,7 +108,7 @@
                     resolve:{
                         currentUser:checkAdmin
                     },
-                    controller: 'adminController',
+                    controller: 'adminUsersController',
                     controllerAs: 'model'
                 }
             )
@@ -119,7 +119,7 @@
                     resolve:{
                         currentUser:checkAdmin
                     },
-                    controller: 'adminController',
+                    controller: 'adminReviewController',
                     controllerAs: 'model'
                 }
             )
@@ -140,7 +140,7 @@
                     resolve:{
                         currentUser:checkAdmin
                     },
-                    controller: 'adminController',
+                    controller: 'adminRequestsController',
                     controllerAs: 'model'
                 }
             )

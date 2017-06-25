@@ -30,12 +30,18 @@
         model.unregister = unregister;
         model.currentUser = currentUser;
         model.logout = logout;
+        model.goBack = goBack;
 
         function init()
         {
             renderUser(currentUser);
         }
         init();
+
+        function goBack()
+        {
+            $location.url(userService.getProfileTrace());
+        }
 
         function logout()
         {

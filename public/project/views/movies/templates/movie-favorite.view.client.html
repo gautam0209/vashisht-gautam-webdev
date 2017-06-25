@@ -3,6 +3,12 @@
         <div class="navbar-header">
             <div class="row">
                 <div class="col-xs-7" pull-left>
+                        <a class="navbar-brand" href="#!/">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                    <!--<a ng-show="model.returnPath === 'myReviews'" class="navbar-brand" href="#!/myReviews">-->
+                        <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                    <!--</a>-->
                     <a class="navbar-brand">
                         My Collection
                     </a>
@@ -23,9 +29,10 @@
                             <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                             <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                            <li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>
+                            <!--<li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>-->
                             <li ng-show="model.currentUser._id" class="active"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
+                            <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
                             <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
                             <!--<li><a href="">About</a></li>-->
                             <!--<li><a href="">Contact</a></li>-->
@@ -99,7 +106,7 @@ margin-bottom: 50px;">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a class="navbar-link" href="#!/profile">
+                <a class="navbar-link" ng-click="model.putProfileTrace()">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>

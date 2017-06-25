@@ -17,6 +17,8 @@
         model.selectReview = selectReview;
         model.updateReview = updateReview;
         model.deleteReview = deleteReview;
+        model.myMovieView = myMovieView;
+        model.putProfileTrace = putProfileTrace;
 
         model.movies = [];
         model.reviews = [];
@@ -47,7 +49,6 @@
                     });
             }
 
-            console.log()
 
 
             // for(var r in model.reviews)
@@ -66,6 +67,19 @@
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('/followingReviews');
+            $location.url('/profile');
+        }
+
+        function myMovieView()
+        {
+            movieService.putPath('myReviews');
+            $location.url('/myMovies');
+        }
 
         function selectReview(review, title)
         {

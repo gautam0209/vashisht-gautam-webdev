@@ -14,6 +14,7 @@
         model.movieId = $routeParams['movieId'];
         model.currentUser = currentUser;
         model.submitReview = submitReview;
+        model.putProfileTrace = putProfileTrace;
         model.follow = follow;
 
         function init() {
@@ -52,6 +53,13 @@
                 .then(function(){
                     $location.url('#!/movie/' + model.movieId + '/review');
                 })
+        }
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('/movie/' + model.movieId + '/review');
+            $location.url('/profile');
         }
 
         function submitReview(movieId, review)

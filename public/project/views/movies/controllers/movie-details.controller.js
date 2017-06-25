@@ -5,6 +5,7 @@
         .controller('detMovieController',detMovieController);
 
     function detMovieController($routeParams,
+                                $location,
                                 currentUser,
                                 userService,
                                 movieService)
@@ -17,6 +18,7 @@
         model.unLikeMovie = unLikeMovie;
         model.watchMovie = watchMovie;
         model.unWatchMovie = unWatchMovie;
+        model.putProfileTrace = putProfileTrace;
 
         // model.submitReview = submitReview;
 
@@ -52,6 +54,13 @@
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('/movie/' + model.movieId);
+            $location.url('/profile');
+        }
 
         function likeMovie()
         {

@@ -33,10 +33,24 @@
                 watchMovie: watchMovie,
                 unWatchMovie: unWatchMovie,
                 follow: follow,
-                findRequests: findRequests
+                findRequests: findRequests,
+                getProfileTrace:getProfileTrace,
+                putProfileTrace:putProfileTrace
             };
 
+        var profilePath;
+
         return api;
+
+        function putProfileTrace(trace)
+        {
+            profilePath = trace;
+        }
+
+        function getProfileTrace()
+        {
+            return profilePath;
+        }
 
         function findRequests()
         {

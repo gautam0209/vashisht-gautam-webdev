@@ -3,6 +3,9 @@
         <div class="navbar-header">
             <div class="row">
                 <div class="col-xs-7" pull-left>
+                    <a class="navbar-brand" href="#!/admin">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
                     <a class="navbar-brand">
                         User Details
                     </a>
@@ -93,8 +96,8 @@
                 </div>
             </div>
         </li>
-        <li ng-repeat="user in model.users" class="list-group-item" style="background-color: black">
-            <div class="row" style="color:lightgray">
+        <li ng-repeat="user in model.users"  ng-if = "user.roles.indexOf('ADMIN') === -1" class="list-group-item" style="background-color: black">
+            <div   class="row" style="color:lightgray">
                 <div class="col-xs-2">
                     {{user.username}}
                 </div>

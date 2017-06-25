@@ -23,6 +23,7 @@
         // model.submitReview = submitReview;
         model.currentUser = currentUser;
         model.movieDetailView = movieDetailView;
+        model.putProfileTrace = putProfileTrace;
         model.favMovies = [];
         model.watMovies = [];
 
@@ -56,9 +57,19 @@
                 }
             }
 
+            model.returnPath = movieService.getPath();
+
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('/myMovies');
+            $location.url('/profile');
+        }
+
 
         function movieDetailView(movieId)
         {

@@ -19,8 +19,10 @@
 
         <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
             <div class="panel-heading">
+
                 <div class="panel-title" style="color: lightgray"><b>Your Profile</b></div>
             </div>
+
 
             <div class="panel-body" style="padding-top: 25px;">
                 <div class="input-group" style="margin-bottom: 20px">
@@ -78,9 +80,13 @@
                            placeholder="lastName"/>
                 </div>
 
-                <a class="btn btn-info" style="margin-bottom: 5px"
-                   href="#!/">
-                    <b>Home</b>
+                <!--<a class="btn btn-info" style="margin-bottom: 5px"-->
+                   <!--href="#!/">-->
+                    <!--<b>Home</b>-->
+                <!--</a>-->
+
+                <a  class="btn btn-info" ng-click="model.goBack()" style="margin-bottom: 5px">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </a>
 
 

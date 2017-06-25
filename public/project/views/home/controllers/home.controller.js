@@ -23,6 +23,8 @@
         //model.currentUser = currentUser;
         model.logout = logout;
         model.movieDetailView = movieDetailView;
+        model.myMovieView = myMovieView;
+        model.putProfileTrace = putProfileTrace;
         model.searchMovies = [];
         model.error = '';
 
@@ -45,6 +47,21 @@
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('/');
+            $location.url('/profile');
+        }
+
+
+        function myMovieView()
+        {
+            movieService
+                .putPath('home');
+            $location.url('/myMovies');
+        }
 
         function movieDetailView(movieId)
         {
