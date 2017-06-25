@@ -5,7 +5,8 @@ var reviewSchema = mongoose.Schema({
     author:String,
     content:String,
     movieId: Number,
-    star: Boolean,
+    star: {type: Boolean,
+            default: false},
     dateCreated: {type: Date, default: Date.now}
 }, {collection: "review"});
 

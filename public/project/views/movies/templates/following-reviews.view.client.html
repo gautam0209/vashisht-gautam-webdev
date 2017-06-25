@@ -69,7 +69,7 @@
 
 <div class="container-fluid" style="background-size: cover;background-color: black; color: whitesmoke; position: absolute;
 min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
-<div class="row" style="margin-right:0px; margin-top:30px">
+<div class="row" style="margin-right:0px; margin-top:30px; margin-left:5px">
     <ul class= "list-group" style="margin-bottom:75px">
             <li ng-show="model.title" class="list-group-item" style="background-color:black; color:darkgoldenrod">
                 <div class="row">
@@ -99,14 +99,17 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
         <div ng-show="!model.reviews[0]">
             <p style="color:white; margin-top:50px">No Follower's Reviews Yet.</p>
         </div>
-        <div ng-repeat="movie in model.movies" class="table-bordered">
+        <div ng-repeat="review in model.reviews" class="table-bordered">
             <div class="row" style="margin-left:10px">
-                <div class="col-md-6 col-xs-9">
-                    <div style="color: darkgoldenrod"><b>{{movie.title}}</b></div>
-                    <div style="color:lightgray"> {{model.reviews[$index].content}} </div>
+                <div class="col-md-6 col-xs-6">
+                    <div style="color: darkgoldenrod"><b>{{model.movies[$index].title}}</b></div>
+                    <div style="color:lightgray"> {{review.content}} </div>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <div style="color:lightgray"><b style="color: darkgoldenrod"> Author: </b> {{review.author}} </div>
                 </div>
                 <div class="col-md-2 visible-md visible-lg">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="100px"/>
+                    <img ng-src="http://image.tmdb.org/t/p/w185{{model.movies[$index].poster_path}}" width = "50px"; height="50px"/>
                 </div>
             </div>
         </div>

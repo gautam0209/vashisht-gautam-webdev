@@ -68,7 +68,7 @@ margin-bottom: 50px;">
             <!--<div class="col-xs-2 table-bordered" style="float:left">-->
             <div class="pull-left" style="position:relative;">
                 <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = 100px/>
-                <a href="#!/movie/{{movie.id}}" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
                     {{movie.title}}
                 </a>
             </div>
@@ -85,7 +85,7 @@ margin-bottom: 50px;">
             <!--<div class="col-xs-2 table-bordered" style="float:left">-->
             <div class="pull-left" style="position:relative; margin: 5px">
                 <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = 100px/>
-                <a href="#!/movie/{{movie.id}}" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
                     {{movie.title}}
                 </a>
             </div>

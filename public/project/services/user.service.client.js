@@ -32,10 +32,17 @@
                 isWatch: isWatch,
                 watchMovie: watchMovie,
                 unWatchMovie: unWatchMovie,
-                follow: follow
+                follow: follow,
+                findRequests: findRequests
             };
 
         return api;
+
+        function findRequests()
+        {
+            var url = '/api/project/requests';
+            return $http.get(url);
+        }
 
         function follow(userId, expertId)
         {
@@ -141,12 +148,10 @@
 
         function logout()
         {
-            console.log("hello");
             var url = "/api/assignment/graduate/logout";
 
             return $http.post(url)
                 .then(function(response){
-                    console.log(response);
                     return response.data;
                 })
         }

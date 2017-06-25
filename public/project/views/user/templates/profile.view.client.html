@@ -14,6 +14,8 @@
 
     <div id="loginbox" style="margin-top:70px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div ng-show="model.error" class="alert alert-info">{{model.error}}</div>
+        <div ng-show="model.message" class="alert alert-success">{{model.message}}</div>
+
 
         <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
             <div class="panel-heading">
@@ -24,6 +26,7 @@
                 <div class="input-group" style="margin-bottom: 20px">
                     <label for="username"><b style="color:lightgray">Username</b></label>
                     <input type="text"
+                           ng-readonly="true"
                            ng-model="model.user.username"
                            id="username"
                            class="form-control"/>
@@ -58,12 +61,23 @@
 
                 <div class="input-group" style="margin-bottom: 20px">
                     <label for="lastName"><b style="color:lightgray">LastName</b></label>
-                    <input type="lastName"
+                    <input type="text"
                            ng-model="model.user.lastName"
                            id="lastName"
                            class="form-control"
                            placeholder="lastName"/>
                 </div>
+
+                <div ng-show="model.currentUser.status" class="input-group" style="margin-bottom: 20px">
+                    <label for="request"><b style="color:lightgray">Expert Status</b></label>
+                    <input type="text"
+                           ng-readonly="true"
+                           ng-model="model.user.status"
+                           id="request"
+                           class="form-control"
+                           placeholder="lastName"/>
+                </div>
+
                 <a class="btn btn-info" style="margin-bottom: 5px"
                    href="#!/">
                     <b>Home</b>

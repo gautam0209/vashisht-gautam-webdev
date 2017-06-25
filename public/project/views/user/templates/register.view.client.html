@@ -25,6 +25,7 @@
                     <input type="text"
                            ng-model="model.user.username"
                            id="username"
+                           size="40px"
                            class="form-control"
                            placeholder="gautam0209"/>
                 </div>
@@ -34,6 +35,7 @@
                     <input type="password"
                            ng-model="model.user.password"
                            id="password"
+                           size="40px"
                            class="form-control"
                            placeholder="moviePassword"/>
                 </div>
@@ -43,6 +45,7 @@
                     <input type="password"
                            ng-model="model.user.password2"
                            id="password2"
+                           size="35px"
                            class="form-control"
                            placeholder="moviePassword"/>
                 </div>
@@ -52,6 +55,7 @@
                     <input type="email"
                            ng-model="model.user.email"
                            id="email"
+                           size="45px"
                            class="form-control"
                            placeholder="movie@movieBuff.com"/>
                 </div>
@@ -61,6 +65,7 @@
                     <input type="text"
                            ng-model="model.user.firstName"
                            id="firstName"
+                           size="40px"
                            class="form-control"
                            placeholder="firstName"/>
                 </div>
@@ -70,6 +75,7 @@
                     <input type="lastName"
                            ng-model="model.user.lastName"
                            id="lastName"
+                           size="40px"
                            class="form-control"
                            placeholder="lastName"/>
                 </div>
@@ -83,7 +89,12 @@
                        href="#!/">
                         <b>Cancel</b>
                     </a>
+
                 </div>
+                <a class="btn btn-info pull-left" style="margin-right: 5px; margin-top: 5px"
+                   ng-click="model.registerForExpert(model.user)">
+                    <b>Request For Expert Login</b>
+                </a>
             </div>
 
         </div>

@@ -25,16 +25,14 @@
             movieService.getReviews(model.movieId)
                 .then(function (response) {
                     model.reviews = response.data.results;
-                    console.log("Inside ser:");
                     movieService
                         .getLocalReview(model.movieId)
                         .then(function(reviews)
                         {
-                            console.log(reviews);
                             model.reviews = model.reviews.concat(reviews);
-                            // model.reviews.sort(function(a,b){
-                            //    return (a.star === b.star)?0:as?-1:1;
-                            // })
+                            model.reviews.sort(function(a,b){
+                               return (a.star >  b.star)?-1:1;
+                            })
                         }, function(err){
                             console.log(err);
                         })
@@ -52,7 +50,7 @@
             userService
                 .follow(model.currentUser._id, expertId)
                 .then(function(){
-
+                    $location.url('#!/movie/' + model.movieId + '/review');
                 })
         }
 

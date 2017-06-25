@@ -74,21 +74,12 @@
                controllerAs: 'model'
             })
 
-            .when('/movie/:movieId',{
-                templateUrl: 'views/movies/templates/movie-details.view.client.html',
-                controller: 'detMovieController',
-                controllerAs: 'model',
-                resolve: {
-                    currentUser:checkCurrentUser
-                }
-            })
-
             .when('/myMovies',{
                 templateUrl: 'views/movies/templates/movie-favorite.view.client.html',
                 controller: 'favMovieController',
                 controllerAs: 'model',
                 resolve: {
-                    currentUser:checkCurrentUser
+                    currentUser:checkLoggedIn
                 }
             })
             .when('/myReviews',{
@@ -96,7 +87,7 @@
                 controller: 'myRevController',
                 controllerAs: 'model',
                 resolve: {
-                    currentUser:checkCurrentUser
+                    currentUser:checkLoggedIn
                 }
             })
 
@@ -136,9 +127,20 @@
                 '/followingReviews', {
                     templateUrl: 'views/movies/templates/following-reviews.view.client.html',
                     resolve:{
-                        currentUser:checkCurrentUser
+                        currentUser:checkLoggedIn
                     },
                     controller: 'followingController',
+                    controllerAs: 'model'
+                }
+            )
+
+            .when(
+                '/admin/requests', {
+                    templateUrl: 'views/admin/templates/admin-requests.view.client.html',
+                    resolve:{
+                        currentUser:checkAdmin
+                    },
+                    controller: 'adminController',
                     controllerAs: 'model'
                 }
             )
@@ -190,7 +192,7 @@
                     deferred.resolve({});
                     // $location.url('/login');
                 } else {
-                    deferred.resolve(user);
+                        deferred.resolve(user);
                 }
             });
 

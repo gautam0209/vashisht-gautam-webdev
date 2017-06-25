@@ -20,13 +20,10 @@
         model.movies = [];
 
         function init() {
-
-            console.log("init");
             movieService
                 .findAllReviewsByUserId(model.currentUser._id)
                 .then(function (response) {
                     model.reviews = response.data;
-                    console.log(model.reviews);
                     for(var r in model.reviews)
                     {
                         var review = model.reviews[r];
@@ -57,7 +54,7 @@
                 .updateReview(review)
                 .then(function(){
                     model.title="";
-                    $location.url('/myReviews');
+                    $location.url('#!/myReviews');
                 });
         }
 
@@ -66,7 +63,7 @@
             movieService
                 .deleteReview(model.currentUser._id, reviewId)
                 .then(function(){
-                    $location.url('/myReviews');
+                    $location.url('#!/myReviews');
                 });
         }
 

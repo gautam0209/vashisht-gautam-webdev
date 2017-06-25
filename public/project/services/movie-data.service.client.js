@@ -23,7 +23,7 @@
 
         var movies = [];
 
-        var mode;
+        var path;
 
 
 
@@ -45,23 +45,25 @@
                 findAllReviews:findAllReviews,
                 findAllReviewsByUserId:findAllReviewsByUserId,
                 findAllReviewsByFollow:findAllReviewsByFollow,
-                updateReview:updateReview
+                updateReview:updateReview,
+                putPath:putPath,
+                getPath:getPath
             };
 
 
         return api;
 
 
-        // function putMovie(mov)
-        // {
-        //     movie = mov;
-        //
-        // }
-        //
-        // function getMovie()
-        // {
-        //     return movie;
-        // }
+        function putPath(bPath)
+        {
+            path = bPath;
+
+        }
+
+        function getPath()
+        {
+            return path;
+        }
 
         function findAllReviewsByFollow(followId)
         {

@@ -22,6 +22,7 @@
         // model.submitReview = submitReview;
         //model.currentUser = currentUser;
         model.logout = logout;
+        model.movieDetailView = movieDetailView;
         model.searchMovies = [];
         model.error = '';
 
@@ -31,13 +32,11 @@
             movieService.getMovies()
                 .then(function(response){
                     model.currentMovies = response.data.results;
-                    console.log(model.currentMovies[0]);
                 })
 
             movieService.getPopularMovies()
                 .then(function(response){
                     model.popularMovies = response.data.results;
-                    console.log(model.popularMovies[0]);
                 })
             movieService.getUpcomingMovies()
                 .then(function(response){
@@ -46,6 +45,13 @@
         }
 
         init();
+
+        function movieDetailView(movieId)
+        {
+            movieService
+                .putPath('home');
+            $location.url('/movie/'+ movieId);
+        }
 
         function logout()
         {

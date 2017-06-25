@@ -22,6 +22,7 @@
         // model.movieDetails = movieDetails;
         // model.submitReview = submitReview;
         model.currentUser = currentUser;
+        model.movieDetailView = movieDetailView;
         model.favMovies = [];
         model.watMovies = [];
 
@@ -58,6 +59,13 @@
         }
 
         init();
+
+        function movieDetailView(movieId)
+        {
+            movieService
+                .putPath('myMovies');
+            $location.url('/movie/'+ movieId);
+        }
 
         function logout()
         {

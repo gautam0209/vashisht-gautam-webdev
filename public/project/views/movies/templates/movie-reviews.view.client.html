@@ -57,9 +57,14 @@
     </div>
 </nav>
 
-<div class="container-fluid" style="background-color: black; color: whitesmoke;">
+<div class="container-fluid" style="background-color: black;
+                                    background-size: cover;
+                                    min-height:100%;
+                                    min-width:100%;
+                                    position:absolute;
+                                    color: whitesmoke; margin-top: -10px">
             <h1 id="title">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
-    <div class="row">
+    <div class="row" style="margin-bottom: 25px">
         <div class="col-lg-2 pull-left">
             <img ng-src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}" width = 100px/>
         </div>
@@ -103,7 +108,8 @@
                                   ng-click="model.follow(review._user)"
                                   class="glyphicon glyphicon-star-empty pull-right"></span>
                             <span ng-if="model.currentUser.follow.indexOf(review._user)> -1
-                                           || model.currentUser.roles.indexOf('EXPERT')>-1"
+                                           || model.currentUser.roles.indexOf('EXPERT')>-1
+                                            || (!model.currentUser._id)"
                                   class="glyphicon glyphicon-star pull-right"></span>
                         </div>
                     </div>

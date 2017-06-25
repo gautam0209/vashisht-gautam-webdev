@@ -31,7 +31,10 @@
             else {
                 userService.login(username, password)
                     .then(function (found) {
-                            $location.url('/');
+                            if(found.roles.indexOf('ADMIN') === -1)
+                                $location.url('/');
+                            else
+                                $location.url('/admin');
                             model.message = "Welcome, " + username;
                         },
                         function () {

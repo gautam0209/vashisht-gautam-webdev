@@ -24,9 +24,17 @@ var q = require('q');
     userProjModel.watchMovie = watchMovie;
     userProjModel.unWatchMovie = unWatchMovie;
     userProjModel.follow = follow;
+    userProjModel.findRequests = findRequests;
 
 module.exports = userProjModel;
 
+
+
+function findRequests()
+{
+    return userProjModel
+        .find({status:'WAITING'});
+}
 
 function follow(userId, expertId)
 {

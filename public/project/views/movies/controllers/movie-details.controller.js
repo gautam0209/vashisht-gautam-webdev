@@ -27,13 +27,11 @@
         function init()
         {
            model.movieId =  $routeParams['movieId'];
-           console.log(model.currentUser);
 
            movieService.
                findMovieById(model.movieId)
                .then(function(movie) {
                    model.movie = movie.data;
-                   console.log(model.movie);
                });
 
            if(currentUser._id)
@@ -49,6 +47,8 @@
                     .then(function(watch){
                         model.watch = watch;
                     },function(){});
+
+            model.returnPath = movieService.getPath();
         }
 
         init();

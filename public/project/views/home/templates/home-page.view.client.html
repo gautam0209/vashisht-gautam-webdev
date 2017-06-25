@@ -8,7 +8,7 @@
                     <img style="margin-left: 10px;" ng-src="" width = 30px/>
                 </div>
 
-                <div class="col-xs-6" style="margin-top: 7px;">
+                <div class="col-xs-8 col-sm-6" style="margin-top: 7px;">
                     <div class="input-group">
                         <input ng-model="searchMovie"
                                type="text"
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-           <div class="col-xs-5 pull-right">
+           <div class="col-xs-2 col-sm-5 pull-right">
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                    <span class="sr-only">Toggle navigation</span>
                    <span class="icon-bar"></span>
@@ -114,7 +114,7 @@ margin-bottom: 50px;">
                 <!--<div class="col-xs-2 table-bordered" style="float:left">-->
                 <div class="pull-left" style="position:relative; margin: 5px">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a href="#!/movie/{{movie.id}}" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
                         {{movie.title}}
                     </a>
                     <!--<a>-->
@@ -135,7 +135,7 @@ margin-bottom: 50px;">
                 <!--<div class="col-xs-2 table-bordered" style="float:left">-->
                 <div class="pull-left" style="position:relative; margin: 5px">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a href="#!/movie/{{movie.id}}" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
                         {{movie.title}}
                     </a>
                 </div>
@@ -152,7 +152,7 @@ margin-bottom: 50px;">
                 <!--<div class="col-xs-2 table-bordered" style="float:left">-->
                 <div class="pull-left" style="position:relative; margin: 5px">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a href="#!/movie/{{movie.id}}" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
                         {{movie.title}}
                     </a>
                 </div>
@@ -169,7 +169,7 @@ margin-bottom: 50px;">
                 <!--<div class="col-xs-2 table-bordered" style="float:left">-->
                 <div class="pull-left" style="position:relative; margin: 5px">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a href="#!/movie/{{movie.id}}" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
                         {{movie.title}}
                     </a>
                 </div>

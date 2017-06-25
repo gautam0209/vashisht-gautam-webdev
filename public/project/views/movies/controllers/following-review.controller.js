@@ -25,7 +25,7 @@
 
             console.log("init");
 
-
+            model.reviews =[];
             for(var f in model.currentUser.follow)
             {
                 var followId = model.currentUser.follow[f];
@@ -46,6 +46,8 @@
 
                     });
             }
+
+            console.log()
 
 
             // for(var r in model.reviews)

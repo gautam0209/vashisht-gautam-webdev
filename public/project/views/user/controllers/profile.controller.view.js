@@ -28,6 +28,7 @@
         model.updateProfile = updateProfile;
         model.deleteProfile = deleteProfile;
         model.unregister = unregister;
+        model.currentUser = currentUser;
         model.logout = logout;
 
         function init()
@@ -51,7 +52,7 @@
                     model.message = "User update was successful.";
                 },
                 function(){
-                    model.message = "User update failed.";
+                    model.error = "User update failed.";
                 });
         }
 

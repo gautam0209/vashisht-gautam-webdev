@@ -27,7 +27,8 @@
                             <li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id" class="active"><a href="#!/myReviews">My Reviews</a></li>
-                            <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
+                            <li ng-show="model.currentUser._id && model.currentUser.roles.indexOf('EXPERT') === -1">
+                                <a href="#!/followingReviews">Following</a></li>
                             <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
                             <!--<li><a href="">About</a></li>-->
                             <!--<li><a href="">Contact</a></li>-->
@@ -69,7 +70,7 @@
 
 <div class="container-fluid" style="background-size: cover;background-color: black; color: whitesmoke; position: absolute;
 min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
-<div class="row" style="margin-right:0px; margin-top:30px">
+<div class="row" style="margin-right:0px; margin-top:30px; margin-left:5px">
     <ul class= "list-group" style="margin-bottom:75px">
             <li ng-show="model.title" class="list-group-item" style="background-color:black; color:darkgoldenrod">
                 <div class="row">
@@ -110,7 +111,7 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
                     <div style="color:lightgray"> {{model.reviews[$index].content}} </div>
                 </div>
                 <div class="col-md-2 visible-md visible-lg">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="100px"/>
+                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "50px"; height="50px"/>
                 </div>
                 <div class="col-md-1 col-xs-3 pull-right">
                     <span ng-click="model.selectReview(model.reviews[$index], movie.title)" class="glyphicon glyphicon-pencil">

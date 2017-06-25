@@ -72,13 +72,13 @@ app.get ('/auth/facebook', passport.authenticate('facebook', { scope : ['email']
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/project/index.html#!/login',
+        successRedirect: '/project/index.html#!',
         failureRedirect: '/project/index.html#!/login'
     }));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/project/index.html#!/login',
+        successRedirect: '/project/index.html#!',
         failureRedirect: '/project/index.html#!/login'
     }));
 app.get('/api/user/:userId/movie/:movieId/like', isLike);
@@ -88,6 +88,21 @@ app.get('/api/user/:userId/movie/:movieId/watch', isWatch);
 app.post('/api/user/:userId/movie/:movieId/watch', watchMovie);
 app.post('/api/user/:userId/movie/:movieId/unwatch', unWatchMovie);
 app.post('/api/user/:userId/follow/:expertId', follow);
+app.get('/api/project/requests', findRequests);
+
+
+function findRequests(req, res)
+{
+    userProjModel
+        .findRequests()
+        .then(function(requests)
+        {
+            res.json(requests);
+        }, function(){
+            res.sendStatus(404);
+        })
+}
+
 
 
 function follow(req, res)
@@ -245,6 +260,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
                         firstName: profile.displayName.split(" ")[0],
                         lastName:  profile.displayName.split(" ")[1],
                         email:     email,
+                        password: bcrypt.hashSync('default'),
                         facebook: {
                             id:    profile.id,
                             token: token
@@ -283,6 +299,7 @@ function googleStrategy(token, refreshToken, profile, done) {
                         firstName: profile.name.givenName,
                         lastName:  profile.name.familyName,
                         email:     email,
+                        password: bcrypt.hashSync('default'),
                         google: {
                             id:    profile.id,
                             token: token
