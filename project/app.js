@@ -4,7 +4,7 @@
 
 require('../test/app.js');
 
-require('./services/user.service.server');
+require('./services/movie-user.service.server');
 require('./services/review.service.server');
 // require('./services/website.service.server');
 // require('./services/page.service.server');

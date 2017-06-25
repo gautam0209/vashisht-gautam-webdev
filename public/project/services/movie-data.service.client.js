@@ -44,6 +44,7 @@
                 findMovieById:findMovieById,
                 findAllReviews:findAllReviews,
                 findAllReviewsByUserId:findAllReviewsByUserId,
+                findAllReviewsByFollow:findAllReviewsByFollow,
                 updateReview:updateReview
             };
 
@@ -61,6 +62,12 @@
         // {
         //     return movie;
         // }
+
+        function findAllReviewsByFollow(followId)
+        {
+                var url = '/api/project/follow/' + followId;
+                return $http.get(url);
+        }
 
         function deleteReview(userId, reviewId)
         {

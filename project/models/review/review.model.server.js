@@ -20,6 +20,7 @@ var q = require('q');
     reviewModel.deleteReview = deleteReview;
     reviewModel.addReview = addReview;
     reviewModel.getLocalReviews = getLocalReviews;
+    reviewModel.findAllReviewsByFollow = findAllReviewsByFollow;
 
 
 
@@ -67,6 +68,12 @@ function updateReview(review)
 
 function findAllReviewsForUserId(userId) {
     return reviewModel.find({_user:userId});
+}
+
+function findAllReviewsByFollow(followId)
+{
+
+     return reviewModel.find({_user:followId});
 }
 
     function addReview(userObj)

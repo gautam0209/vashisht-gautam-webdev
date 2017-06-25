@@ -328,6 +328,7 @@ function isAdmin(req,res,next)
 }
 
 function register(req, res) {
+    console.log("I am here");
     var userObj = req.body;
     userObj.password = bcrypt.hashSync(userObj.password);
     userProjModel

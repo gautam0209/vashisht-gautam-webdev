@@ -3,6 +3,8 @@ var app = require('../../express');
 var q = require('q');
 
 var reviewModel = require('../models/review/review.model.server');
+var userProjModel = require('../models/user/user.model.server');
+
 
 
 app.post  ('/api/project/review', addReview);
@@ -14,6 +16,9 @@ app.get('/api/project/admin/reviews', isAdmin, findAllReviews);
 
 app.get ('/api/user/:userId/allReviews', findAllReviewsForUserId);
 
+app.get ('/api/project/follow/:followId', findAllReviewsByFollow);
+
+
 
 
 // var pages = [
@@ -22,7 +27,17 @@ app.get ('/api/user/:userId/allReviews', findAllReviewsForUserId);
 //     { "_id": "543", "name": "Post 3", "websiteId": "789", "description": "Lorem" }
 // ];
 
+function findAllReviewsByFollow(req, res)
+{
+    var followId = req.params['followId'];
 
+    reviewModel.findAllReviewsByFollow(followId)
+        .then(function(reviews){
+            res.json(reviews);
+        }, function() {
+            res.sendStatus(404);
+        });
+}
 
 function deleteReview(req, res)
 {

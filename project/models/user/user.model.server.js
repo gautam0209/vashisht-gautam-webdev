@@ -185,10 +185,13 @@ function findUserByFacebookId(facebookId) {
     }
 
     function createUser(user) {
+    console.log('creating');
         if(user.roles)
             user.roles = user.roles.split(",");
         else
             user.roles =['USER'];
+        user.follow = [];
+        user.followers = [];
         return userProjModel
                 .create(user);
     }
