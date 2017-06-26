@@ -31,7 +31,10 @@ var todo = require('./lectures/undergraduate/todo/app');
 todo(app);
 
 require('./test/app')(app) ;
-//require('./assignment/app');
 require('./project/app');
+require('./assignment/app');
+
+
+
 
 app.listen(process.env.PORT || 3000);
