@@ -63,11 +63,11 @@
                 }
             })
 
-            .when('/searchMovie',{
-                templateUrl: 'views/movies/templates/movie-search.view.client.html',
-                controller: 'movieController',
-                controllerAs: 'model'
-            })
+            // .when('/searchMovie',{
+            //     templateUrl: 'views/movies/templates/movie-search.view.client.html',
+            //     controller: 'movieController',
+            //    s controllerAs: 'model'
+            // })
             .when('/current/movies',{
                 templateUrl: 'views/movies/templates/movie-current.view.client.html',
                controller: 'curMovieController',

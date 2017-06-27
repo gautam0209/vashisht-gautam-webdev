@@ -122,6 +122,8 @@ function addReview(req, res)
         .addReview(userObj)
         .then(function(userObj){
             q.resolve(userObj);
+        },function(){
+            q.reject();
         });
 
     return prom.promise;

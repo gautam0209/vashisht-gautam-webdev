@@ -23,6 +23,7 @@
                 .then(function(movie) {
                     model.movie = movie.data;
                 });
+
             movieService.getReviews(model.movieId)
                 .then(function (response) {
                     model.reviews = response.data.results;
@@ -30,10 +31,15 @@
                         .getLocalReview(model.movieId)
                         .then(function(reviews)
                         {
-                            model.reviews = model.reviews.concat(reviews);
-                            model.reviews.sort(function(a,b){
-                               return (a.star >  b.star)?-1:1;
+                            reviews.sort(function(a,b){
+                                return (a.star >  b.star)?-1:1;
                             })
+
+                            model.reviews = reviews.concat(model.reviews);
+                            // model.reviews.sort(function(a,b){
+                            //    return (a.star >  b.star)?-1:1;
+                            // })
+                            console.log(model.reviews);
                         }, function(err){
                             console.log(err);
                         })
@@ -50,9 +56,13 @@
         {
             userService
                 .follow(model.currentUser._id, expertId)
-                .then(function(){
-                    $location.url('#!/movie/' + model.movieId + '/review');
+                .then(function(followUser){
+                    console.log(followUser);
+                    init();
+                    $location.url('/movie/' + model.movieId + '/review');
                 })
+
+
         }
 
         function putProfileTrace()
@@ -65,17 +75,30 @@
         function submitReview(movieId, review)
         {
 
-            userService
-                .addReview(currentUser._id, movieId, review)
-                .then(function(){
+            console.log('submitting review');
 
-                    //
+            movieService
+                .findMovieById(movieId)
+                .then(function(movie)
+            {
+                userService
+                    .addReview(currentUser._id, movie.data.id, movie.data.title, movie.data.poster_path, review)
+                    .then(function(){
 
-                });
-            //$location.url('/movie/' + movieId + '/review');
+
+                        //
+
+                    }, function(){});
+            });
+
             $("#review_"+movieId).toggle();
 
+
             init();
+            $location.url('/movie/' + movieId + '/review');
+
+            //$location.url('/movie/' + movieId + '/review');
+
         }
     }
 })();

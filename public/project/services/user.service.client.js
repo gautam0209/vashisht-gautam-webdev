@@ -111,13 +111,17 @@
 
         function addReview(userId,
                            movieId,
+                           movieTitle,
+                           moviePosterPath,
                            review)
         {
             var url = "/api/project/review";
 
             var reviewObj = {
                 userId: userId,
-                movieId: movieId,
+                movieId : movieId,
+                movieTitle: movieTitle,
+                moviePosterPath: moviePosterPath,
                 review: review
             }
             return $http.post(url, reviewObj);

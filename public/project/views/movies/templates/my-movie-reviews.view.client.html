@@ -106,19 +106,19 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
         <div ng-show="!model.reviews[0]">
             <p style="color:white; margin-top:50px">No Reviews Yet. Please add reviews.</p>
         </div>
-        <div ng-repeat="movie in model.movies" class="table-bordered">
+        <div ng-repeat="review in model.reviews" class="table-bordered">
             <div class="row" style="margin-left:10px">
                 <div class="col-md-6 col-xs-9">
-                    <div style="color: darkgoldenrod"><b>{{movie.title}}</b></div>
-                    <div style="color:lightgray"> {{model.reviews[$index].content}} </div>
+                    <div style="color: darkgoldenrod"><b>{{review.movieTitle}}</b></div>
+                    <div style="color:lightgray"> {{review.content}} </div>
                 </div>
                 <div class="col-md-2 visible-md visible-lg">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "50px"; height="50px"/>
+                    <img ng-src="http://image.tmdb.org/t/p/w185{{review.moviePosterPath}}" width = "50px"; height="50px"/>
                 </div>
                 <div class="col-md-1 col-xs-3 pull-right">
-                    <span ng-click="model.selectReview(model.reviews[$index], movie.title)" class="glyphicon glyphicon-pencil">
+                    <span ng-click="model.selectReview(review, review.movieTitle)" class="glyphicon glyphicon-pencil">
                     </span>
-                    <span ng-click="model.deleteReview(model.reviews[$index]._id)" class="glyphicon glyphicon-remove">
+                    <span ng-click="model.deleteReview(review._id)" class="glyphicon glyphicon-remove">
                     </span>
                 </div>
             </div>

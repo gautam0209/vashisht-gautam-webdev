@@ -26,17 +26,17 @@
                 .findAllReviewsByUserId(model.currentUser._id)
                 .then(function (response) {
                     model.reviews = response.data;
-                    for(var r in model.reviews)
-                    {
-                        var review = model.reviews[r];
-                        movieService
-                            .findMovieById(review.movieId)
-                            .then(function(movie)
-                            {
-                                model.movies.push(movie.data);
-                            });
-                    }
-                });
+                    // for(var r in model.reviews)
+                    // {
+                    //     var review = model.reviews[r];
+                    //     movieService
+                    //         .findMovieById(review.movieId)
+                    //         .then(function(movie)
+                    //         {
+                    //             model.movies.push(movie.data);
+                    //         });
+                    // }
+                }, function(){});
 
 
 
@@ -64,7 +64,8 @@
                 .updateReview(review)
                 .then(function(){
                     model.title="";
-                    $location.url('#!/myReviews');
+                    init();
+                    $location.url('/myReviews');
                 });
         }
 
@@ -73,7 +74,8 @@
             movieService
                 .deleteReview(model.currentUser._id, reviewId)
                 .then(function(){
-                    $location.url('#!/myReviews');
+                    init();
+                    $location.url('/myReviews');
                 });
         }
 

@@ -43,11 +43,10 @@ function follow(userId, expertId)
         .then(function(user)
         {
             user.follow.push(expertId);
-            console.log(user);
             userProjModel
                 .updateUser(userId, user)
                 .then(function(){
-                    console.log('here');
+
                 })
         })
 
@@ -193,7 +192,6 @@ function findUserByFacebookId(facebookId) {
     }
 
     function createUser(user) {
-    console.log('creating');
         if(user.roles)
             user.roles = user.roles.split(",");
         else

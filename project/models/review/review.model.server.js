@@ -86,7 +86,9 @@ function findAllReviewsByFollow(followId)
             {
                 var review = {
                     _user: userObj.userId,
-                    movieId: userObj.movieId,
+                    movieId : userObj.movieId,
+                    movieTitle: userObj.movieTitle,
+                    moviePosterPath:userObj.moviePosterPath,
                     content: userObj.review,
                     author: user.username
                 };

@@ -34,16 +34,16 @@
             movieService.getMovies()
                 .then(function(response){
                     model.currentMovies = response.data.results;
-                })
+                },function(){})
 
             movieService.getPopularMovies()
                 .then(function(response){
                     model.popularMovies = response.data.results;
-                })
+                },function(){})
             movieService.getUpcomingMovies()
                 .then(function(response){
                     model.upcomingMovies = response.data.results;
-                })
+                },function(){})
         }
 
         init();

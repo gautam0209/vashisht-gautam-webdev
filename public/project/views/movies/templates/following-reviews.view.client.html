@@ -105,14 +105,14 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
         <div ng-repeat="review in model.reviews" class="table-bordered">
             <div class="row" style="margin-left:10px">
                 <div class="col-md-6 col-xs-6">
-                    <div style="color: darkgoldenrod"><b>{{model.movies[$index].title}}</b></div>
+                    <div style="color: darkgoldenrod"><b>{{revie.movieTitle}}</b></div>
                     <div style="color:lightgray"> {{review.content}} </div>
                 </div>
                 <div class="col-md-4 col-xs-6">
                     <div style="color:lightgray"><b style="color: darkgoldenrod"> Author: </b> {{review.author}} </div>
                 </div>
                 <div class="col-md-2 visible-md visible-lg">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{model.movies[$index].poster_path}}" width = "50px"; height="50px"/>
+                    <img ng-src="http://image.tmdb.org/t/p/w185{{review.moviePosterPath}}" width = "50px"; height="50px"/>
                 </div>
             </div>
         </div>
