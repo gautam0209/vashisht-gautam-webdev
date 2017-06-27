@@ -23,7 +23,6 @@
                     <div id="navbar" class="navbar-collapse collapse pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#">Home</a></li>
-                            <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                             <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                             <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
@@ -31,26 +30,10 @@
                             <li ng-show="model.currentUser._id" class="active"><a href="#!/myReviews">My Reviews</a></li>
                             <li ng-show="model.currentUser._id && model.currentUser.roles.indexOf('EXPERT') === -1">
                                 <a href="#!/followingReviews">Following</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
-                            <!--<li><a href="">About</a></li>-->
-                            <!--<li><a href="">Contact</a></li>-->
-                            <!--<li class="dropdown">-->
-                            <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="">Action</a></li>-->
-                            <!--<li><a href="">Another action</a></li>-->
-                            <!--<li><a href="">Something else here</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
-                            <!--<li><a href="">Separated link</a></li>-->
-                            <!--<li><a href="">One more separated link</a></li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
                         </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>
-                <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
@@ -58,23 +41,10 @@
 </nav>
 
 
-<!--<div class="container-fluid" style="background-color: black; margin-top: -10px;">-->
-    <!--<div id="panel" >-->
-        <!--<div ng-repeat="movie in model.movies" >-->
-            <!--<div id="mov-det" class="panel ">-->
-                <!--<div class="panel-heading" style="background-color: red !important; color: black">{{movie.title}}</div>-->
-                <!--<div class="panel-body" style="background-color: whitesmoke; color: black">-->
-                    <!--{{model.reviews[$index].content}}-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<div class="container-fluid" style="background-size: cover;background-color: black; color: whitesmoke; position: absolute;
-min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
-<div class="row" style="margin-right:0px; margin-top:30px; margin-left:5px">
-    <ul class= "list-group" style="margin-bottom:75px">
-            <li ng-show="model.title" class="list-group-item" style="background-color:black; color:darkgoldenrod">
+<div class="container-fluid wb-dev-admin-users">
+<div class="row wb-dev-margin-left5 wb-dev-margin-top30">
+    <ul class= "list-group wb-dev-margin-bottom75">
+            <li ng-show="model.title" class="list-group-item wb-dev-bg-col">
                 <div class="row">
                     <div class="col-xs-4">
                         Movie Title
@@ -84,7 +54,7 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
                     </div>
                 </div>
             </li>
-        <li ng-show ="model.title" class="list-group-item" style="background-color: black; color:lightgray">
+        <li ng-show ="model.title" class="list-group-item wb-dev-bg-col-g">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-xs-4">
                     <input ng-model="model.title"
@@ -104,13 +74,13 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
 
 
         <div ng-show="!model.reviews[0]">
-            <p style="color:white; margin-top:50px">No Reviews Yet. Please add reviews.</p>
+            <p class="wb-dev-margin-top50-col">No Reviews Yet. Please add reviews.</p>
         </div>
         <div ng-repeat="review in model.reviews" class="table-bordered">
-            <div class="row" style="margin-left:10px">
+            <div class="row wb-dev-margin-left10">
                 <div class="col-md-6 col-xs-9">
-                    <div style="color: darkgoldenrod"><b>{{review.movieTitle}}</b></div>
-                    <div style="color:lightgray"> {{review.content}} </div>
+                    <div class="wb-dev-bg-golred"><b>{{review.movieTitle}}</b></div>
+                    <div class="wb-dev-lg-col"> {{review.content}} </div>
                 </div>
                 <div class="col-md-2 visible-md visible-lg">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{review.moviePosterPath}}" width = "50px"; height="50px"/>
@@ -126,16 +96,6 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
     </ul>
 </div>
 </div>
-
-    <!--<ul>-->
-    <!--<div ng-show="!model.reviews[0]">-->
-        <!--<p>No Reviews Yet. Please add reviews.</p>-->
-    <!--</div>-->
-       <!--<div ng-repeat="review in model.reviews" class="table-bordered">-->
-           <!--<div style="color: darkgoldenrod"><b> A review by {{review.author}}</b></div>-->
-           <!--<div> {{review.content}} </div>-->
-       <!--</div>-->
-<!--</ul>-->
 
 
 

@@ -34,21 +34,6 @@
             movieService.findAllReviews()
                 .then(function (reviews) {
                         model.reviews = reviews;
-                        // for(var r in reviews)
-                        // {
-                        //     var review = reviews[r];
-                        //     movieService
-                        //         .findMovieById(review.movieId)
-                        //         .then(function(movie)
-                        //         {
-                        //             model.movies.push(movie.data);
-                        //         });
-                        //     userService.findUserById(review._user)
-                        //         .then(function(user)
-                        //         {
-                        //             model.users.push(user);
-                        //         })
-                        // }
                 });
         }
 

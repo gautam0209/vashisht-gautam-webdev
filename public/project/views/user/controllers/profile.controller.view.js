@@ -1,6 +1,3 @@
-/**
- * Created by Gautam Vashisht on 5/27/2017.
- */
 
 (function (){
     angular
@@ -8,19 +5,11 @@
         .controller('profileController',profileController);
 
     function profileController(userService,
-                               //$routeParams,
                                currentUser,
                                $location){
 
         var model = this;
 
-       // model.userId = $routeParams['userId'];
-
-        //model.user = userService.findUserById(model.userId);
-
-        // var promise = userService.findUserById(model.userId);
-
-       // promise.then(renderUser);
 
         model.userId = currentUser._id;
 
@@ -84,8 +73,6 @@
 
         }
 
-        // userService.findUserById(model.userId)
-        //     .then(renderUser, userError);
 
         function userError(error){
             model.error = "User Not Found.";

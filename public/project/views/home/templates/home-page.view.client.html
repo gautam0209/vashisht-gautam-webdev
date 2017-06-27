@@ -1,14 +1,12 @@
-<!-- Fixed navbar -->
-
 <nav class="navbar navbar-inverse navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="navbar-header">
             <div class="row">
                 <div class="col-xs-1 navbar-brand">
-                    <img style="margin-left: 10px;" ng-src="" width = 30px/>
+                    <img class="wb-dev-margin-left10" ng-src="" width = 30px/>
                 </div>
 
-                <div class="col-xs-8 col-sm-6" style="margin-top: 7px;">
+                <div class="col-xs-8 col-sm-6 wb-dev-margin-top7">
                     <div class="input-group">
                         <input ng-model="searchMovie"
                                type="text"
@@ -37,92 +35,47 @@
                <div id="navbar" class="navbar-collapse collapse pull-right">
                    <ul class="nav navbar-nav">
                        <li class="active"><a href="#">Home</a></li>
-                       <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                        <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                        <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                        <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                       <!--<li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>-->
                        <li ng-show="model.currentUser.roles.indexOf('USER')>-1"><a href="#!/myMovies">My Movies</a></li>
-                           <!--<a ng-click="model.myMovieView()">My Movies</a></li>-->
                        <li ng-show="model.currentUser.roles.indexOf('USER')>-1"><a href="#!/myReviews">My Reviews</a></li>
                        <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
                        <li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>
-                       <!--<li><a href="">About</a></li>-->
-                       <!--<li><a href="">Contact</a></li>-->
-                       <!--<li class="dropdown">-->
-                       <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                       <!--<ul class="dropdown-menu">-->
-                       <!--<li><a href="">Action</a></li>-->
-                       <!--<li><a href="">Another action</a></li>-->
-                       <!--<li><a href="">Something else here</a></li>-->
-                       <!--<li role="separator" class="divider"></li>-->
-                       <!--<li class="dropdown-header">Nav header</li>-->
-                       <!--<li><a href="">Separated link</a></li>-->
-                       <!--<li><a href="">One more separated link</a></li>-->
-                       <!--</ul>-->
-                       <!--</li>-->
                    </ul>
-               </div><!--/.nav-collapse -->
+               </div>
 
            </div>
-            <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
     </div>
 </nav>
 
-<div class="container-fluid" style="background-color: black;    background-size: cover;
-    position: absolute;
-    top:35px;
-    left:0;
-    min-width: 100%;
-    min-height: 100%;
-margin-bottom: 50px;">
+<div class="container-fluid wb-dev-home-cont">
 
     <div class="container">
-        <div ng-show="model.currentUser._id" style="margin-left:10px">
-            <h1 style="font-family:fantasy; color:whitesmoke"> <u>Welcome {{model.currentUser.username}} </u></h1>
+        <div ng-show="model.currentUser._id" class="wb-dev-margin-left10">
+            <h1 class="wb-dev-wc"> <u>Welcome {{model.currentUser.username}} </u></h1>
         </div>
 
 
 
-        <!--<div class="container-fluid">-->
-        <!--<div class="input-group">-->
-        <!--<input ng-model="searchMovie"-->
-        <!--type="text"-->
-        <!--placeholder="Find Movie of your choice"-->
-        <!--class="form-control">-->
-
-        <!--<span class="input-group-btn">-->
-        <!--<a ng-click="model.searchMovie(searchMovie)"-->
-        <!--class="btn btn-default btn-primary"-->
-        <!--type="button">-->
-        <!--<span class="glyphicon glyphicon-search"></span>-->
-        <!--</a>-->
-        <!--</span>-->
-
-        <!--</div>-->
-        <!--</div>-->
 
 
-        <div class="row" style="margin-left:10px">
+        <div class="row wb-dev-margin-left10">
 
 
-            <h1 ng-show="model.searchMovies[0]" style="font-family:fantasy; color:whitesmoke"> List of Movies for your search </h1>
-            <h1 ng-show="model.error" style="font-family:fantasy; color:whitesmoke"> No Movies Found. Please try with new search. </h1>
+            <h1 ng-show="model.searchMovies[0]" class="wb-dev-wc"> List of Movies for your search </h1>
+            <h1 ng-show="model.error" class="wb-dev-wc"> No Movies Found. Please try with new search. </h1>
 
             <div ng-repeat="movie in model.searchMovies">
-                <!--<div class="col-xs-2 table-bordered" style="float:left">-->
-                <div class="pull-left" style="position:relative; margin: 5px">
+                <div class="pull-left wb-dev-home-img">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)"
+                    class="wb-dev-mov-title">
                         {{movie.title}}
                     </a>
-                    <!--<a>-->
-                        <!--Year Released:-->
-                        <!--{{movie.release_date.substring(0,4)}}-->
-                    <!--</a>-->
                 </div>
             </div>
         </div>
@@ -130,31 +83,31 @@ margin-bottom: 50px;">
 
 
 
-        <div class="row" style="margin-left:10px">
-            <h1 style="font-family:fantasy; color:whitesmoke"> Most Popular Movies</h1>
+        <div class="row wb-dev-margin-left10">
+            <h1 class="wb-dev-wc"> Most Popular Movies</h1>
 
             <div ng-repeat="movie in model.popularMovies">
-                <!--<div class="col-xs-2 table-bordered" style="float:left">-->
-                <div class="pull-left" style="position:relative; margin: 5px">
+                <div class="pull-left wb-dev-home-img">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)"
+                    class="wb-dev-mov-title">
                         {{movie.title}}
                     </a>
                 </div>
             </div>
         </div>
 
-        <hr style="color: white;">
+        <hr class="wb-dev-col-white">
 
-        <div class="row" style="margin-left:10px">
+        <div class="row wb-dev-margin-left10">
 
-            <h1 style="font-family:fantasy; color:whitesmoke"> Currently Running Movies Near your Theatres</h1>
+            <h1 class="wb-dev-wc"> Currently Running Movies Near your Theatres</h1>
 
             <div ng-repeat="movie in model.currentMovies">
-                <!--<div class="col-xs-2 table-bordered" style="float:left">-->
-                <div class="pull-left" style="position:relative; margin: 5px">
+                <div class="pull-left wb-dev-home-img">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)"
+                    class="wb-dev-mov-title">
                         {{movie.title}}
                     </a>
                 </div>
@@ -162,16 +115,16 @@ margin-bottom: 50px;">
         </div>
 
 
-        <hr style="color: white;">
+        <hr class="wb-dev-col-white">
 
-        <div class="row" style="margin-bottom: 50px; margin-left:10px">
-            <h1 style="font-family:fantasy; color:whitesmoke">Upcoming Movies</h1>
+        <div class="row wb-dev-mov-sec">
+            <h1 class="wb-dev-wc">Upcoming Movies</h1>
 
             <div ng-repeat="movie in model.upcomingMovies">
-                <!--<div class="col-xs-2 table-bordered" style="float:left">-->
-                <div class="pull-left" style="position:relative; margin: 5px">
+                <div class="pull-left wb-dev-home-img">
                     <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
-                    <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                    <a ng-click="model.movieDetailView(movie.id)"
+                        class="wb-dev-mov-title">
                         {{movie.title}}
                     </a>
                 </div>

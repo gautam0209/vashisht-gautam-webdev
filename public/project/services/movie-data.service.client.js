@@ -1,7 +1,3 @@
-/**
- * Created by Gautam Vashisht on 6/7/2017.
- */
-
 (function (){
     angular
         .module('WebAppProj')
@@ -36,8 +32,6 @@
                 getPopularMovies:getPopularMovies,
                 getUpcomingMovies:getUpcomingMovies,
                 searchMovie: searchMovie,
-               // putMovie: putMovie,
-                //getMovie: getMovie,
                 getReviews: getReviews,
                 deleteReview: deleteReview,
                 getLocalReview:getLocalReview,
@@ -122,7 +116,6 @@
         {
             mid = id;
             var url = urlBaseRev.replace("ID",mid);
-            //url = "http://api.themoviedb.org/3/movie/83542/reviews?api_key=56ebcfaec1cf2e96e005ccf98f7feeb6";
 
             return $http.get(url);
         }

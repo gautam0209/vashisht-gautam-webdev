@@ -24,47 +24,25 @@
                     <div id="navbar" class="navbar-collapse collapse pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#">Home</a></li>
-                            <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                             <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                             <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
-                            <!--<li><a href="">About</a></li>-->
-                            <!--<li><a href="">Contact</a></li>-->
-                            <!--<li class="dropdown">-->
-                            <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="">Action</a></li>-->
-                            <!--<li><a href="">Another action</a></li>-->
-                            <!--<li><a href="">Something else here</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
-                            <!--<li><a href="">Separated link</a></li>-->
-                            <!--<li><a href="">One more separated link</a></li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
                         </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>
-                <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
     </div>
 </nav>
 
-<div class="container-fluid" style="background-color: black;
-                                    background-size: cover;
-                                    min-height:100%;
-                                    min-width:100%;
-                                    position:absolute;
-                                    color: whitesmoke; margin-top: -10px">
+<div class="container-fluid wb-dev-mov-rev-cont">
             <h1 id="title">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
-    <div class="row" style="margin-bottom: 25px">
+    <div class="row wb-dev-margin-bottom25">
         <div class="col-lg-2 pull-left">
             <img ng-src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}" width = 100px/>
         </div>
@@ -95,12 +73,12 @@
         </div>
 
 <div class="row">
-    <ul style="margin-bottom:75px;margin-right:25px">
+    <ul class="wb-dev-margin-right25 wb-dev-margin-bottom75">
         <div ng-show="!model.reviews[0]">
             <p>No Reviews Yet. Please add reviews.</p>
         </div>
            <div ng-repeat="review in model.reviews" class="table-bordered">
-                    <div style="color: darkgoldenrod">
+                    <div class="wb-dev-bg-golred">
                         <b> A review by {{review.author}}</b>
                         <div ng-show="review.star">
                             <span ng-if="model.currentUser.follow.indexOf(review._user) === -1

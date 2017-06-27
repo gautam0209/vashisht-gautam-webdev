@@ -35,33 +35,9 @@
                     .findAllReviewsByFollow(followId)
                     .then(function (response) {
                         model.reviews = model.reviews.concat(response.data);
-                        // for(var r in model.reviews)
-                        // {
-                        //     var review = model.reviews[r];
-                        //     movieService
-                        //         .findMovieById(review.movieId)
-                        //         .then(function(movie)
-                        //         {
-                        //             model.movies.push(movie.data);
-                        //         });
-                        // }
 
                     });
             }
-
-
-
-            // for(var r in model.reviews)
-            // {
-            //     var review = model.reviews[r];
-            //     userService
-            //         .findUserById(review._user)
-            //         .then(function(user)
-            //         {
-            //             console.log(user);
-            //             model.users.push(user.data);
-            //         });
-            // }
 
 
         }

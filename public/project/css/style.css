@@ -70,3 +70,366 @@ a{
     padding-left:15px;
     padding-right:15px;
 }
+
+
+.wb-dev-admin-bg
+{
+    background-image: url('https://www.cliftonhill.com/sites/default/files/styles/slider/public/places/primary-images/movieland-wax-museum_1.jpg?itok=1KbTbb03');
+    background-position: center top;
+    background-size: cover;
+    position:absolute;
+    top:0;
+    bottom:0;
+    min-width:100%;
+    min-height:100%;
+}
+
+.wb-dev-admin-lgbox
+{
+    margin-top:125px;
+    bottom:0;
+    margin-right: 100px;
+}
+
+.wb-dev-lg-col
+{
+    color: lightgray;
+}
+
+.wb-dev-pad-top25
+{
+    padding-top: 25px;
+}
+
+
+.wb-dev-admin-req
+{
+    background-color: black;
+    background-size:cover;
+    height: 100%;
+    width:100%;
+    position:absolute;
+    margin-top:-10px;
+}
+
+.wb-dev-margin-right12
+{
+    margin-right:12px;;
+}
+
+
+.wb-dev-bg-black
+{
+    background-color: black;
+}
+
+
+.wb-dev-admin-rev
+ {
+     background-size: cover;
+     background-color: black;
+     color: whitesmoke;
+     position: absolute;
+     min-width:100%;
+     min-height: 100%;
+     margin-top:-10px;
+     left: 0;
+ }
+
+
+.wb-dev-bg-golred
+{
+    color:darkgoldenrod;
+}
+
+.wb-dev-admin-users
+{
+    background-size: cover;
+    background-color: black;
+    color: whitesmoke;
+    position: absolute;
+    min-width:100%;
+    min-height: 100%;
+    margin-top:-10px;
+    left: 0;
+    word-wrap: break-word;
+}
+
+
+.wb-dev-margin-left10
+{
+    margin-left: 10px;
+}
+
+.wb-dev-margin-top7
+{
+    margin-top: 7px;
+}
+
+.wb-dev-margin-top30
+{
+    margin-top: 30px;
+}
+
+.wb-dev-home-cont
+{
+    background-color: black;
+    background-size: cover;
+    position: absolute;
+    top:35px;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    margin-bottom: 50px;
+}
+
+.wb-dev-wc
+{
+    font-family:fantasy;
+    color:whitesmoke;
+}
+
+
+
+.wb-dev-home-img
+{
+    position:relative;
+    margin: 5px;
+}
+
+.wb-dev-mov-title
+{
+    position:absolute;
+    bottom:10px;
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+    color: white;
+    font-size: 12px;
+}
+
+
+.wb-dev-mov-sec
+{
+    margin-bottom: 50px;
+    margin-left:10px;
+}
+
+.wb-dev-col-white
+{
+    color:white;
+}
+
+
+.wb-dev-login-bg
+{
+    background-image: url('https://blackgirlnerds.com/wp-content/uploads/2016/02/batmanvsuperman-xlarge.jpg');
+    background-position: center top;
+    background-size: cover;
+    position:absolute;
+    top:0;
+    bottom:0;
+    min-width:100%;
+    min-height:100%
+}
+
+.wb-dev-log-box
+{
+    margin-top:125px;
+    bottom:0;
+}
+
+.wb-dev-bg-trans
+{
+    background-color: black;
+    background: rgba(0,0,0,0.5);
+}
+
+.wb-dev-margin-bottom20
+{
+    margin-bottom: 20px;
+}
+
+.wb-dev-margin-left15
+{
+    margin-left: 15px;
+}
+
+.wb-dev-margin-left5
+{
+    margin-left: 5px;
+}
+
+.wb-dev-margin-bottom-15
+{
+    margin-bottom:-15px;
+}
+
+.wb-dev-col-black
+{
+    color:black;
+}
+
+.wb-dev-profile-bg
+{
+    background-image: url('https://images.alphacoders.com/211/thumb-1920-211721.jpg');
+    background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+.wb-dev-margin-top70
+{
+    margin-top:70px;
+}
+
+.wb-dev-margin-bottom5
+{
+    margin-bottom:5px;
+}
+
+.wb-dev-margin-right5
+{
+    margin-right:5px;
+}
+
+.wb-dev-reg-bg
+{
+    background-image: url('https://goirtineve.files.wordpress.com/2014/11/movie-reviews-icon11.jpg');
+    background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+.wb-dev-margin-top50
+{
+    margin-top:50px;
+}
+
+.wb-dev-margin-right-top5
+{
+    margin-right:5px;
+    margin-top:5px;
+}
+
+.wb-dev-mov-rev-cont
+{
+    background-size: cover;
+    background-color: black;
+    color: whitesmoke;
+    position: absolute;
+    min-width:100%;
+    min-height: 100%;
+    margin-top:-10px;
+    left: 0;
+}
+
+.wb-dev-margin-rtl {
+    margin-right:0px;
+    margin-top:30px;
+    margin-left:5px;
+}
+
+.wb-dev-margin-bottom75
+{
+    margin-bottom: 75px;
+}
+
+.wb-dev-bg-col
+{
+    background-color: black;
+    color:darkgoldenrod;
+}
+
+.wb-dev-bg-col-g
+{
+    background-color: black;
+    color:lightgray;
+}
+
+.wb-dev-margin-top50-col
+{
+    color:white;
+    margin-top:50px;
+}
+
+.wb-dev-margin-left12
+{
+    margin-left:12px;
+}
+
+.wb-dev-mov-det-cont
+{
+    background-color: black;
+    margin-top: -10px;
+}
+
+.wb-dev-col-whitesm
+{
+    color:whitesmoke;
+}
+
+.wb-dev-margin-bottom25
+{
+    margin-bottom: 25px;
+}
+
+.wb-dev-col-green {
+    color: lightgreen;
+}
+
+.wb-dev-col-red
+{
+    color:red;
+}
+
+.wb-dev-bg-mar-bottom
+{
+    background-color: black;
+    margin-bottom: -26px;
+}
+
+.wb-dev-margin-bottom1
+{
+    margin-bottom: 1px;
+}
+
+.wb-dev-mov-fav-cont
+{
+    background-color: black;
+    background-size: cover;
+    position: absolute;
+    top:28px;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    margin-bottom: 50px;
+}
+
+.wb-dev-margin25
+{
+    margin:25px;
+}
+
+.wb-dev-margin-top25
+{
+    margin-top:25px;
+}
+
+.wb-dev-pos-rel
+{
+    position:relative;
+}
+
+.wb-dev-margin-right25
+{
+    margin-right:25px;
+}

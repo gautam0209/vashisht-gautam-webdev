@@ -1,7 +1,3 @@
-/**
- * Created by Gautam Vashisht on 5/27/2017.
- */
-
 (function(){
     angular
         .module("WebAppProj")
@@ -61,17 +57,6 @@
                 resolve:{
                     currentUser:checkLoggedIn
                 }
-            })
-
-            // .when('/searchMovie',{
-            //     templateUrl: 'views/movies/templates/movie-search.view.client.html',
-            //     controller: 'movieController',
-            //    s controllerAs: 'model'
-            // })
-            .when('/current/movies',{
-                templateUrl: 'views/movies/templates/movie-current.view.client.html',
-               controller: 'curMovieController',
-               controllerAs: 'model'
             })
 
             .when('/myMovies',{

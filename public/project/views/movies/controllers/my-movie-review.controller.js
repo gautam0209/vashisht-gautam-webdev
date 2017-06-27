@@ -26,16 +26,6 @@
                 .findAllReviewsByUserId(model.currentUser._id)
                 .then(function (response) {
                     model.reviews = response.data;
-                    // for(var r in model.reviews)
-                    // {
-                    //     var review = model.reviews[r];
-                    //     movieService
-                    //         .findMovieById(review.movieId)
-                    //         .then(function(movie)
-                    //         {
-                    //             model.movies.push(movie.data);
-                    //         });
-                    // }
                 }, function(){});
 
 

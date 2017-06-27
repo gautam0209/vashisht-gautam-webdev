@@ -3,7 +3,6 @@ var app = require('../../express');
 var q = require('q');
 
 var userProjModel = require('../models/user/user.model.server');
-// var reviewModel = require('../models/review/review.model.server');
 
 var passport = require('passport');
 
@@ -33,14 +32,6 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
-
-
-// var users =             [
-//     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-//     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-//     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-//     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-// ];
 
 app.post('/api/project/user', isAdmin, createUser);
 app.get('/api/project/admin/users', isAdmin, findAllUsers);
@@ -376,18 +367,6 @@ function logout(req, res){
 }
 
 function localStrategy(username, password, done) {
-    // userProjModel
-    //     .findUserByCredentials(username, password)
-    //     .then(
-    //         function(user) {
-    //             if (!user) { return done(null, false); }
-    //             return done(null, user);
-    //         },
-    //         function(err) {
-    //             if (err) { return done(err); }
-    //         }
-    //     );
-
     userProjModel
         .findUserByUsername(username)
         .then(
@@ -428,10 +407,6 @@ function login(req, res)
 
 function deleteUser(req, res) {
      var userId = req.params['userId'];
-    //var userId = req.user._id;
-
-    console.log("deleting user");
-    console.log(req.user);
 
     userProjModel.deleteUser(userId)
         .then(function(){
@@ -461,9 +436,7 @@ function updateUser(req, res)
 function updateProfile(req, res)
 {
     var user = req.body;
-    //var userId = req.params['userId'];
     var userId = req.user._id;
-    console.log(user.password);
 
     userProjModel.findUserById(userId)
         .then(function(oUser){
@@ -522,8 +495,6 @@ function findUserByCredential(req,res){
 function findUserByUsername(req, res)
 {
     var username = req.query['username'];
-
-    console.log("hello12");
 
     userProjModel.findUserByUsername(username)
         .then(function(user){

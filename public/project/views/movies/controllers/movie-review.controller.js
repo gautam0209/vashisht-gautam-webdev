@@ -36,9 +36,7 @@
                             })
 
                             model.reviews = reviews.concat(model.reviews);
-                            // model.reviews.sort(function(a,b){
-                            //    return (a.star >  b.star)?-1:1;
-                            // })
+
                             console.log(model.reviews);
                         }, function(err){
                             console.log(err);
@@ -85,9 +83,6 @@
                     .addReview(currentUser._id, movie.data.id, movie.data.title, movie.data.poster_path, content)
                     .then(function(){
 
-
-                        //
-
                     }, function(){});
             });
 
@@ -96,8 +91,6 @@
 
             init();
             $location.url('/movie/' + movieId + '/review');
-
-            //$location.url('/movie/' + movieId + '/review');
 
         }
     }

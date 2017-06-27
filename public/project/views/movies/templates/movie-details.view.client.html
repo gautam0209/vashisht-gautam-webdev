@@ -25,55 +25,38 @@
                     <div id="navbar" class="navbar-collapse collapse pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#">Home</a></li>
-                            <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                             <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                             <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
-                            <!--<li><a href="">About</a></li>-->
-                            <!--<li><a href="">Contact</a></li>-->
-                            <!--<li class="dropdown">-->
-                            <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="">Action</a></li>-->
-                            <!--<li><a href="">Another action</a></li>-->
-                            <!--<li><a href="">Something else here</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
-                            <!--<li><a href="">Separated link</a></li>-->
-                            <!--<li><a href="">One more separated link</a></li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
                         </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>
-                <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
     </div>
 </nav>
 
-<div class="container-fluid" style="background-color: black; margin-top: -10px">
+<div class="container-fluid wb-dev-mov-det-cont">
 
 
-            <h1 id="title" style="color:whitesmoke">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
-    <div class="row" style="margin-bottom: 25px;">
+            <h1 id="title" class="wb-dev-col-whitesm">{{model.movie.title}} ({{model.movie.release_date.substring(0,4)}})</h1>
+    <div class="row wb-dev-margin-bottom25">
         <div class="col-lg-3 pull-left">
             <img ng-src="http://image.tmdb.org/t/p/w185{{model.movie.poster_path}}" width = 200px/>
         </div>
-        <div class="col-lg-9" style="color:whitesmoke">
+        <div class="col-lg-9 wb-dev-col-whitesm">
                 {{model.movie.overview}}
             <br> <br>
             Release Date: {{model.movie.release_date}}
             <br><br>
             Rating: {{model.movie.vote_average}}
             <br><br>
-            <a href="{{model.movie.homepage}}" style="color:lightgreen">{{model.movie.homepage}}</a>
+            <a href="{{model.movie.homepage}}" class="wb-dev-col-green">{{model.movie.homepage}}</a>
             <br><br>
             IMDB Link: <a href="http://imdb.com/title/{{model.movie.imdb_id}}">Visit IMDB Link</a>
             <br><br>
@@ -86,13 +69,13 @@
                     <i class="fa fa-heart-o fa-2x"></i>
                 </a>
                 <a ng-show="model.like" ng-click="model.unLikeMovie()">
-                    <i class="fa fa-heart fa-2x" style="color:red"></i>
+                    <i class="fa fa-heart fa-2x wb-dev-col-red"></i>
                 </a>
                 <a ng-show="!model.watch" ng-click="model.watchMovie()">
                     <i class="fa fa-eye fa-2x"></i>
                 </a>
                 <a ng-show="model.watch" ng-click="model.unWatchMovie()">
-                    <i class="fa fa-eye fa-2x" style="color:red"></i>
+                    <i class="fa fa-eye fa-2x wb-dev-col-red"></i>
                 </a>
             </div>
             <div ng-show="!model.currentUser._id">
@@ -105,10 +88,10 @@
     </div>
 
 
-<div id="panel" style="background-color: black; margin-bottom: -26px">
+<div id="panel wb-dev-bg-mar-bottom">
 
 
-    <div id="mov-det" class="panel panel-info" style="margin-bottom: 1px">
+    <div id="mov-det" class="panel panel-info wb-dev-margin-bottom1">
         <div class="panel-heading">Movie Details</div>
         <div class="panel-body">
             {{model.movie.overview}}
@@ -120,7 +103,7 @@
         </ul>
     </div>
 
-    <div class="panel panel-info" style="margin-bottom: 1px">
+    <div class="panel panel-info wb-dev-margin-bottom1">
         <div class="panel-heading">Movie Genre</div>
         <!-- List group -->
         <ul class="list-group">
@@ -130,7 +113,7 @@
         </ul>
     </div>
 
-    <div class="panel panel-info" style="margin-bottom: 1px">
+    <div class="panel panel-info wb-dev-margin-bottom1">
         <div class="panel-heading">Box Office</div>
 
         <!-- List group -->
@@ -140,7 +123,7 @@
         </ul>
     </div>
 
-    <div class="panel panel-info" style="margin-bottom: 1px">
+    <div class="panel panel-info wb-dev-margin-bottom1">
         <div class="panel-heading">Production Companies</div>
             <!-- List group -->
         <div ng-repeat="company in model.movie.production_companies">
@@ -148,7 +131,7 @@
         </div>
     </div>
 
-    <div class="panel panel-info" style="margin-bottom: 1px">
+    <div class="panel panel-info wb-dev-margin-bottom1">
         <div class="panel-heading">Star Cast</div>
         <!-- List group -->
         <ul class="list-group">

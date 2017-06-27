@@ -1,27 +1,15 @@
-<div class="container" style="background-image: url('https://goirtineve.files.wordpress.com/2014/11/movie-reviews-icon11.jpg');
-    background-size: cover;
-    position: absolute;
-    top:0;
-    left:0;
-    min-width: 100%;
-    min-height: 100%;">
-<!--background-position: center top;-->
-<!--background-size: cover;-->
-<!--position:absolute;-->
-<!--top:0;-->
-<!--bottom:0;-->
-<!--width:100%">-->
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+<div class="container wb-dev-reg-bg">
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 wb-dev-margin-top50">
         <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
 
-        <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
+        <div class="panel wb-dev-bg-trans">
             <div class="panel-heading">
-                <div class="panel-title" style="color: lightgray"><b>Sign Up</b></div>
+                <div class="panel-title wb-dev-lg-col"><b>Sign Up</b></div>
             </div>
 
-            <div class="panel-body" style="padding-top: 25px;">
-                <div class="input-group" style="margin-bottom: 20px">
-                    <label for="username"><b style="color:lightgray">Username</b></label>
+            <div class="panel-body wb-dev-pad-top25">
+                <div class="input-group wb-dev-margin-bottom20">
+                    <label for="username"><b class="wb-dev-lg-col">Username</b></label>
                     <input type="text"
                            ng-model="model.user.username"
                            id="username"
@@ -30,8 +18,8 @@
                            placeholder="gautam0209"/>
                 </div>
 
-                <div class="input-group" style="margin-bottom: 20px">
-                    <label for="password"><b style="color:lightgray">Password</b></label>
+                <div class="input-group wb-dev-margin-bottom20">
+                    <label for="password"><b class="wb-dev-lg-col">Password</b></label>
                     <input type="password"
                            ng-model="model.user.password"
                            id="password"
@@ -40,8 +28,8 @@
                            placeholder="moviePassword"/>
                 </div>
 
-                <div class="input-group" style="margin-bottom: 20px">
-                    <label for="password2"><b style="color:lightgray">Verify Password</b></label>
+                <div class="input-group wb-dev-margin-bottom20">
+                    <label for="password2"><b class="wb-dev-lg-col">Verify Password</b></label>
                     <input type="password"
                            ng-model="model.user.password2"
                            id="password2"
@@ -50,8 +38,8 @@
                            placeholder="moviePassword"/>
                 </div>
 
-                <div class="input-group" style="margin-bottom: 20px">
-                    <label for="email"><b style="color:lightgray">Email</b></label>
+                <div class="input-group wb-dev-margin-bottom20">
+                    <label for="email"><b class="wb-dev-lg-col">Email</b></label>
                     <input type="email"
                            ng-model="model.user.email"
                            id="email"
@@ -60,8 +48,8 @@
                            placeholder="movie@movieBuff.com"/>
                 </div>
 
-                <div class="input-group" style="margin-bottom: 20px">
-                    <label for="firstName"><b style="color:lightgray">First Name</b></label>
+                <div class="input-group wb-dev-margin-bottom20">
+                    <label for="firstName"><b class="wb-dev-lg-col">First Name</b></label>
                     <input type="text"
                            ng-model="model.user.firstName"
                            id="firstName"
@@ -70,8 +58,8 @@
                            placeholder="firstName"/>
                 </div>
 
-                <div class="input-group" style="margin-bottom: 20px">
-                    <label for="lastName"><b style="color:lightgray">LastName</b></label>
+                <div class="input-group wb-dev-margin-bottom20">
+                    <label for="lastName"><b class="wb-dev-lg-col">LastName</b></label>
                     <input type="lastName"
                            ng-model="model.user.lastName"
                            id="lastName"
@@ -81,208 +69,22 @@
                 </div>
                 <div class="input-group">
 
-                    <a class="btn btn-success" style="margin-right: 5px"
+                    <a class="btn btn-success wb-dev-margin-right5"
                        ng-click="model.register(model.user)">
                         <b>Register</b>
                     </a>
-                    <a class="btn btn-danger " style="margin-right: 5px"
+                    <a class="btn btn-danger wb-dev-margin-right5 "
                        href="#!/">
                         <b>Cancel</b>
                     </a>
 
                 </div>
-                <a class="btn btn-info pull-left" style="margin-right: 5px; margin-top: 5px"
+                <a class="btn btn-info pull-left wb-dev-margin-right-top5"
                    ng-click="model.registerForExpert(model.user)">
                     <b>Request For Expert Login</b>
                 </a>
             </div>
 
         </div>
-
-
-
-
     </div>
 </div>
-
-<!--<nav class="navbar navbar-default navbar-fixed-top">-->
-<!--<div class="container-fluid">-->
-<!--<div class="navbar-header">-->
-<!--<a class="navbar-brand">-->
-<!--Profile-->
-<!--</a>-->
-<!--<p class="navbar-text pull-right">-->
-<!--<a ng-click="model.updateProfile(model.user)" class="navbar-link">-->
-<!--<span class="glyphicon glyphicon-ok"></span>-->
-<!--</a>-->
-<!--</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</nav>-->
-
-
-
-<!--<div class="container-fluid">-->
-<!--&lt;!&ndash;<h1>Profile</h1>&ndash;&gt;-->
-
-<!--<div ng-show="model.error" class="alert alert-info">-->
-<!--{{model.error}}-->
-<!--</div>-->
-<!--<div ng-show="model.message" class="alert alert-info">-->
-<!--{{model.message}}-->
-<!--</div>-->
-<!--<form>-->
-<!--<div class="form-group">-->
-<!--<label for="username">Username</label>-->
-<!--<input type="text"-->
-<!--ng-model="model.user.username"-->
-<!--class="form-control"-->
-<!--id="username"-->
-<!--placeholder="gautam0209">-->
-<!--</div>-->
-<!--<div class="form-group">-->
-<!--<label for="email">Email address</label>-->
-<!--<input type="email"-->
-<!--ng-model="model.user.email"-->
-<!--class="form-control"-->
-<!--id="email"-->
-<!--placeholder="gautam.vashisht0209@gmail.com"-->
-<!--ng-model="model.user.email">-->
-<!--</div>-->
-<!--<div class="form-group">-->
-<!--<label for="first-name">First Name</label>-->
-<!--<input type="text"-->
-<!--ng-model="model.user.firstName"-->
-<!--class="form-control"-->
-<!--id="first-name"-->
-<!--placeholder="Gautam">-->
-<!--</div>-->
-<!--<div class="form-group">-->
-<!--<label for="last-name">Last Name</label>-->
-<!--<input type="text"-->
-<!--ng-model="model.user.lastName"-->
-<!--class="form-control"-->
-<!--id="last-name"-->
-<!--placeholder="Vashisht">-->
-<!--</div>-->
-<!--</form>-->
-
-<!--<a class="btn btn-primary btn-block"-->
-<!--href="#!/website">-->
-<!--Websites-->
-<!--</a>-->
-<!--<a class="btn btn-success btn-block"-->
-<!--ng-click="model.updateProfile(model.user)">-->
-<!--Update-->
-<!--</a>-->
-<!--<a class="btn btn-danger btn-block"-->
-<!--ng-click="model.unregister(model.user)">-->
-<!--Unregister-->
-<!--</a>-->
-<!--<a class="btn btn-danger  btn-block"-->
-<!--ng-click="model.logout()">-->
-<!--Logout-->
-<!--</a>-->
-<!--</div>-->
-
-<!--<nav class="navbar navbar-default navbar-fixed-bottom">-->
-<!--<div class="container-fluid">-->
-<!--<div class="navbar-header">-->
-<!--<p class="navbar-text pull-right">-->
-<!--<a class="navbar-link">-->
-<!--<span class="glyphicon glyphicon-user"></span>-->
-<!--</a>-->
-<!--</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</nav>-->
-
-
-
-
-<!--<div class="container-fluid">-->
-    <!--<h1>Sign up!! Be Ready to dive into the world of movie land!!!!</h1>-->
-
-    <!--<div ng-show="model.error" class="alert alert-warning">{{model.error}}</div>-->
-
-    <!--<form name="userForm" novalidate>-->
-        <!--<div class="form-group">-->
-            <!--<label for="username">Username</label>-->
-            <!--<input type="text"-->
-                   <!--ng-model="username"-->
-                   <!--id="username"-->
-                   <!--name="username"-->
-                   <!--class="form-control"-->
-                   <!--placeholder="gautam0209"-->
-                   <!--required/>-->
-        <!--</div>-->
-        <!--<p ng-show="userForm.username.$invalid && userForm.$submitted" class="help-block">Username is required.</p>-->
-
-        <!--<div class="form-group">-->
-            <!--<label for="password">Password</label>-->
-            <!--<input type="password"-->
-                   <!--ng-model="password"-->
-                   <!--id="password"-->
-                   <!--name="password"-->
-                   <!--class="form-control"-->
-                   <!--placeholder="abcD123$"-->
-                   <!--required/>-->
-        <!--</div>-->
-        <!--<p ng-show="userForm.password.$invalid && userForm.$submitted" class="help-block">Password is required.</p>-->
-
-
-
-        <!--<div class="form-group">-->
-            <!--<label for="veri-password">Verify-Password</label>-->
-            <!--<input type="password"-->
-                   <!--ng-model="password2"-->
-                   <!--id="veri-password"-->
-                   <!--name="password2"-->
-                   <!--class="form-control"-->
-                   <!--placeholder="abcD123$"-->
-                   <!--required/>-->
-        <!--</div>-->
-        <!--<p ng-show="userForm.password2.$invalid && userForm.$submitted" class="help-block">Verify Password is required.</p>-->
-        <!--<p ng-show="userForm.password2.$viewValue !== userForm.password.$viewValue && userForm.$submitted" class="help-block">Passwords must match.</p>-->
-
-        <!--<div class="form-group">-->
-            <!--<label for="email">Email</label>-->
-            <!--<input type="email"-->
-                   <!--ng-model="email"-->
-                   <!--id="email"-->
-                   <!--name="email"-->
-                   <!--class="form-control"-->
-                   <!--placeholder="xyz@mail.com"-->
-                   <!--required/>-->
-        <!--</div>-->
-        <!--<p ng-show="userForm.email.$invalid && userForm.$submitted" class="help-block">Email is required.</p>-->
-
-        <!--<div class="form-group">-->
-            <!--<label for="firstName">First Name</label>-->
-            <!--<input type="text"-->
-                   <!--ng-model="firstName"-->
-                   <!--id="firstName"-->
-                   <!--name="firstName"-->
-                   <!--class="form-control"-->
-                   <!--placeholder="Gomy"-->
-                   <!--required/>-->
-        <!--</div>-->
-        <!--<p ng-show="userForm.firstName.$invalid && userForm.$submitted" class="help-block">First Name is required.</p>-->
-
-        <!--<div class="form-group">-->
-            <!--<label for="lastName">Last Name</label>-->
-            <!--<input type="text"-->
-                   <!--ng-model="lastName"-->
-                   <!--id="lastName"-->
-                   <!--name="lastName"-->
-                   <!--class="form-control"-->
-                   <!--placeholder="Vashy"/>-->
-        <!--</div>-->
-
-        <!--<button type="submit" class="btn btn-primary btn-block"-->
-                <!--ng-click="model.register(username, password, password2, email, firstName, lastName)">Register</button>-->
-        <!--<a class="btn btn-danger  btn-block"-->
-           <!--href="#!/login">Cancel</a>-->
-    <!--</form>-->
-<!--</div>-->
-

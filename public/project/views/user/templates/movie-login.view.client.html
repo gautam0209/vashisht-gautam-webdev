@@ -1,22 +1,15 @@
-<div class="container" style="background-image: url('https://blackgirlnerds.com/wp-content/uploads/2016/02/batmanvsuperman-xlarge.jpg');
-background-position: center top;
-background-size: cover;
-position:absolute;
-top:0;
-bottom:0;
-min-width:100%;
-min-height:100%">
+<div class="container wb-dev-login-bg">
 
-    <div id="loginbox" style="margin-top:125px; bottom:0" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 wb-dev-log-box">
         <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
 
-        <div class="panel" style="background-color: black; background: rgba(0,0,0,0.5)">
+        <div class="panel wb-dev-bg-trans">
             <div class="panel-heading">
-                <div class="panel-title" style="color: lightgray"><b>Sign In</b></div>
+                <div class="panel-title wb-dev-lg-col"><b>Sign In</b></div>
             </div>
 
-            <div class="panel-body" style="padding-top: 25px;">
-                <div class="input-group" style="margin-bottom: 20px">
+            <div class="panel-body wb-dev-pad-top25">
+                <div class="input-group wb-dev-margin-bottom20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <input type="text"
                            ng-model="username"
@@ -25,7 +18,7 @@ min-height:100%">
                            placeholder="movieLogin"/>
                 </div>
 
-                <div class="input-group" style="margin-bottom: 20px">
+                <div class="input-group wb-dev-margin-bottom20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-log-in"></i></span>
                     <input type="password"
                            ng-model="password"
@@ -39,26 +32,23 @@ min-height:100%">
                     <a class="btn btn-primary"
                         ng-click="model.login(username, password)">
                         Login</a>
-                    <a class="btn btn-success" style="margin-left: 15px"
+                    <a class="btn btn-success wb-dev-margin-left15"
                        href="#!/">
                         Continue as Guest</a>
                 </div>
             </div>
 
 
-            <hr style="color:black"/>
+            <hr class="wb-dev-col-black"/>
 
-            <div class="input-group" style="margin-bottom:-15px">
-                <!--<b style="color: gray">-->
-                    <!--Login Via-->
-                <!--</b>-->
+            <div class="input-group wb-dev-margin-bottom-15">>
                 <div class="panel-heading">
-                    <div class="panel-title" style="color: lightgray"><b>Login Via</b></div>
+                    <div class="panel-title wb-dev-lg-col"><b>Login Via</b></div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-xs-6">
-                        <a href="/auth/google" class="btn btn-danger" style="margin-left:10px">
+                        <a href="/auth/google" class="btn btn-danger wb-dev-margin-left10">
                             <span class="fa fa-google-plus"></span>
                             Google
                         </a>
@@ -73,8 +63,8 @@ min-height:100%">
                 </div>
                 <div class="row">
 
-                    <div class="col-xs-12" style="margin-left: 10px">
-                        <b style="color: lightgray">
+                    <div class="col-xs-12 wb-dev-margin-left10">
+                        <b class="wb-dev-lg-col">
                             New here?
                         </b>
                         <a href="#!/register">Sign Up!!</a>
@@ -84,12 +74,6 @@ min-height:100%">
 
                 </div>
             </div>
-
-
         </div>
-
-
-
-
     </div>
 </div>

@@ -20,10 +20,6 @@
         model.unWatchMovie = unWatchMovie;
         model.putProfileTrace = putProfileTrace;
 
-        // model.submitReview = submitReview;
-
-
-       // model.getReviews = getReviews;
 
 
         function init()

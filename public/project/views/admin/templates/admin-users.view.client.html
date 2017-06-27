@@ -21,28 +21,11 @@
 
                     <div id="navbar" class="navbar-collapse collapse pull-right">
                         <ul class="nav navbar-nav">
-                            <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
-                            <!--<li><a href="">About</a></li>-->
-                            <!--<li><a href="">Contact</a></li>-->
-                            <!--<li class="dropdown">-->
-                            <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="">Action</a></li>-->
-                            <!--<li><a href="">Another action</a></li>-->
-                            <!--<li><a href="">Something else here</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
-                            <!--<li><a href="">Separated link</a></li>-->
-                            <!--<li><a href="">One more separated link</a></li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
                         </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>
-                <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
@@ -50,13 +33,12 @@
 </nav>
 
 
-<div class="container-fluid" style="background-size: cover;background-color: black; color: whitesmoke; position: absolute;
-min-width:100%;min-height: 100%; margin-top:-10px; left: 0; word-wrap: break-word ">
-    <h1 style="color:darkgoldenrod">Users</h1>
+<div class="container-fluid wb-dev-admin-rev">
+    <h1 class="wb-dev-bg-golred">Users</h1>
     <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
-    <ul class="list-group" style="margin-right:12px;">
-        <li class="list-group-item" style="background-color: black">
-            <div class="row" style="color:darkgoldenrod;" >
+    <ul class="list-group wb-dev-margin-right12">
+        <li class="list-group-item wb-dev-bg-black">
+            <div class="row wb-dev-bg-golred">
                 <div class="col-xs-3">
                     UserName
                 </div>
@@ -75,7 +57,7 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0; word-wrap: break-wor
 
             </div>
         </li>
-        <li class="list-group-item" style="background-color: black">
+        <li class="list-group-item wb-dev-bg-black">
             <div class="row">
                 <div class="col-xs-3">
                     <input ng-model="model.user.username"
@@ -93,7 +75,7 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0; word-wrap: break-wor
                     <input ng-model="model.user.roles"
                            class="form-control"/>
                 </div>
-                <div class="col-xs-1" style="color:lightgray">
+                <div class="col-xs-1 wb-dev-lg-col">
                         <span ng-show = "!model.selected" ng-click="model.createUser(model.user); user=null" class="glyphicon glyphicon-plus">
                         </span>
                     <span ng-show="model.selected"
@@ -102,8 +84,8 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0; word-wrap: break-wor
                 </div>
             </div>
         </li>
-        <li ng-repeat="user in model.users"  ng-if = "user.roles.indexOf('ADMIN') === -1" class="list-group-item" style="background-color: black">
-            <div   class="row" style="color:lightgray">
+        <li ng-repeat="user in model.users"  ng-if = "user.roles.indexOf('ADMIN') === -1" class="list-group-item wb-dev-bg-black">
+            <div   class="row wb-dev-lg-col">
                 <div class="col-xs-2">
                     {{user.username}}
                 </div>

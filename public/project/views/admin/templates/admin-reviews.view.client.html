@@ -21,28 +21,11 @@
 
                     <div id="navbar" class="navbar-collapse collapse pull-right">
                         <ul class="nav navbar-nav">
-                            <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
-                            <!--<li><a href="">About</a></li>-->
-                            <!--<li><a href="">Contact</a></li>-->
-                            <!--<li class="dropdown">-->
-                            <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="">Action</a></li>-->
-                            <!--<li><a href="">Another action</a></li>-->
-                            <!--<li><a href="">Something else here</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
-                            <!--<li><a href="">Separated link</a></li>-->
-                            <!--<li><a href="">One more separated link</a></li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
                         </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>
-                <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
@@ -50,12 +33,11 @@
 </nav>
 
 
-<div class="container-fluid" style="background-size: cover;background-color: black; color: whitesmoke; position: absolute;
-min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
-    <h1 style="color:darkgoldenrod">Reviews</h1>
-    <ul class="list-group" style="margin-right:12px;">
-        <li class="list-group-item" style="background-color: black">
-            <div class="row" style="color:darkgoldenrod;" >
+<div class="container-fluid wb-dev-admin-rev">
+    <h1 class="wb-dev-bg-golred">Reviews</h1>
+    <ul class="list-group wb-dev-margin-right12">
+        <li class="list-group-item wb-dev-bg-black">
+            <div class="row wb-dev-bg-golred">
                 <div class="col-xs-3">
                     UserName
                 </div>
@@ -69,8 +51,8 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
                 </div>
             </div>
         </li>
-        <li ng-repeat="review in model.reviews" class="list-group-item" style="background-color: black">
-            <div class="row" style="color:lightgray">
+        <li ng-repeat="review in model.reviews" class="list-group-item wb-dev-bg-black">
+            <div class="row wb-dev-lg-col">
                 <div class="col-xs-3">
                     {{review.author}}
                 </div>
@@ -100,65 +82,3 @@ min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
         </div>
     </div>
 </nav>
-
-
-
-
-
-
-<!--<div class="container-fluid">-->
-    <!--<h1>Reviews</h1>-->
-    <!--<ul class="list-group">-->
-        <!--<li class="list-group-item active">-->
-            <!--<div class="row">-->
-                <!--<div class="col-xs-2">-->
-                    <!--UserName-->
-                <!--</div>-->
-                <!--<div class="col-xs-3">-->
-                    <!--MovieName-->
-                <!--</div>-->
-                <!--<div class="col-xs-6">-->
-                    <!--Content-->
-                <!--</div>-->
-                <!--<div class="col-xs-1">-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;<li class="list-group-item">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="col-xs-2">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<input ng-model="model.review.username"&ndash;&gt;-->
-                           <!--&lt;!&ndash;class="form-control"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="col-xs-3">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<input ng-model="model.review.movieName"&ndash;&gt;-->
-                           <!--&lt;!&ndash;class="form-control"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="col-xs-6">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<input ng-model="model.review.content"&ndash;&gt;-->
-                           <!--&lt;!&ndash;class="form-control"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="col-xs-1">&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-        <!--<li ng-repeat="review in model.reviews" class="list-group-item">-->
-            <!--<div class="row">-->
-                <!--<div class="col-xs-2">-->
-                    <!--{{model.users[$index].username}}-->
-                <!--</div>-->
-                <!--<div class="col-xs-3">-->
-                    <!--{{model.movies[$index].title}}-->
-                <!--</div>-->
-                <!--<div class="col-xs-6">-->
-                    <!--{{review.content}}-->
-                <!--</div>-->
-                <!--<div class="col-xs-1">-->
-                    <!--<span ng-click="model.deleteReview(review)" class="glyphicon glyphicon-remove">-->
-                    <!--</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->

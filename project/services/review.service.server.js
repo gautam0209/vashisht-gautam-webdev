@@ -20,13 +20,6 @@ app.get ('/api/project/follow/:followId', findAllReviewsByFollow);
 
 
 
-
-// var pages = [
-//     { "_id": "321", "name": "Post 1", "websiteId": "789", "description": "Lorem" },
-//     { "_id": "432", "name": "Post 2", "websiteId": "789", "description": "Lorem" },
-//     { "_id": "543", "name": "Post 3", "websiteId": "789", "description": "Lorem" }
-// ];
-
 function findAllReviewsByFollow(req, res)
 {
     var followId = req.params['followId'];

@@ -6,9 +6,6 @@
                         <a class="navbar-brand" href="#!/">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
-                    <!--<a ng-show="model.returnPath === 'myReviews'" class="navbar-brand" href="#!/myReviews">-->
-                        <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                    <!--</a>-->
                     <a class="navbar-brand">
                         My Collection
                     </a>
@@ -25,34 +22,16 @@
                     <div id="navbar" class="navbar-collapse collapse pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#">Home</a></li>
-                            <!--<li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>-->
                             <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                             <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a href="#!/profile">Profile</a></li>-->
                             <li ng-show="model.currentUser._id" class="active"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
-                            <!--<li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>-->
-                            <!--<li><a href="">About</a></li>-->
-                            <!--<li><a href="">Contact</a></li>-->
-                            <!--<li class="dropdown">-->
-                            <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                            <!--<li><a href="">Action</a></li>-->
-                            <!--<li><a href="">Another action</a></li>-->
-                            <!--<li><a href="">Something else here</a></li>-->
-                            <!--<li role="separator" class="divider"></li>-->
-                            <!--<li class="dropdown-header">Nav header</li>-->
-                            <!--<li><a href="">Separated link</a></li>-->
-                            <!--<li><a href="">One more separated link</a></li>-->
-                            <!--</ul>-->
-                            <!--</li>-->
                         </ul>
                     </div><!--/.nav-collapse -->
 
                 </div>
-                <!--<a class="navbar-brand" href="#">Bootstrap theme</a>-->
             </div>
         </div>
 
@@ -60,39 +39,31 @@
 </nav>
 
 
-<div class="container-fluid" style="background-color: black;    background-size: cover;
-    position: absolute;
-    top:28px;
-    left:0;
-    min-width: 100%;
-    min-height: 100%;
-margin-bottom: 50px;">
+<div class="container-fluid wb-dev-mov-fav-cont">
 
-    <div class="row" style="margin:25px">
-        <h1 style="font-family:fantasy; color:whitesmoke; margin-top:25px">Movies Liked by me</h1>
+    <div class="row wb-dev-margin25">
+        <h1 class="wb-dev-wc wb-dev-margin-top25">Movies Liked by me</h1>
 
         <div ng-repeat="movie in model.favMovies">
-            <!--<div class="col-xs-2 table-bordered" style="float:left">-->
-            <div class="pull-left" style="position:relative;">
+            <div class="pull-left wb-dev-pos-rel">
                 <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = 100px/>
-                <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                <a ng-click="model.movieDetailView(movie.id)" class="wb-dev-mov-title">
                     {{movie.title}}
                 </a>
             </div>
         </div>
     </div>
 
-    <hr style="color: white;">
+    <hr class="wb-dev-col-white">
 
 
-    <div class="row" style="margin:25px">
-        <h1 style="font-family:fantasy; color:whitesmoke">My Watch List</h1>
+    <div class="row wb-dev-margin25">
+        <h1 class="wb-dev-wc">My Watch List</h1>
 
         <div ng-repeat="movie in model.watMovies">
-            <!--<div class="col-xs-2 table-bordered" style="float:left">-->
-            <div class="pull-left" style="position:relative; margin: 5px">
+            <div class="pull-left wb-dev-home-img">
                 <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = 100px/>
-                <a ng-click="model.movieDetailView(movie.id)" style="position:absolute; bottom:10px;text-align: center;word-wrap: break-word;width: 100%;color: white;font-size: 12px">
+                <a ng-click="model.movieDetailView(movie.id)" class="wb-dev-mov-title">
                     {{movie.title}}
                 </a>
             </div>
