@@ -113,7 +113,7 @@
                            movieId,
                            movieTitle,
                            moviePosterPath,
-                           review)
+                           content)
         {
             var url = "/api/project/review";
 
@@ -122,7 +122,7 @@
                 movieId : movieId,
                 movieTitle: movieTitle,
                 moviePosterPath: moviePosterPath,
-                review: review
+                review: content
             }
             return $http.post(url, reviewObj);
         }

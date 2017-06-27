@@ -72,7 +72,7 @@
             $location.url('/profile');
         }
 
-        function submitReview(movieId, review)
+        function submitReview(movieId, content)
         {
 
             console.log('submitting review');
@@ -82,7 +82,7 @@
                 .then(function(movie)
             {
                 userService
-                    .addReview(currentUser._id, movie.data.id, movie.data.title, movie.data.poster_path, review)
+                    .addReview(currentUser._id, movie.data.id, movie.data.title, movie.data.poster_path, content)
                     .then(function(){
 
 

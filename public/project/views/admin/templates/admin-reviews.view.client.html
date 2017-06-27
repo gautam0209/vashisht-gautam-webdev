@@ -50,7 +50,8 @@
 </nav>
 
 
-<div class="container-fluid" style="background-color: black;">
+<div class="container-fluid" style="background-size: cover;background-color: black; color: whitesmoke; position: absolute;
+min-width:100%;min-height: 100%; margin-top:-10px; left: 0;  ">
     <h1 style="color:darkgoldenrod">Reviews</h1>
     <ul class="list-group" style="margin-right:12px;">
         <li class="list-group-item" style="background-color: black">
@@ -71,16 +72,16 @@
         <li ng-repeat="review in model.reviews" class="list-group-item" style="background-color: black">
             <div class="row" style="color:lightgray">
                 <div class="col-xs-3">
-                    {{model.users[$index].username}}
+                    {{review.author}}
                 </div>
                 <div class="col-xs-3">
-                    {{model.movies[$index].title}}
+                    {{review.movieTitle}}
                 </div>
                 <div class="col-xs-5">
                     {{review.content}}
                 </div>
                 <div class="col-xs-1">
-                    <span ng-click="model.deleteReview(model.users[$index]._id, review._id)" class="glyphicon glyphicon-remove">
+                    <span ng-click="model.deleteReview(review._user, review._id)" class="glyphicon glyphicon-remove">
                     </span>
                 </div>
             </div>

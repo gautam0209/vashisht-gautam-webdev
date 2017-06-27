@@ -30,6 +30,10 @@ min-height:100%">
                 <a href="#!/admin/requests">
                     Pending Requests
                 </a>
+                <a ng-if="model.requests" class="pull-right">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                    {{model.requests.length}}
+                </a>
             </div>
             <div class="panel-body" style="padding-top: 25px;">
                 <a ng-click="model.logout()">

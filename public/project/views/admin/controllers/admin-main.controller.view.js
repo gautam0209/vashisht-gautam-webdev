@@ -13,6 +13,11 @@
 
         function init() {
 
+            userService
+                .findRequests()
+                .then(function(requests){
+                    model.requests = requests.data;
+                })
         }
 
         init();

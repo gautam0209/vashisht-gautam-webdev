@@ -114,14 +114,14 @@ function getLocalReviews(req, res)
 
 function addReview(req, res)
 {
-    var userObj = req.body;
+    var reviewObj = req.body;
     console.log("hi");
-    console.log(userObj);
+    console.log(reviewObj);
     var prom = q.defer();
     reviewModel
-        .addReview(userObj)
-        .then(function(userObj){
-            q.resolve(userObj);
+        .addReview(reviewObj)
+        .then(function(reviewObj){
+            q.resolve(reviewObj);
         },function(){
             q.reject();
         });

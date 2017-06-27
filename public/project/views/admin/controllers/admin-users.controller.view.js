@@ -4,9 +4,7 @@
         .controller('adminUsersController',adminUsersController);
 
     function adminUsersController(userService,
-                             movieService,
-                             currentUser,
-                             $location) {
+                                  currentUser) {
 
         var model = this;
         model.findAllUsers = findAllUsers;
@@ -15,8 +13,6 @@
         model.createUser = createUser;
         model.selectUser = selectUser;
         model.updateUser = updateUser;
-        model.getUserById = getUserById;
-        model.getMovieById = getMovieById;
         model.selected = false;
         model.movies = [];
         model.users = [];
@@ -41,17 +37,26 @@
 
         function selectUser(user)
         {
+            model.error ="";
             model.user = angular.copy(user);
             model.selected = true;
         }
 
         function createUser(user)
         {
-            user.password = 'default';
-            userService
-                .createUser(user)
-                .then(findAllUsers);
-            model.user =null;
+            if(!user)
+                model.error = "Please provide user details";
+            else if(!user.username)
+                model.error = "Please provide username";
+            else if(!user.firstName)
+                model.error = "Please provide firstname";
+            else {
+                user.password = 'default';
+                userService
+                    .createUser(user)
+                    .then(findAllUsers);
+                model.user = null;
+            }
         }
 
         function findAllUsers()
@@ -62,34 +67,9 @@
                 });
         }
 
-
-        function getMovieById(movieId)
-        {
-            movieService.findMovieById(movieId)
-                .then(function(movie)
-                    {
-                        model.movie = movie.title;
-                        console.log(model.movie);
-                        return model.movie;
-                    }
-                )
-        }
-
-        function getUserById(userId)
-        {
-            userService
-                .findUserById(userId)
-                .then(function(user)
-                    {
-                        model.userName = user.username;
-                        console.log(model.userName);
-                        //return model.userName;
-                    }
-                )
-        }
-
         function deleteUser(user)
         {
+            model.error ="";
             userService
                 .deleteUser(user._id)
                 .then(findAllUsers);
