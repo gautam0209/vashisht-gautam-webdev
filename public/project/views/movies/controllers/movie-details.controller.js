@@ -38,7 +38,8 @@
                     .isLike(model.userId,model.movieId)
                     .then(function(like){
                         model.like = like;
-                    },function(){});
+                    },function(){
+                    });
 
             if(currentUser._id)
                 userService

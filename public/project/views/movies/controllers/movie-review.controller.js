@@ -18,6 +18,8 @@
         model.follow = follow;
 
         function init() {
+
+            // model.currentUser = currentUser;
             movieService.
             findMovieById(model.movieId)
                 .then(function(movie) {
@@ -54,10 +56,11 @@
             userService
                 .follow(model.currentUser._id, expertId)
                 .then(function(followUser){
-                    init();
+                    userService.findUserByUserName(currentUser.username)
+                        .then(function (userRet) {
+                            model.currentUser=userRet;
+                        })
                 })
-
-            $location.url('/movie/' + model.movieId + '/review');
         }
 
         function putProfileTrace()
