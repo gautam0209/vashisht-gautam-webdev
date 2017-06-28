@@ -16,6 +16,7 @@
         model.selected = false;
         model.movies = [];
         model.users = [];
+        model.roles=["ADMIN","EXPERT","USER"];
 
         function init() {
             findAllUsers();

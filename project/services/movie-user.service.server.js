@@ -80,6 +80,27 @@ app.post('/api/user/:userId/movie/:movieId/watch', watchMovie);
 app.post('/api/user/:userId/movie/:movieId/unwatch', unWatchMovie);
 app.post('/api/user/:userId/follow/:expertId', follow);
 app.get('/api/project/requests', findRequests);
+app.post('/api/project/setTrace/:trace', setProfileTrace);
+app.get('/api/project/getTrace', getProfileTrace);
+
+var profileTrace = {
+    text : ''
+};
+
+function setProfileTrace(req, res)
+{
+    console.log('ins');
+    profileTrace.text = req.params['trace'];
+    console.log(profileTrace);
+    res.sendStatus(200);
+}
+
+
+function getProfileTrace(req, res)
+{
+    console.log(profileTrace);
+    res.json(profileTrace);
+}
 
 
 function findRequests(req, res)

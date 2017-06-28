@@ -29,7 +29,14 @@
 
         function goBack()
         {
-            $location.url(userService.getProfileTrace());
+            userService.getProfileTrace()
+                .then(function(response)
+                {
+                    if(response.data.text === 'home')
+                        response.data.text = '/'
+                    response.data.text = response.data.text.replace('_','/');
+                    $location.url(response.data.text);
+                })
         }
 
         function logout()

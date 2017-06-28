@@ -58,7 +58,7 @@
         function putProfileTrace()
         {
             userService
-                .putProfileTrace('/myMovies');
+                .putProfileTrace('myMovies');
             $location.url('/profile');
         }
 

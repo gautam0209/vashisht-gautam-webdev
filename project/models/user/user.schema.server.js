@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/webdev_summer1_2017');
 mongoose.Promise = require('q').Promise;
 
+
 var userProjSchema = mongoose.Schema({
     username: {type: String, unique: true},
     password: String,
@@ -18,9 +19,12 @@ var userProjSchema = mongoose.Schema({
     followers : [{type: mongoose.Schema.Types.ObjectId, ref: "reviewModel"}],
     status: {type: String,
             enum: ['WAITING','APPROVED', 'REJECTED']},
-    roles: [{type: String,
-            default: 'USER',
-            enum: ['USER','EXPERT', 'ADMIN' ]}],
+    // roles: [{type: String,
+    //         default: 'USER',
+    //         enum: ['USER','EXPERT', 'ADMIN' ]}],
+    roles: {type:String,
+            default:'USER',
+        enum: ['USER','EXPERT', 'ADMIN' ]},
     dateCreated: {type: Date, default: Date.now},
         google: {
             id:    String,

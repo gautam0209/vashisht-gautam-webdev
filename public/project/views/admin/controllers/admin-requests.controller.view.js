@@ -26,7 +26,8 @@
         function approveRequest(user)
         {
             user.status = 'APPROVED';
-            user.roles.push('EXPERT');
+            //user.roles.push('EXPERT');
+            user.roles='EXPERT';
             userService
                 .updateUser(user._id, user)
                 .then(function()

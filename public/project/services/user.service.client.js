@@ -40,12 +40,19 @@
 
         function putProfileTrace(trace)
         {
-            profilePath = trace;
+            console.log('client');
+            var url = '/api/project/setTrace/' + trace;
+            //profilePath = trace;
+            return $http.post(url);
         }
 
         function getProfileTrace()
         {
-            return profilePath;
+            var url = '/api/project/getTrace';
+            //return $http.get(url);
+           // console.log($http.get(url));
+            return $http.get(url);
+            //return profilePath;
         }
 
         function findRequests()

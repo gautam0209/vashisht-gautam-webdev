@@ -66,7 +66,7 @@
         function putProfileTrace()
         {
             userService
-                .putProfileTrace('/movie/' + model.movieId + '/review');
+                .putProfileTrace('movie_' + model.movieId + '_review');
             $location.url('/profile');
         }
 

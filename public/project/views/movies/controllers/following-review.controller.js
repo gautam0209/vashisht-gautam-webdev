@@ -47,7 +47,7 @@
         function putProfileTrace()
         {
             userService
-                .putProfileTrace('/followingReviews');
+                .putProfileTrace('followingReviews');
             $location.url('/profile');
         }
 
