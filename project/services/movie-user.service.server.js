@@ -79,6 +79,7 @@ app.get('/api/user/:userId/movie/:movieId/watch', isWatch);
 app.post('/api/user/:userId/movie/:movieId/watch', watchMovie);
 app.post('/api/user/:userId/movie/:movieId/unwatch', unWatchMovie);
 app.post('/api/user/:userId/follow/:expertId', follow);
+app.post('/api/user/:userId/unFollow/:expertId', unFollow);
 app.get('/api/project/requests', findRequests);
 app.post('/api/project/setTrace/:trace', setProfileTrace);
 app.get('/api/project/getTrace', getProfileTrace);
@@ -237,6 +238,20 @@ function follow(req, res)
         })
 }
 
+function unFollow(req, res)
+{
+    var userId = req.params['userId'];
+    var expertId = req.params['expertId'];
+    userProjModel
+        .unFollow(userId, expertId)
+        .then(function()
+        {
+            res.sendStatus(200);
+        }, function(){
+            res.sendStatus(404);
+        })
+}
+
 function unWatchMovie(req, res)
 {
     var userId = req.params['userId'];
@@ -281,10 +296,7 @@ function isWatch(req, res)
         .then(function(watch){
             if(watch)
                 res.sendStatus(200);
-            else
-                res.sendStatus(404);
         }, function(){
-            res.sendStatus(404)
         })
 }
 
@@ -335,10 +347,7 @@ function isLike(req, res)
         .then(function(like){
             if(like)
                 res.sendStatus(200);
-            else
-                res.sendStatus(404);
         }, function(){
-            res.sendStatus(404)
         })
 }
 

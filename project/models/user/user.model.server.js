@@ -24,6 +24,7 @@ var q = require('q');
     userProjModel.watchMovie = watchMovie;
     userProjModel.unWatchMovie = unWatchMovie;
     userProjModel.follow = follow;
+    userProjModel.unFollow = unFollow;
     userProjModel.findRequests = findRequests;
 
 module.exports = userProjModel;
@@ -60,6 +61,28 @@ function follow(userId, expertId)
                 .then(function(){})
         })
 }
+
+function unFollow(userId, expertId)
+{
+    userProjModel
+        .findById(userId)
+        .then(function(user)
+        {
+            var index = user.follow.indexOf(expertId);
+            user.follow.splice(index, 1);
+            return user.save();
+        })
+
+    return   userProjModel
+        .findById(expertId)
+        .then(function(expert)
+        {
+            var index = expert.followers.indexOf(userId);
+            expert.followers.splice(index, 1);
+            return expert.save();
+        })
+}
+
 
 function unWatchMovie(userId, movieId)
 {

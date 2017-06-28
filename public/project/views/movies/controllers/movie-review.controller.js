@@ -16,6 +16,7 @@
         model.submitReview = submitReview;
         model.putProfileTrace = putProfileTrace;
         model.follow = follow;
+        model.unFollow = unFollow;
 
         function init() {
 
@@ -55,6 +56,18 @@
         {
             userService
                 .follow(model.currentUser._id, expertId)
+                .then(function(followUser){
+                    userService.findUserByUserName(currentUser.username)
+                        .then(function (userRet) {
+                            model.currentUser=userRet;
+                        })
+                })
+        }
+
+        function unFollow(expertId)
+        {
+            userService
+                .unFollow(model.currentUser._id, expertId)
                 .then(function(followUser){
                     userService.findUserByUserName(currentUser.username)
                         .then(function (userRet) {

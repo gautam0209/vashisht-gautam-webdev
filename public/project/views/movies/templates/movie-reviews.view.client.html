@@ -88,6 +88,7 @@
                             <span ng-if="model.currentUser.follow.indexOf(review._user)> -1
                                            || model.currentUser.roles.indexOf('EXPERT')>-1
                                             || (!model.currentUser._id)"
+                                  ng-click="model.unFollow(review._user)" title="Click to Unfollow"
                                   class="glyphicon glyphicon-star pull-right"></span>
                         </div>
                     </div>

@@ -107,17 +107,11 @@ function getLocalReviews(req, res)
 function addReview(req, res)
 {
     var reviewObj = req.body;
-
-    // var prom = q.defer();
     reviewModel
         .addReview(reviewObj)
         .then(function(reviewObj){
-            // q.resolve(reviewObj);
             res.json(reviewObj);
         },function(){
-            // q.reject();
             res.sendStatus(404);
         });
-
-    // return prom.promise;
 }

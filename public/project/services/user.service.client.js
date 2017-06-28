@@ -29,6 +29,7 @@
                 watchMovie: watchMovie,
                 unWatchMovie: unWatchMovie,
                 follow: follow,
+                unFollow: unFollow,
                 findRequests: findRequests,
                 getProfileTrace:getProfileTrace,
                 putProfileTrace:putProfileTrace
@@ -63,6 +64,12 @@
         function follow(userId, expertId)
         {
             var url = '/api/user/' + userId + '/follow/' + expertId;
+            return $http.post(url);
+        }
+
+        function unFollow(userId, expertId)
+        {
+            var url = '/api/user/' + userId + '/unFollow/' + expertId;
             return $http.post(url);
         }
 
