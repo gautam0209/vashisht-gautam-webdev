@@ -30,7 +30,7 @@
            movieService.
                findMovieById(model.movieId)
                .then(function(movie) {
-                   model.movie = movie.data;
+                   model.movie = JSON.parse(movie.data);
                });
 
            if(currentUser._id)

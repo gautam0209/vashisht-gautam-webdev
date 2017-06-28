@@ -23,16 +23,19 @@
             model.currentUser = currentUser;
             movieService.getMovies()
                 .then(function(response){
-                    model.currentMovies = response.data.results;
+                    var v = response.data;
+                    model.currentMovies = JSON.parse(v).results;
                 },function(){})
 
             movieService.getPopularMovies()
                 .then(function(response){
-                    model.popularMovies = response.data.results;
+                    var v = response.data;
+                    model.popularMovies = JSON.parse(v).results;
                 },function(){})
             movieService.getUpcomingMovies()
                 .then(function(response){
-                    model.upcomingMovies = response.data.results;
+                    var v = response.data;
+                    model.upcomingMovies = JSON.parse(v).results;
                 },function(){})
         }
 
@@ -74,8 +77,9 @@
             movieService
                 .searchMovie(movieName)
                 .then(function(response){
-                    model.searchMovies = response.data.results;
-                    if(!response.data.results[0])
+                    var v = response.data;
+                    model.searchMovies = JSON.parse(v).results;
+                    if(!model.searchMovies[0])
                         model.error = "No movies Found.";
                     else
                         model.error="";

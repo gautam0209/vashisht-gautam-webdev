@@ -30,7 +30,8 @@
                         .findMovieById(movieId)
                         .then(function(movie)
                         {
-                            model.favMovies.push(movie.data);
+                            model.movie = JSON.parse(movie.data);
+                            model.favMovies.push(model.movie);
                         })
                 }
             }
@@ -44,7 +45,8 @@
                         .findMovieById(movieId)
                         .then(function(movie)
                         {
-                            model.watMovies.push(movie.data);
+                            model.movie = JSON.parse(movie.data);
+                            model.watMovies.push(model.movie);
                         })
                 }
             }

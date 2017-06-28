@@ -21,12 +21,13 @@
             movieService.
             findMovieById(model.movieId)
                 .then(function(movie) {
-                    model.movie = movie.data;
+                    model.movie = JSON.parse(movie.data);
                 });
 
             movieService.getReviews(model.movieId)
                 .then(function (response) {
-                    model.reviews = response.data.results;
+                    var v = response.data;
+                    model.reviews = JSON.parse(v).results;
                     movieService
                         .getLocalReview(model.movieId)
                         .then(function(reviews)
@@ -36,8 +37,6 @@
                             })
 
                             model.reviews = reviews.concat(model.reviews);
-
-                            console.log(model.reviews);
                         }, function(err){
                             console.log(err);
                         })
@@ -79,8 +78,9 @@
                 .findMovieById(movieId)
                 .then(function(movie)
             {
+                model.movie = JSON.parse(movie.data);
                 userService
-                    .addReview(currentUser._id, movie.data.id, movie.data.title, movie.data.poster_path, content)
+                    .addReview(currentUser._id, model.movie.id, model.movie.title, model.movie.poster_path, content)
                     .then(function(){
 
                     }, function(){});

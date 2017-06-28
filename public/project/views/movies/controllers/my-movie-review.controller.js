@@ -75,8 +75,8 @@
                      .findMovieById(movieId)
                 .then(function(movie)
                 {
-                    console.log(movie);
-                    return movie.title;
+                    model.movie = JSON.parse(movie.data);
+                    return model.movie.title;
                 });
         }
 

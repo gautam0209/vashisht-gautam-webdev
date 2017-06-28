@@ -1,7 +1,7 @@
 var app = require('../../express');
 
 var q = require('q');
-
+var request=require('request');
 var userProjModel = require('../models/user/user.model.server');
 
 var passport = require('passport');
@@ -85,6 +85,24 @@ app.get('/api/project/getTrace', getProfileTrace);
 app.post('/api/project/setPath/:path', setPath);
 app.get('/api/project/getPath', getPath);
 
+app.get('/api/project/search/movie/:movieName', searchMovie);
+app.get('/api/project/currentMovies', currentMovies);
+app.get('/api/project/popularMovies', popularMovies);
+app.get('/api/project/upcomingMovies', upcomingMovies);
+app.get('/api/project/reviews/movie/:movieId', getReviews);
+app.get('/api/project/find/movie/:movieId', getMovie);
+
+
+
+var key = "56ebcfaec1cf2e96e005ccf98f7feeb6";
+var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
+var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
+var urlBasePop = "https://api.themoviedb.org/3/movie/popular?api_key="+key+"&language=en-US";
+var urlBaseUp = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + key + "&language=en-US";
+var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
+var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&append_to_response=credits&language=en-US";
+
+
 
 var path = {
     text: ''
@@ -93,6 +111,78 @@ var path = {
 var profileTrace = {
     text : ''
 };
+
+function getMovie(req, res)
+{
+    var movieId = req.params['movieId'];
+    var url = urlById.replace('ID',movieId);
+    request.get(url, function (error, response, body) {
+        if(error){
+            res.sendStatus(404);
+        }
+        else{
+            res.json(body);
+        }});
+}
+
+function currentMovies(req, res)
+{
+    request.get(urlBaseCur, function (error, response, body) {
+        if(error){
+            res.sendStatus(404);
+        }
+        else{
+            res.json(body);
+        }});
+}
+
+function popularMovies(req, res)
+{
+    request.get(urlBasePop, function (error, response, body) {
+        if(error){
+            res.sendStatus(404);
+        }
+        else{
+            res.json(body);
+        }});
+}
+
+function upcomingMovies(req, res)
+{
+    request.get(urlBaseUp, function (error, response, body) {
+        if(error){
+            res.sendStatus(404);
+        }
+        else{
+            res.json(body);
+        }});
+}
+
+function searchMovie(req, res)
+{
+    var movieName = req.params['movieName'];
+    var url = urlBase.replace('mvName',movieName);
+    request.get(url, function (error, response, body) {
+        if(error){
+            res.sendStatus(404);
+        }
+        else{
+            res.json(body);
+        }});
+}
+
+function getReviews(req, res)
+{
+    var movieId = req.params['movieId'];
+    var url = urlBaseRev.replace('ID',movieId);
+    request.get(url, function (error, response, body) {
+        if(error){
+            res.sendStatus(404);
+        }
+        else{
+            res.json(body);
+        }});
+}
 
 function setPath(req, res)
 {

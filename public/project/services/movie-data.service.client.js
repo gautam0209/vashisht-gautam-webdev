@@ -8,23 +8,18 @@
 
         var key = "56ebcfaec1cf2e96e005ccf98f7feeb6";
         var mId;
-        var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
-        var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
-        var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
-        var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&append_to_response=credits&language=en-US";
-        var urlBasePop = "https://api.themoviedb.org/3/movie/popular?api_key="+key+"&language=en-US";
-        var urlBaseUp = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + key + "&language=en-US";
+       // var urlBaseCur = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ key + "&language=en-US";
+        //var urlBase = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=mvName";
+        // var urlBaseRev = "https://api.themoviedb.org/3/movie/ID/reviews?api_key=" + key;
+        // var urlById = "https://api.themoviedb.org/3/movie/ID?api_key=" + key + "&append_to_response=credits&language=en-US";
+        // var urlBasePop = "https://api.themoviedb.org/3/movie/popular?api_key="+key+"&language=en-US";
+        // var urlBaseUp = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + key + "&language=en-US";
 
         var movie;
 
         var movies = [];
 
         var path;
-
-
-
-
-
 
         var api =
             {
@@ -87,39 +82,45 @@
 
         function getMovies()
         {
-            return $http
-                    .get(urlBaseCur);
+            var url = '/api/project/currentMovies';
+            return $http.get(url);
         }
 
         function getPopularMovies()
         {
-            return $http
-                .get(urlBasePop);
+            var url = '/api/project/popularMovies';
+            return $http.get(url);
         }
 
         function getUpcomingMovies()
         {
-            return $http
-                .get(urlBaseUp);
+            var url = '/api/project/upcomingMovies';
+            return $http.get(url);
         }
 
         function searchMovie(movieName)
         {
-            var url = urlBase.replace("mvName",movieName);
+            var url = '/api/project/search/movie/' + movieName;
             return $http.get(url);
         }
 
         function findMovieById(movieId)
         {
-            var url = urlById.replace("ID",movieId);
+            // var url = urlById.replace("ID",movieId);
+            // return $http.get(url);
+
+            var url = '/api/project/find/movie/' + movieId;
             return $http.get(url);
         }
 
-        function getReviews(id)
+        function getReviews(movieId)
         {
-            mid = id;
-            var url = urlBaseRev.replace("ID",mid);
+            // mid = id;
+            // var url = urlBaseRev.replace("ID",mid);
+            //
+            // return $http.get(url);
 
+            var url = '/api/project/reviews/movie/' + movieId;
             return $http.get(url);
         }
 
