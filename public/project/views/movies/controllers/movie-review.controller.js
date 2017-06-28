@@ -54,12 +54,10 @@
             userService
                 .follow(model.currentUser._id, expertId)
                 .then(function(followUser){
-                    console.log(followUser);
                     init();
-                    $location.url('/movie/' + model.movieId + '/review');
                 })
 
-
+            $location.url('/movie/' + model.movieId + '/review');
         }
 
         function putProfileTrace()
@@ -82,14 +80,14 @@
                 userService
                     .addReview(currentUser._id, model.movie.id, model.movie.title, model.movie.poster_path, content)
                     .then(function(){
-
+                        init();
                     }, function(){});
             });
 
             $("#review_"+movieId).toggle();
 
 
-            init();
+            // init();
             $location.url('/movie/' + movieId + '/review');
 
         }

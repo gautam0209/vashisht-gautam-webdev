@@ -27,7 +27,7 @@
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
                             <li ng-show="model.currentUser._id" class="active"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
-                            <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
+                            <li ng-show="model.currentUser._id && model.currentUser.roles.indexOf('USER')>-1"><a href="#!/followingReviews">Following</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
 

@@ -38,9 +38,9 @@
                        <li ng-show="!model.currentUser._id"><a href="#!/login">Login</a></li>
                        <li ng-show="!model.currentUser._id"><a href="#!/register">SignUp</a></li>
                        <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
-                       <li ng-show="model.currentUser.roles.indexOf('USER')>-1"><a href="#!/myMovies">My Movies</a></li>
-                       <li ng-show="model.currentUser.roles.indexOf('USER')>-1"><a href="#!/myReviews">My Reviews</a></li>
-                       <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
+                       <li ng-show="model.currentUser.roles.indexOf('ADMIN') === -1"><a href="#!/myMovies">My Movies</a></li>
+                       <li ng-show="model.currentUser.roles.indexOf('ADMIN') === -1"><a href="#!/myReviews">My Reviews</a></li>
+                       <li ng-show="model.currentUser._id && model.currentUser.roles.indexOf('USER')>-1"><a href="#!/followingReviews">Following</a></li>
                        <li ng-show="model.currentUser._id"><a ng-click="model.logout()">Logout</a></li>
                    </ul>
                </div>
@@ -71,7 +71,9 @@
 
             <div ng-repeat="movie in model.searchMovies">
                 <div class="pull-left wb-dev-home-img">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    <a ng-click="model.movieDetailView(movie.id)">
+                        <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    </a>
                     <a ng-click="model.movieDetailView(movie.id)"
                     class="wb-dev-mov-title">
                         {{movie.title}}
@@ -88,7 +90,9 @@
 
             <div ng-repeat="movie in model.popularMovies">
                 <div class="pull-left wb-dev-home-img">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    <a ng-click="model.movieDetailView(movie.id)">
+                        <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    </a>
                     <a ng-click="model.movieDetailView(movie.id)"
                     class="wb-dev-mov-title">
                         {{movie.title}}
@@ -105,7 +109,9 @@
 
             <div ng-repeat="movie in model.currentMovies">
                 <div class="pull-left wb-dev-home-img">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    <a ng-click="model.movieDetailView(movie.id)">
+                        <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    </a>
                     <a ng-click="model.movieDetailView(movie.id)"
                     class="wb-dev-mov-title">
                         {{movie.title}}
@@ -122,7 +128,9 @@
 
             <div ng-repeat="movie in model.upcomingMovies">
                 <div class="pull-left wb-dev-home-img">
-                    <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    <a ng-click="model.movieDetailView(movie.id)">
+                        <img ng-src="http://image.tmdb.org/t/p/w185{{movie.poster_path}}" width = "100px"; height="150px"/>
+                    </a>
                     <a ng-click="model.movieDetailView(movie.id)"
                         class="wb-dev-mov-title">
                         {{movie.title}}

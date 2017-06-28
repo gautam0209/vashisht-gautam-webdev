@@ -27,7 +27,7 @@
                             <li ng-show="model.currentUser.roles.indexOf('ADMIN')>-1"><a href="#!/admin">Admin</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myMovies">My Movies</a></li>
                             <li ng-show="model.currentUser._id"><a href="#!/myReviews">My Reviews</a></li>
-                            <li ng-show="model.currentUser._id"><a href="#!/followingReviews">Following</a></li>
+                            <li ng-show="model.currentUser._id && model.currentUser.roles.indexOf('USER')>-1"><a href="#!/followingReviews">Following</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
 
@@ -62,16 +62,16 @@
             </a>
             <br><br>
             <div ng-show="model.currentUser._id">
-                <a ng-show="!model.like" ng-click="model.likeMovie()">
+                <a ng-show="!model.like" ng-click="model.likeMovie()" title="Like the movie">
                     <i class="fa fa-heart-o fa-2x"></i>
                 </a>
-                <a ng-show="model.like" ng-click="model.unLikeMovie()">
+                <a ng-show="model.like" ng-click="model.unLikeMovie()" title="Unlike the movie">
                     <i class="fa fa-heart fa-2x wb-dev-col-red"></i>
                 </a>
-                <a ng-show="!model.watch" ng-click="model.watchMovie()">
+                <a ng-show="!model.watch" ng-click="model.watchMovie()" title="Add to watchlist">
                     <i class="fa fa-eye fa-2x"></i>
                 </a>
-                <a ng-show="model.watch" ng-click="model.unWatchMovie()">
+                <a ng-show="model.watch" ng-click="model.unWatchMovie()" title="Remove from watchlist">
                     <i class="fa fa-eye fa-2x wb-dev-col-red"></i>
                 </a>
             </div>
