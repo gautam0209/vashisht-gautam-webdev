@@ -1,9 +1,9 @@
 (function (){
     angular
         .module('WebAppProj')
-        .controller('followingController',followingController);
+        .controller('followerController',followerController);
 
-    function followingController($routeParams,
+    function followerController($routeParams,
                                 $location,
                                 currentUser,
                                 userService,
@@ -25,14 +25,14 @@
 
         function init() {
 
-            model.reviews =[];
-            for(var f in model.currentUser.follow)
+            model.followers =[];
+            for(var f in model.currentUser.followers)
             {
-                var followId = model.currentUser.follow[f];
-                movieService
-                    .findAllReviewsByFollow(followId)
-                    .then(function (response) {
-                        model.reviews = model.reviews.concat(response.data);
+                var followerId = model.currentUser.followers[f];
+                userService
+                    .findUserById(followerId)
+                    .then(function (user) {
+                        model.followers = model.followers.concat(user);
 
                     });
             }
@@ -45,7 +45,7 @@
         function putProfileTrace()
         {
             userService
-                .putProfileTrace('followingReviews');
+                .putProfileTrace('followers');
             $location.url('/profile');
         }
 

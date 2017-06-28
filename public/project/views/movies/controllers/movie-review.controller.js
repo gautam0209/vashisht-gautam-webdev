@@ -86,8 +86,6 @@
         function submitReview(movieId, content)
         {
 
-            console.log('submitting review');
-
             movieService
                 .findMovieById(movieId)
                 .then(function(movie)

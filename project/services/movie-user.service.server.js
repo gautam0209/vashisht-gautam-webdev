@@ -296,6 +296,8 @@ function isWatch(req, res)
         .then(function(watch){
             if(watch)
                 res.sendStatus(200);
+            else
+                res.sendStatus(404);
         }, function(){
         })
 }
@@ -347,6 +349,9 @@ function isLike(req, res)
         .then(function(like){
             if(like)
                 res.sendStatus(200);
+            else
+                res.sendStatus(404);
+
         }, function(){
         })
 }

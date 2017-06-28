@@ -120,6 +120,17 @@
             )
 
             .when(
+                '/followers', {
+                    templateUrl: 'views/movies/templates/followers-reviews.view.client.html',
+                    resolve:{
+                        currentUser:checkLoggedIn
+                    },
+                    controller: 'followerController',
+                    controllerAs: 'model'
+                }
+            )
+
+            .when(
                 '/admin/requests', {
                     templateUrl: 'views/admin/templates/admin-requests.view.client.html',
                     resolve:{
