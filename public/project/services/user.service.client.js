@@ -40,7 +40,6 @@
 
         function putProfileTrace(trace)
         {
-            console.log('client');
             var url = '/api/project/setTrace/' + trace;
             //profilePath = trace;
             return $http.post(url);

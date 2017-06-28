@@ -82,23 +82,39 @@ app.post('/api/user/:userId/follow/:expertId', follow);
 app.get('/api/project/requests', findRequests);
 app.post('/api/project/setTrace/:trace', setProfileTrace);
 app.get('/api/project/getTrace', getProfileTrace);
+app.post('/api/project/setPath/:path', setPath);
+app.get('/api/project/getPath', getPath);
+
+
+var path = {
+    text: ''
+};
 
 var profileTrace = {
     text : ''
 };
 
+function setPath(req, res)
+{
+    path.text = req.params['path'];
+    res.sendStatus(200);
+}
+
+
+function getPath(req, res)
+{
+    res.json(path);
+}
+
 function setProfileTrace(req, res)
 {
-    console.log('ins');
     profileTrace.text = req.params['trace'];
-    console.log(profileTrace);
     res.sendStatus(200);
 }
 
 
 function getProfileTrace(req, res)
 {
-    console.log(profileTrace);
     res.json(profileTrace);
 }
 
@@ -357,7 +373,6 @@ function isAdmin(req,res,next)
 }
 
 function register(req, res) {
-    console.log("I am here");
     var userObj = req.body;
     userObj.password = bcrypt.hashSync(userObj.password);
     userProjModel
@@ -412,7 +427,6 @@ function loggedin(req, res) {
 
 
 function checkAdmin(req, res) {
-    console.log(req.user);
     if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1) {
         res.json(req.user);
     } else {
@@ -466,7 +480,6 @@ function updateProfile(req, res)
             userProjModel.updateUser(userId,user)
                 .then(function(){
                         res.sendStatus(200)
-                        console.log(user.password);
 
                     },
                     function(){

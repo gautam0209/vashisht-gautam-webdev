@@ -19,6 +19,7 @@
         model.watchMovie = watchMovie;
         model.unWatchMovie = unWatchMovie;
         model.putProfileTrace = putProfileTrace;
+        model.getPath = getPath;
 
 
 
@@ -46,10 +47,23 @@
                         model.watch = watch;
                     },function(){});
 
-            model.returnPath = movieService.getPath();
+            //model.returnPath = movieService.getPath();
         }
 
         init();
+
+        function getPath()
+        {
+            movieService
+                .getPath()
+                .then(function(response)
+                {
+                    if(response.data.text === 'home')
+                        response.data.text = '/';
+                    response.data.text = response.data.text.replace('_','/');
+                    $location.url(response.data.text);
+                })
+        }
 
         function putProfileTrace()
         {

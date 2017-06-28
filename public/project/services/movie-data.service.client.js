@@ -50,13 +50,16 @@
 
         function putPath(bPath)
         {
-            path = bPath;
+            var url = '/api/project/setPath/' + bPath;
+            return $http.post(url);
+            //path = bPath;
 
         }
 
         function getPath()
         {
-            return path;
+            var url = '/api/project/getPath';
+            return $http.get(url);
         }
 
         function findAllReviewsByFollow(followId)

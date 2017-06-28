@@ -10,6 +10,7 @@
         var model = this;
         model.currentUser = currentUser;
         model.logout =logout;
+        model.putProfileTrace = putProfileTrace;
 
         function init() {
 
@@ -21,6 +22,13 @@
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('admin');
+            $location.url('/profile');
+        }
 
        function logout()
        {

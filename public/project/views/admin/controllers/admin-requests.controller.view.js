@@ -5,6 +5,7 @@
 
     function adminRequestsController(userService,
                              movieService,
+                             $location,
                              currentUser) {
 
         var model = this;
@@ -14,6 +15,7 @@
         model.findRequests = findRequests;
         model.approveRequest = approveRequest;
         model.cancelRequest = cancelRequest;
+        model.putProfileTrace = putProfileTrace;
         model.movies = [];
         model.users = [];
 
@@ -22,6 +24,13 @@
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('admin_requests');
+            $location.url('/profile');
+        }
 
         function approveRequest(user)
         {

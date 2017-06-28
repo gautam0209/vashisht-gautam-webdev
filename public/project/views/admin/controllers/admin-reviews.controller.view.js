@@ -5,11 +5,13 @@
 
     function adminReviewController(userService,
                              movieService,
+                                   $location,
                              currentUser) {
 
         var model = this;
         model.currentUser = currentUser;
         model.deleteReview = deleteReview;
+        model.putProfileTrace = putProfileTrace;
         model.movies = [];
         model.users = [];
 
@@ -18,6 +20,13 @@
         }
 
         init();
+
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('admin_reviews');
+            $location.url('/profile');
+        }
 
         function deleteReview(userId, reviewId)
         {

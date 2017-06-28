@@ -4,7 +4,8 @@
         .controller('adminUsersController',adminUsersController);
 
     function adminUsersController(userService,
-                                  currentUser) {
+                                  currentUser,
+                                    $location) {
 
         var model = this;
         model.findAllUsers = findAllUsers;
@@ -13,6 +14,7 @@
         model.createUser = createUser;
         model.selectUser = selectUser;
         model.updateUser = updateUser;
+        model.putProfileTrace = putProfileTrace;
         model.selected = false;
         model.movies = [];
         model.users = [];
@@ -24,6 +26,12 @@
 
         init();
 
+        function putProfileTrace()
+        {
+            userService
+                .putProfileTrace('admin_users');
+            $location.url('/profile');
+        }
 
 
 

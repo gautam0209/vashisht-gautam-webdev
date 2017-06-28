@@ -14,6 +14,7 @@
                     Users
                 </a>
             </div>
+
             <div class="panel-body wb-dev-pad-top25">
                 <a href="#!/admin/reviews">
                     Reviews
@@ -28,6 +29,13 @@
                     {{model.requests.length}}
                 </a>
             </div>
+
+            <div class="panel-body wb-dev-pad-top25">
+                <a ng-click="model.putProfileTrace()">
+                    My Profile
+                </a>
+            </div>
+
             <div class="panel-body wb-dev-pad-top25">
                 <a ng-click="model.logout()">
                     Logout

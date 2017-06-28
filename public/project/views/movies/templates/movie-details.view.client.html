@@ -3,10 +3,7 @@
         <div class="navbar-header">
             <div class="row">
                 <div class="col-xs-9 col-md-7" pull-left>
-                    <a ng-show="model.returnPath === 'home'" class="navbar-brand" href="#!/">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a ng-show="model.returnPath === 'myMovies'" class="navbar-brand" href="#!/myMovies">
+                    <a ng-click="model.getPath()" class="navbar-brand">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
                     <a class="navbar-brand">

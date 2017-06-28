@@ -79,7 +79,6 @@ function findAllReviews(req, res){
 
 function findAllReviewsForUserId(req, res){
     var userId = req.params['userId'];
-    console.log("hii");
     reviewModel.findAllReviewsForUserId(userId)
         .then(function(reviews){
                 if(reviews)
@@ -108,8 +107,7 @@ function getLocalReviews(req, res)
 function addReview(req, res)
 {
     var reviewObj = req.body;
-    console.log("hi");
-    console.log(reviewObj);
+
     var prom = q.defer();
     reviewModel
         .addReview(reviewObj)
